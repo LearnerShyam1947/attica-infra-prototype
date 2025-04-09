@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for Slick carousel */
+.slick-dots {
+  bottom: 25px !important;
+}
+
+.slick-dots li button:before {
+  color: white !important;
+  font-size: 12px !important;
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+}
+
+/* Testimonials slider customization */
+.testimonials-slider .slick-dots {
+  bottom: -40px !important;
+}
+
+.testimonials-slider .slick-dots li button:before {
+  color: #1e40af !important;
+}
+
+/* Hide default slick arrows */
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
