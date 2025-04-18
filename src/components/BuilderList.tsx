@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, MapPin, Phone } from 'lucide-react';
+import { MapPin, Phone, Search } from 'lucide-react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface Builder {
@@ -67,10 +67,10 @@ const BuilderList = () => {
   const [searchCity, setSearchCity] = useState('');
   const [searchArea, setSearchArea] = useState('');
   const [searchPincode, setSearchPincode] = useState('');
-  
+
   const handleBuilderSelect = (builderId: string) => {
-    setSelectedBuilders(prev => 
-      prev.includes(builderId) 
+    setSelectedBuilders(prev =>
+      prev.includes(builderId)
         ? prev.filter(id => id !== builderId)
         : [...prev, builderId]
     );
@@ -100,7 +100,7 @@ const BuilderList = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">Select Builders</h2>
-        
+
         {/* Search Filters */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white p-6 rounded-lg shadow-md">
           <div>
@@ -119,7 +119,7 @@ const BuilderList = () => {
               <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
             </div>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Area
@@ -132,7 +132,7 @@ const BuilderList = () => {
               onChange={(e) => setSearchArea(e.target.value)}
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Pincode*
@@ -150,48 +150,51 @@ const BuilderList = () => {
       </div>
 
       {/* Builders List */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {filteredBuilders.map(builder => (
           <div
             key={builder.id}
-            className={`bg-white rounded-lg shadow-md p-6 flex gap-6 cursor-pointer transition-all duration-200 ${
-              selectedBuilders.includes(builder.id) ? 'ring-2 ring-blue-500' : ''
-            }`}
+            className={`bg-white rounded-lg shadow-md p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 cursor-pointer transition-all duration-200 ${selectedBuilders.includes(builder.id) ? 'ring-2 ring-blue-500' : ''
+              }`}
             onClick={() => handleBuilderSelect(builder.id)}
           >
-            <div className="w-48 h-48 flex-shrink-0">
+            {/* Builder Image */}
+            <div className="w-full sm:w-48 h-48 flex-shrink-0">
               <img
                 src={builder.image}
                 alt={builder.name}
                 className="w-full h-full object-cover rounded-lg"
               />
             </div>
-            
-            <div className="flex-grow">
-              <div className="flex justify-between items-start">
+
+            {/* Builder Details */}
+            <div className="flex-grow flex flex-col justify-between">
+              <div className="flex flex-col sm:flex-row justify-between gap-2">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900">{builder.name}</h3>
                   <p className="text-gray-600 mt-1">{builder.description}</p>
                   <p className="text-blue-600 font-medium mt-2">Experience: {builder.experience}</p>
                 </div>
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-600 mt-2 sm:mt-0">
                   <MapPin className="w-5 h-5 mr-1" />
                   <span>{builder.city}, {builder.area}</span>
                 </div>
               </div>
-              
-              <div className="mt-4">
-                <p className="text-gray-700">
+
+              {/* Contact Info */}
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700">
+                <p>
                   <span className="font-medium">Contact: </span>
                   {builder.phone}
                 </p>
-                <p className="text-gray-700">
+                <p>
                   <span className="font-medium">Pincode: </span>
                   {builder.pincode}
                 </p>
               </div>
 
-              <div className="flex justify-end items-center gap-4 mt-4">
+              {/* Actions */}
+              <div className="flex flex-wrap justify-end items-center gap-3 mt-4">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -214,15 +217,19 @@ const BuilderList = () => {
               </div>
             </div>
 
-            <div className="flex items-center">
-              <div className={`w-6 h-6 border-2 rounded ${
-                selectedBuilders.includes(builder.id)
+            {/* Checkmark Indicator */}
+            <div className="flex items-start sm:items-center mt-4 sm:mt-0">
+              <div className={`w-6 h-6 border-2 rounded ${selectedBuilders.includes(builder.id)
                   ? 'border-blue-500 bg-blue-500'
                   : 'border-gray-300'
-              }`}>
+                }`}>
                 {selectedBuilders.includes(builder.id) && (
                   <svg className="w-5 h-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 )}
               </div>
@@ -230,6 +237,7 @@ const BuilderList = () => {
           </div>
         ))}
       </div>
+
 
       {selectedBuilders.length > 0 && (
         <div className="mt-6 flex justify-end">

@@ -71,7 +71,7 @@ const Chatbot = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {/* Chat Toggle Button */}
-      <button
+      {/* <button
         onClick={() => setIsOpen(!isOpen)}
         className="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
       >
@@ -80,7 +80,20 @@ const Chatbot = () => {
         ) : (
           <MessageCircle className="w-6 h-6" />
         )}
+      </button> */}
+      <button
+        // onClick={() => setIsOpen(!isOpen)}
+        className="bg-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300"
+      >
+        <a target='_blank'  href='https://api.whatsapp.com/send?phone=919346872174'>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            alt="WhatsApp"
+            className="w-10 h-10"
+          />
+        </a>
       </button>
+
 
       {/* Chat Window */}
       {isOpen && (

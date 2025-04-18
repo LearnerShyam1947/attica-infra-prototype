@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Home, Info, Phone, Wrench, UserCircle } from 'lucide-react';
+import { ChevronDown, Home, Info, Menu, Wrench, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import ContactButton from './ContactButton';
 import Logo from './Logo';
 
 const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
@@ -8,7 +9,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [cityDropdown, setCityDropdown] = useState(false);
-  const [authDropdown, setAuthDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,13 +64,23 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              <a href="#contact" className="flex items-center text-gray-700 hover:text-blue-600">
+
+              <ContactButton onSubmit={(data) => {
+                console.log(data);
+              }} 
+              modalTitle="Let's Connect"
+              buttonClassName="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              buttonText="Let's Talk"
+              submitButtonText="Let's Connect"
+              />
+
+              {/* <a href="#contact" className="flex items-center text-gray-700 hover:text-blue-600">
                 <Phone className="w-4 h-4 mr-1" />
                 Contact
-              </a>
+              </a> */}
               
               {/* Auth Dropdown */}
-              <div className="relative">
+              {/* <div className="relative">
                 <button
                   onClick={() => setAuthDropdown(!authDropdown)}
                   className="flex items-center text-gray-700 hover:text-blue-600"
@@ -95,7 +105,8 @@ const Navbar = () => {
                     </a>
                   </div>
                 )}
-              </div>
+              </div> */}
+
             </div>
           </div>
 

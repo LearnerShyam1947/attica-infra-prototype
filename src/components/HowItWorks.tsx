@@ -5,38 +5,38 @@ const HowItWorks = () => {
     {
       icon: <FileText className="w-8 h-8 text-blue-600" />,
       number: 1,
-      title: "Raise a Request",
-      description: "Submit your construction requirements through our platform"
+      title: "Request a Quote",
+      description: "Submit your construction requirements easily through our platform."
     },
     {
       icon: <Users className="w-8 h-8 text-blue-600" />,
       number: 2,
-      title: "Meet our Expert",
-      description: "Discuss your project details with our construction experts"
+      title: "Consult with Experts",
+      description: "Talk to our professionals about your project details."
     },
     {
       icon: <BookOpen className="w-8 h-8 text-blue-600" />,
       number: 3,
-      title: "Book with Us",
-      description: "Finalize the project details and confirm your booking"
+      title: "Confirm Your Project",
+      description: "Finalize the details and confirm your booking."
     },
     {
       icon: <PenTool className="w-8 h-8 text-blue-600" />,
       number: 4,
-      title: "Receive Designs",
-      description: "Get detailed architectural designs and plans"
+      title: "Get Your Design",
+      description: "Receive complete architectural plans and designs."
     },
     {
       icon: <Activity className="w-8 h-8 text-blue-600" />,
       number: 5,
-      title: "Track & Transact",
-      description: "Monitor construction progress and handle payments"
+      title: "Track Progress",
+      description: "Stay updated on construction and manage payments."
     },
     {
       icon: <Home className="w-8 h-8 text-blue-600" />,
       number: 6,
-      title: "Settle In",
-      description: "Move into your newly constructed space"
+      title: "Move In",
+      description: "Settle into your new home with ease.Move into your newly constructed space"
     }
   ];
 
@@ -46,7 +46,7 @@ const HowItWorks = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">How it Works</h2>
           <p className="mt-4 text-xl text-gray-600">
-            Our house construction steps are simple and easy to understand: Plan – Build – Track – Settle in
+            Our house construction steps are simple and easy to understand: Design - Construct - Monitor - Move in
           </p>
         </div>
 

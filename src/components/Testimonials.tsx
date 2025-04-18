@@ -1,20 +1,24 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-const NextArrow = ({ onClick }) => (
+const NextArrow = ({ onClick, className, style }) => (
   <button
     onClick={onClick}
-    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 transition-all duration-200"
+    className={`${className} !right-4 z-10 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-all duration-200`}
+    style={{ ...style, display: 'block' }}
   >
     <ChevronRight className="w-6 h-6 text-blue-600" />
   </button>
 );
 
-const PrevArrow = ({ onClick }) => (
+const PrevArrow = ({ onClick, className, style }) => (
   <button
     onClick={onClick}
-    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 transition-all duration-200"
+    className={`${className} !left-4 z-10 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-all duration-200`}
+    style={{ ...style, display: 'block' }}
   >
     <ChevronLeft className="w-6 h-6 text-blue-600" />
   </button>
@@ -36,14 +40,12 @@ const Testimonials = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
         }
       }
     ]
@@ -88,15 +90,15 @@ const Testimonials = () => {
           <p className="mt-4 text-xl text-gray-600">What Our Clients Say About Us</p>
         </div>
 
-        <div className="relative px-12">
-          <div className="absolute -top-6 -left-6 w-24 h-24 text-blue-100">
+        <div className="relative">
+          <div className="absolute -top-6 -left-6 w-24 h-24 text-blue-100 opacity-20 pointer-events-none">
             <Quote className="w-full h-full" />
           </div>
-          
-          <Slider {...settings} className="testimonials-slider">
+
+          <Slider {...settings}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="px-4 py-8">
-                <div className="bg-white rounded-xl shadow-lg p-8 relative">
+              <div key={index} className="px-4">
+                <div className="bg-white rounded-xl shadow-md p-8 h-full">
                   <div className="flex items-center mb-6">
                     <img
                       src={testimonial.image}

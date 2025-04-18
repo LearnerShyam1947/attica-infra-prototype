@@ -1,27 +1,41 @@
-import React from 'react';
-import { DollarSign, Clock, Shield, HeartHandshake } from 'lucide-react';
+import { Clock, DollarSign, HeartHandshake } from 'lucide-react';
 
 const Features = () => {
   const features = [
-    {
-      icon: <DollarSign className="w-12 h-12 text-blue-600" />,
-      title: "Multiple Options for Best Quotations",
-      description: "Compare and choose from various competitive quotes all in one place, ensuring you get the best value for your investment."
-    },
+    // {
+    //   icon: <DollarSign className="w-12 h-12 text-blue-600" />,
+    //   title: "Multiple Options for Best Quotations",
+    //   description: "Compare and choose from various competitive quotes all in one place, ensuring you get the best value for your investment."
+    // },
+    // {
+    //   icon: <Clock className="w-12 h-12 text-blue-600" />,
+    //   title: "Quality and Time Delivery",
+    //   description: "We pride ourselves on delivering high-quality construction work within the agreed timeframe, every time."
+    // },
+    // {
+    //   icon: <Shield className="w-12 h-12 text-blue-600" />,
+    //   title: "Safe Money Transaction",
+    //   description: "Secure and transparent payment processes to ensure your financial peace of mind throughout the project."
+    // },
+    // {
+    //   icon: <HeartHandshake className="w-12 h-12 text-blue-600" />,
+    //   title: "End to End Support",
+    //   description: "Comprehensive support from project inception to completion, ensuring a smooth construction journey."
+    // }
     {
       icon: <Clock className="w-12 h-12 text-blue-600" />,
-      title: "Quality and Time Delivery",
-      description: "We pride ourselves on delivering high-quality construction work within the agreed timeframe, every time."
+      title: "Save Time",
+      description: "Forget about manual calculations and endless research. Our home building cost calculator makes the process quick and easy, so you can focus on what matters most."
     },
     {
-      icon: <Shield className="w-12 h-12 text-blue-600" />,
-      title: "Safe Money Transaction",
-      description: "Secure and transparent payment processes to ensure your financial peace of mind throughout the project."
+      icon: <DollarSign className="w-12 h-12 text-blue-600" />,
+      title: "Stay on Budget",
+      description: "Avoid overpaying by getting accurate cost estimates for your project. Stay within your budget and plan efficiently."
     },
     {
       icon: <HeartHandshake className="w-12 h-12 text-blue-600" />,
-      title: "End to End Support",
-      description: "Comprehensive support from project inception to completion, ensuring a smooth construction journey."
+      title: "Make Informed Decisions",
+      description: "With precise cost estimates, you can prioritize tasks and allocate resources effectively, making better decisions for your project."
     }
   ];
 
@@ -33,7 +47,7 @@ const Features = () => {
           <p className="mt-4 text-xl text-gray-600">Building trust through excellence and reliability</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div
               key={index}

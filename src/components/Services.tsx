@@ -5,7 +5,7 @@ const Services = () => {
   const services = [
     {
       icon: <Home className="w-12 h-12 text-blue-600" />,
-      title: "Buy/Sell Plots",
+      title: "Buy/Sell",
       description: `Attica Infra Services works with trusted developers to offer the best plots, flats, and homes for sale. We ensure every property is carefully verified with the following services:
         <ul>
           <li><b> • Legal Title Check:</b> We ensure the property’s ownership is clear and safe for your investment.</li>
@@ -14,7 +14,8 @@ const Services = () => {
         </ul>
       `,
       image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
-      buttonText: "Learn More"
+      buttonText: "Learn More",
+      url: "/sell-buy"
     },
     {
       icon: <Building2 className="w-12 h-12 text-blue-600" />,
@@ -31,7 +32,8 @@ const Services = () => {
           </ul>
       We also offer customized solutions based on customer requirements.`,
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
-      buttonText: "Explore Services"
+      buttonText: "Explore Services",
+      url: "/architecture-design"
     },
     {
       icon: <Factory className="w-12 h-12 text-blue-600" />,
@@ -43,7 +45,8 @@ const Services = () => {
       </ul>
       `,
       image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80",
-      buttonText: "View Projects"
+      buttonText: "View Projects",
+      url: "/quote"
     },
     {
       icon: <Warehouse className="w-12 h-12 text-blue-600" />,
@@ -55,7 +58,8 @@ const Services = () => {
       </ul>
       `,
       image: "https://images.unsplash.com/photo-1632832240976-6a2bc97d18d8?auto=format&fit=crop&q=80",
-      buttonText: "Get Started"
+      buttonText: "Get Started",
+      url: "/interior-experts"
     },
     // {
     //   icon: <School className="w-12 h-12 text-blue-600" />,
@@ -92,7 +96,7 @@ const Services = () => {
                   dangerouslySetInnerHTML={{ __html: service.description }}
                 />
                 <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center gap-2">
-                  <Link to={"/quote"}>{service.buttonText}</Link>
+                  <Link to={service.url}>{service.buttonText}</Link>
                 </button>
               </div>
               <div className="w-full lg:w-1/2">

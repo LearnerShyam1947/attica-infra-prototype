@@ -1,5 +1,4 @@
-import React from 'react';
-import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -100,19 +99,6 @@ const Contact = () => {
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
                   <Linkedin className="w-8 h-8" />
                 </a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Office Location</h3>
-              <div className="aspect-w-16 aspect-h-9">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2233913121413!2d77.02192431507569!3d28.4595420824731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d18fe0000000f%3A0x0!2zMjjCsDI3JzM0LjQiTiA3N8KwMDEnMjMuMiJF!5e0!3m2!1sen!2sin!4v1645454229625!5m2!1sen!2sin"
-                  className="w-full h-64 rounded-lg"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                ></iframe>
               </div>
             </div>
           </div>
