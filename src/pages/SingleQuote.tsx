@@ -348,7 +348,7 @@ const SingleQuote = () => {
         if (data.error) {
           setMessage({
             type: 'error',
-            value: data.error,
+            value: data.error + "  " + data.errorMsg,
           });
         } else {
           setMessage({
