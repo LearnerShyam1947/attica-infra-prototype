@@ -13,3 +13,8 @@ export interface Property {
     description: string;
     phone: string;
 }
+
+export type PropertyType = 'house' | 'plot' | 'flat';
+
+export const PropertyTypeOptions: PropertyType[] = ['house', 'plot', 'flat'];
+

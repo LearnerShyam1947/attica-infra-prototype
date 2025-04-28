@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure this is imported in your layout or index.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 20px 0 50px 0;
+  background: #fff;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 40s linear infinite;
+}
+
+.carousel-track img {
+  height: 60px;
+  margin-right: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: block;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
 /* Custom styles for Slick carousel */
 .slick-dots {
   bottom: 25px !important;

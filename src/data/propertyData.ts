@@ -1,4 +1,4 @@
-import { Property } from "../types/proerty";
+import { Property } from "../types/Proerty";
 
 export const properties: Property[] = [
     // --- Houses (10) ---

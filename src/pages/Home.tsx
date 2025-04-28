@@ -7,6 +7,7 @@ import Testimonials from '../components/Testimonials';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import BrandCarousel from '../components/BrandsCarousel';
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       <HowItWorks />
       <Testimonials />
       <Contact />
+      <BrandCarousel />
     </>
   );
 };

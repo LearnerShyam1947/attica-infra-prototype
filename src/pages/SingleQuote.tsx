@@ -4,21 +4,387 @@ import { ChevronDown, X, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import * as Yup from 'yup';
 
-interface ContactFormValues {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-}
+const sections = [
+  {
+    title: 'Design & Drawing',
+    fields: [
+      {
+        "label": "Architectural Layout | 2D",
+        "name": "architectural_layout_2d",
+        "defaultValue": "Architectural Layout",
+        type: 'radio'
+      },
+      {
+        "label": "Basic Elevation",
+        "name": "basic_elevation",
+        "defaultValue": "Basic Elevation",
+        type: 'radio'
+      },
+      {
+        "label": "Structural Design",
+        "name": "structural_design",
+        "defaultValue": "Structural Design",
+        type: 'radio'
+      },
+      {
+        "label": "3D Elevation",
+        "name": "3d_elevation",
+        "defaultValue": "3D Elevation",
+        type: 'radio'
+      },
+      {
+        "label": "Electrical Drawings",
+        "name": "electrical_drawings",
+        "defaultValue": "Electrical Drawings",
+        type: 'radio'
+      },
+      {
+        "label": "Plumbing Drawings",
+        "name": "plumbing_drawings",
+        "defaultValue": "Plumbing Drawings",
+        type: 'radio'
+      },
+      {
+        "label": "Furniture Plan",
+        "name": "furniture_plan",
+        "defaultValue": "Furniture Plan",
+        type: 'radio'
+      },
+      {
+        "label": "Build Up Area",
+        "name": "build_up_area",
+        "defaultValue": "100 (sq. ft)",
+        "type": "textarea"
+      },
+      {
+        "label": "Basement Height",
+        "name": "basement_height",
+        "defaultValue": "Upto 5 feet",
+        "type": "textarea"
+      },
+      {
+        "label": "Steel Reinforcement",
+        "name": "steel_reinforcement",
+        "defaultValue": "As per Standard",
+        "type": "textarea"
+      }
+    ]
+  },
+  {
+    title: 'Structure',
+    fields: [
+      {
+        "label": "Steel",
+        "name": "steel",
+        "defaultValue": "Vizag or equivalent",
+        "type": "textarea"
+      },
+      {
+        "label": "Cement",
+        "name": "cement",
+        "defaultValue": "Ultratech or equivalent of 43 & 53 grade",
+        "type": "textarea"
+      },
+      {
+        "label": "Aggregates",
+        "name": "aggregates",
+        "defaultValue": "20mm & 40mm",
+        "type": "textarea"
+      },
+      {
+        "label": "Blocks",
+        "name": "blocks",
+        "defaultValue": "Standard Bricks For Partition walls. 6-Inch Thick Exterior Walls | 4 Inch Thick Inner Walls",
+        "type": "textarea"
+      },
+      {
+        "label": "RCC Design Mix",
+        "name": "rcc_design_mix",
+        "defaultValue": "ACC or Ultratech M20 / M25 or As per the structural designer recommendation",
+        "type": "textarea"
+      },
+      {
+        "label": "Ceiling Height",
+        "name": "ceiling_height",
+        "defaultValue": "10 feet (Finished Floor level to Finished Floor level)",
+        "type": "textarea"
+      },
+      {
+        "label": "M Sand and P Sand",
+        "name": "M_Sand_and_P_sand",
+        "defaultValue": "Blockwork & All Masonry Works  and Plastering Works",
+        "type": "textarea"
+      },
+      {
+        "label": "Parapet Wall",
+        "name": "parapet_wall",
+        "defaultValue": "3.5' Feet Height | 6' Thick (Or) Toughened Glass Railing if Required",
+        "type": "textarea"
+      }
+    ]
+  },
+  {
+    title: 'Kitchen standard',
+    fields: [
+      {
+        "label": "Ceramic Wall Dado",
+        "name": "ceramic_wall_dado",
+        "defaultValue": "Vitrified Tile (4'X2') | Upto ₹65/Sqft",
+        "type": "textarea"
+      },
+      {
+        "label": "Main Sink Faucet",
+        "name": "main_sink_faucet",
+        "defaultValue": "Upto Rs.1300",
+        "type": "textarea"
+      },
+      {
+        "label": "Any other Faucet or Accessories",
+        "name": "faucet_accessories",
+        "defaultValue": "ISI Marked",
+        "type": "textarea"
+      },
+      {
+        "label": "Kitchen Sink",
+        "name": "kitchen_sink",
+        "defaultValue": "Stainless Steel of Single Sink make worth Rs. 3,000",
+        "type": "textarea"
+      },
+      {
+        "label": "Kitchen Granite Top",
+        "name": "Kitchen_granite_top",
+        "defaultValue": "Upto ₹160/Sqft",
+        "type": "textarea"
+      },
+      {
+        "label": "Dining",
+        "name": "Dining",
+        "defaultValue": "Wall Mounted Wash Basin",
+        "type": "textarea"
+      }
+    ]
 
-interface QuoteValues {
-  [key: string]: string;
-}
+  },
+  {
+    title: '   Bathroom standard',
+    fields: [
+      {
+        "label": "Wall Tiles",
+        "name": "wall_tiles",
+        "defaultValue": " Upto Ceiling (Full Height). 4'X2' Vitrified Tile",
+        "type": "textarea"
+      },
+      {
+        "label": "Bath & CP Fittings",
+        "name": "Bath_CP_Fittings",
+        "defaultValue": "Jaquar | Per Bathroom | Wall Mounted EWC, Wall Mounted Wash Basin, Pillar Tap, Health Faucet, Shower Set, Concealed Wall Mixer.",
+        "type": "textarea"
+      },
+      {
+        "label": "Plumbing Pipes & Fittings",
+        "name": "Plumbing_Pipes_Fittings",
+        "defaultValue": "Inner CPVC, Outer PVC. Brands: Ashirwad / Finolex",
+        "type": "textarea"
+      }
+    ]
 
-interface Message {
-  type: 'error' | 'success';
-  value: string;
-}
+  },
+  {
+    title: 'Doors & Windows',
+    fields: [
+      {
+        "label": "Windows",
+        "name": "windows",
+        "defaultValue": "Aluminium Windows with glass shutters and mesh shutters (3 track with 1 mesh) of Jindal Profiles",
+        "type": "textarea"
+      },
+      {
+        "label": "Main Door",
+        "name": "main_door",
+        "defaultValue": "Flush Door with Veneer. Sal wood frame of 5 inch by 3 inch, worth Rs.20,000 including fixtures.",
+        "type": "textarea"
+      },
+      {
+        "label": "Internal Doors",
+        "name": "internal_doors",
+        "defaultValue": "Membrane doors / Flush Door with Laminates upto Rs.9,000 including fixtures. Door Frames of Sal Wood 4 inch by 2.5 inch.",
+        "type": "textarea"
+      },
+      {
+        "label": "Pooja Room Door",
+        "name": "pooja_room_door",
+        "defaultValue": "Burma Teak along with Teak frame of 5inch by 2.5 inch, worth Rs. 35,000 for every 2,000 sft package area",
+        "type": "textarea"
+      }
+    ]
+
+  },
+  {
+    title: 'Painting',
+    fields: [
+      {
+        "label": "Interior Painting",
+        "name": "interior_painting",
+        "defaultValue": "JK Putty + Tractor Emulsion or equivalent",
+        "type": "textarea"
+      },
+      {
+        "label": "Exterior Painting",
+        "name": "exterior_painting",
+        "defaultValue": "Asian Primer + Ace Exterior emulsion Paint or equivalent",
+        "type": "textarea"
+      }
+    ]
+
+  },
+  {
+    title: 'Flooring',
+    fields: [
+      {
+        "label": "Living & Dining Flooring",
+        "name": "living_dining_flooring",
+        "defaultValue": "Tiles of value upto Rs.50 per sqft",
+        "type": "textarea"
+      },
+      {
+        "label": "Rooms & Kitchen Flooring",
+        "name": "rooms_kitchen_flooring",
+        "defaultValue": "Tiles of value upto Rs.50 per sqft",
+        "type": "textarea"
+      },
+      {
+        "label": "Balcony and Open Areas Flooring",
+        "name": "balcony_open_areas_flooring",
+        "defaultValue": "Anti-skid tiles of value upto Rs.40 per sqft",
+        "type": "textarea"
+      },
+      {
+        "label": "Staircase Flooring",
+        "name": "staircase_flooring",
+        "defaultValue": "Sadarahalli Granite of value upto ₹ 70 per sqft",
+        "type": "textarea"
+      },
+      {
+        "label": "Parking Tiles",
+        "name": "parking_tiles",
+        "defaultValue": "Anti-skid tiles of value upto ₹ 40 per sqft",
+        "type": "textarea"
+      }
+    ]
+
+  },
+  {
+    title: 'Electrical',
+    fields: [
+      {
+        "label": "Wiring",
+        "name": "wiring",
+        "defaultValue": "All wiring shall be done with fire proof wires of Finolex silver FR or equivalent.",
+        "type": "textarea"
+      },
+      {
+        "label": "Switches & Sockets",
+        "name": "switches_sockets",
+        "defaultValue": "Polycab modular or equivalent",
+        "type": "textarea"
+      },
+      {
+        "label": "UPS Wiring Provision",
+        "name": "ups_wiring_provision",
+        "defaultValue": "UPS Wiring Provision",
+        "type": "textarea"
+      },
+      {
+        "label": "EV Charging Point",
+        "name": "ev_charging_point",
+        "defaultValue": "1 EV Charging Point at Ground floor",
+        "type": "textarea"
+      }
+    ]
+  },
+  {
+    title: 'Miscellaneous standard',
+    fields: [
+      {
+        "label": "Overhead Tank",
+        "name": "overhead_tank",
+        "defaultValue": "A Sintex / Apollo Double layered overhead tank of 2000L shall be provided. Any Additional capacity shall be chargeable at INR 9 per L. Platform for the OHT shall be charged additional based on the design and specifications",
+        "type": "textarea"
+      },
+      {
+        "label": "Underground Sump",
+        "name": "underground_sump",
+        "defaultValue": "8000 Ltrs",
+        "type": "textarea"
+      },
+      {
+        "label": "Staircase Railing",
+        "name": "staircase_railing",
+        "defaultValue": "SS (Stainless) Glass Railing of SS 304 grade profiles",
+        "type": "textarea"
+      },
+      {
+        "label": "Window Grills",
+        "name": "window_grills",
+        "defaultValue": "Basic MS Grill with enamel Paint at Rs. 180 per Sqft",
+        "type": "textarea"
+      },
+      {
+        "label": "Copper Gas Connection",
+        "name": "copper_gas_connection",
+        "defaultValue": "1 Copper gas connection for every dwelling unit of 1,500 sft package area",
+        "type": "textarea"
+      },
+      {
+        "label": "Balcony Railing",
+        "name": "Balcony_Railing",
+        "defaultValue": "SS 304 Grade Railing with 8mm Toughened Glass with Posts",
+        "type": "textarea"
+      }
+    ]
+  },
+  {
+    title: 'What’s Not Included?',
+    fields: [
+      {
+        "label": "Compound Wall  & Gate",
+        "name": "overhead_tank",
+        "defaultValue": "Not Included",
+        "type": "None"
+      },
+      {
+        "label": "Sump & Septic Tank",
+        "name": "underground_sump",
+        "defaultValue": "Not Included",
+        "type": "None"
+      },
+      {
+        "label": "Lift, Electricity Connection",
+        "name": "staircase_railing",
+        "defaultValue": "Not Included",
+        "type": "None"
+      },
+      {
+        "label": "Building Plan Approval",
+        "name": "window_grills",
+        "defaultValue": "Not Included",
+        "type": "None"
+      },
+      {
+        "label": "Elevation Special Materials",
+        "name": "copper_gas_connection",
+        "defaultValue": "Not Included",
+        "type": "None"
+      },
+      {
+        "label": "Balcony Railing",
+        "name": "Balcony_Railing",
+        "defaultValue": "Not Included",
+        "type": "None"
+      }
+    ]
+  },
+];
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
@@ -29,277 +395,9 @@ const validationSchema = Yup.object({
 
 const SingleQuote = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [quoteValues, setQuoteValues] = useState<QuoteValues>({});
+  const [quoteValues, setQuoteValues] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<Message | null>(null); // Set to null initially
-
-  const sections = [
-    {
-      title: 'Design & Drawing',
-      fields: [
-        {
-          "label": "Architectural Layout | 2D",
-          "name": "architectural_layout_2d",
-          "defaultValue": "Architectural Layout"
-        },
-        {
-          "label": "Basic Elevation",
-          "name": "basic_elevation",
-          "defaultValue": "Basic Elevation"
-        },
-        {
-          "label": "Structural Design",
-          "name": "structural_design",
-          "defaultValue": "Structural Design"
-        },
-        {
-          "label": "3D Elevation",
-          "name": "3d_elevation",
-          "defaultValue": "3D Elevation"
-        },
-        {
-          "label": "Electrical Drawings",
-          "name": "electrical_drawings",
-          "defaultValue": "Electrical Drawings"
-        },
-        {
-          "label": "Plumbing Drawings",
-          "name": "plumbing_drawings",
-          "defaultValue": "Plumbing Drawings"
-        },
-        {
-          "label": "Furniture Plan",
-          "name": "furniture_plan",
-          "defaultValue": "Furniture Plan"
-        }
-      ]
-    },
-    {
-      title: 'Structure',
-      fields: [
-        {
-          "label": "Steel",
-          "name": "steel",
-          "defaultValue": "Vizag or equivalent"
-        },
-        {
-          "label": "Cement",
-          "name": "cement",
-          "defaultValue": "Ultratech or equivalent of 43 or 53 grade"
-        },
-        {
-          "label": "Aggregates",
-          "name": "aggregates",
-          "defaultValue": "20mm & 40mm"
-        },
-        {
-          "label": "Blocks",
-          "name": "blocks",
-          "defaultValue": "Standard Red Bricks. 9 inch & 4 inch"
-        },
-        {
-          "label": "RCC Design Mix",
-          "name": "rcc_design_mix",
-          "defaultValue": "ACC or Ultratech M20 / M25 or As per the structural designer recommendation"
-        },
-        {
-          "label": "Ceiling Height",
-          "name": "ceiling_height",
-          "defaultValue": "10 feet (Finished Floor level to Finished Floor level)"
-        }
-      ]
-    },
-    {
-      title: 'Kitchen',
-      fields: [
-        {
-          "label": "Ceramic Wall Dado",
-          "name": "ceramic_wall_dado",
-          "defaultValue": "Upto Rs.40 per Sqft"
-        },
-        {
-          "label": "Main Sink Faucet",
-          "name": "main_sink_faucet",
-          "defaultValue": "Upto Rs.1300"
-        },
-        {
-          "label": "Any other Faucet or Accessories",
-          "name": "faucet_accessories",
-          "defaultValue": "ISI Marked"
-        },
-        {
-          "label": "Kitchen Sink",
-          "name": "kitchen_sink",
-          "defaultValue": "Stainless Steel of Single Sink make worth Rs. 3,000"
-        }
-      ]
-
-    },
-    {
-      title: 'Bathroom',
-      fields: [
-        {
-          "label": "Ceramic Wall Dado Height",
-          "name": "ceramic_wall_dado_height",
-          "defaultValue": "Ceramic Wall Dado upto 7' height - Upto Rs.40 per Sqft"
-        },
-        {
-          "label": "Sanitarywares & CP Fittings Budget",
-          "name": "sanitary_cp_fittings_budget",
-          "defaultValue": "Sanitarywares & CP fittings upto Rs. 30,000 per 1000 Sqft of Hindware make"
-        },
-        {
-          "label": "CPVC Pipe",
-          "name": "cpvc_pipe",
-          "defaultValue": "Astral or Equivalent"
-        },
-        {
-          "label": "Bathroom Doors",
-          "name": "bathroom_doors",
-          "defaultValue": "Waterproof flush doors or WPC"
-        },
-        {
-          "label": "Bathroom Accessories",
-          "name": "bathroom_accessories",
-          "defaultValue": "Mirror, Soap Dish, Towel Rail - Worth Rs. 9,000 till 1000 ft of Construction"
-        },
-        {
-          "label": "Solar Water Heater Provision",
-          "name": "solar_water_heater_provision",
-          "defaultValue": "Solar water heater provision"
-        }
-      ]
-
-    },
-    {
-      title: 'Doors & Windows',
-      fields: [
-        {
-          "label": "Windows",
-          "name": "windows",
-          "defaultValue": "Aluminium Windows with glass shutters and mesh shutters (3 track with 1 mesh) of Jindal Profiles"
-        },
-        {
-          "label": "Main Door",
-          "name": "main_door",
-          "defaultValue": "Flush Door with Veneer. Sal wood frame of 5 inch by 3 inch, worth Rs.20,000 including fixtures."
-        },
-        {
-          "label": "Internal Doors",
-          "name": "internal_doors",
-          "defaultValue": "Membrane doors / Flush Door with Laminates upto Rs.9,000 including fixtures. Door Frames of Sal Wood 4 inch by 2.5 inch."
-        },
-        {
-          "label": "Pooja Room Door",
-          "name": "pooja_room_door",
-          "defaultValue": "Burma Teak along with Teak frame of 5inch by 2.5 inch, worth Rs. 35,000 for every 2,000 sft package area"
-        }
-      ]
-
-    },
-    {
-      title: 'Painting',
-      fields: [
-        {
-          "label": "Interior Painting",
-          "name": "interior_painting",
-          "defaultValue": "JK Putty + Tractor Emulsion or equivalent"
-        },
-        {
-          "label": "Exterior Painting",
-          "name": "exterior_painting",
-          "defaultValue": "Asian Primer + Ace Exterior emulsion Paint or equivalent"
-        }
-      ]
-
-    },
-    {
-      title: 'Flooring',
-      fields: [
-        {
-          "label": "Living & Dining Flooring",
-          "name": "living_dining_flooring",
-          "defaultValue": "Tiles of value upto Rs.50 per sqft"
-        },
-        {
-          "label": "Rooms & Kitchen Flooring",
-          "name": "rooms_kitchen_flooring",
-          "defaultValue": "Tiles of value upto Rs.50 per sqft"
-        },
-        {
-          "label": "Balcony and Open Areas Flooring",
-          "name": "balcony_open_areas_flooring",
-          "defaultValue": "Anti-skid tiles of value upto Rs.40 per sqft"
-        },
-        {
-          "label": "Staircase Flooring",
-          "name": "staircase_flooring",
-          "defaultValue": "Sadarahalli Granite of value upto ₹ 70 per sqft"
-        },
-        {
-          "label": "Parking Tiles",
-          "name": "parking_tiles",
-          "defaultValue": "Anti-skid tiles of value upto ₹ 40 per sqft"
-        }
-      ]
-
-    },
-    {
-      title: 'Electrical',
-      fields: [
-        {
-          "label": "Wiring",
-          "name": "wiring",
-          "defaultValue": "All wiring shall be done with fire proof wires of Finolex silver FR or equivalent."
-        },
-        {
-          "label": "Switches & Sockets",
-          "name": "switches_sockets",
-          "defaultValue": "Polycab modular or equivalent"
-        },
-        {
-          "label": "UPS Wiring Provision",
-          "name": "ups_wiring_provision",
-          "defaultValue": "UPS Wiring Provision"
-        },
-        {
-          "label": "EV Charging Point",
-          "name": "ev_charging_point",
-          "defaultValue": "1 EV Charging Point at Ground floor"
-        }
-      ]
-    },
-    {
-      title: 'Miscellaneous',
-      fields: [
-        {
-          "label": "Overhead Tank",
-          "name": "overhead_tank",
-          "defaultValue": "A Sintex / Apollo Double layered overhead tank of 2000L shall be provided. Any Additional capacity shall be chargeable at INR 9 per L. Platform for the OHT shall be charged additional based on the design and specifications"
-        },
-        {
-          "label": "Underground Sump",
-          "name": "underground_sump",
-          "defaultValue": "8000 Ltrs"
-        },
-        {
-          "label": "Staircase Railing",
-          "name": "staircase_railing",
-          "defaultValue": "SS (Stainless) Glass Railing of SS 304 grade profiles"
-        },
-        {
-          "label": "Window Grills",
-          "name": "window_grills",
-          "defaultValue": "Basic MS Grill with enamel Paint at Rs. 180 per Sqft"
-        },
-        {
-          "label": "Copper Gas Connection",
-          "name": "copper_gas_connection",
-          "defaultValue": "1 Copper gas connection for every dwelling unit of 1,500 sft package area"
-        }
-      ]
-    },
-  ];
+  const [message, setMessage] = useState<{ type: 'error' | 'success'; value: string } | null>(null);
 
   const handleFieldChange = (name: string, value: string) => {
     setQuoteValues((prev) => ({
@@ -308,24 +406,18 @@ const SingleQuote = () => {
     }));
   };
 
-  const handleSubmit = (values: ContactFormValues) => {
-    setLoading(true); // Set loading to true when form is submitting
-
+  const handleSubmit = (values: any) => {
+    setLoading(true);
     const finalSections = sections.map((section) => {
-      const sectionData = section.fields.map((field) => {
-        const finalValue = quoteValues[field.name] || field.defaultValue;
-
-        return {
-          label: field.label,
-          name: field.name,
-          value: finalValue,
-        };
-      });
-
-      return {
-        sectionTitle: section.title,
-        sectionData,
-      };
+      const sectionData = section.fields.map((field) => ({
+        label: field.label,
+        name: field.name,
+        value:
+          field.type === 'radio'
+            ? quoteValues[field.name] || 'No'
+            : quoteValues[field.name] || field.defaultValue,
+      }));
+      return { sectionTitle: section.title, sectionData };
     });
 
     const data = {
@@ -335,7 +427,7 @@ const SingleQuote = () => {
 
     console.log(data);
 
-    fetch('https://ais-backend-prototype.onrender.com/submit-quote', {
+    fetch('http://localhost:3000/submit-quote', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -344,189 +436,153 @@ const SingleQuote = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.error) {
-          setMessage({
-            type: 'error',
-            value: data.error + "  " + data.errorMsg,
-          });
-        } else {
-          setMessage({
-            type: 'success',
-            value: data.message,
-          });
-        }
-        setLoading(false); // Set loading to false after the submission
+        setMessage(data.error
+          ? { type: 'error', value: data.error + ' ' + data.errorMsg }
+          : { type: 'success', value: data.message });
+        setLoading(false);
         setIsModalOpen(false);
       })
       .catch((e) => {
-        console.log(e);
-        setLoading(false); // Ensure loading is stopped on error
+        console.error(e);
+        setMessage({ type: 'error', value: 'Submission failed. Try again.' });
+        setLoading(false);
         setIsModalOpen(false);
       });
+
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900">Customize Your Quote</h1>
-          <p className="mt-4 text-xl text-gray-600">Specify your requirements and get an instant quote</p>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-lg p-6 space-y-4">
+      <div className="max-w-5xl mx-auto px-4">
+        <h1 className="text-3xl font-bold mb-8 text-center">Customize Your Quote</h1>
+        <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
           {sections.map((section) => (
             <Disclosure key={section.title}>
               {({ open }) => (
                 <>
-                  <Disclosure.Button className="flex justify-between w-full px-4 py-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                    <span className="text-lg font-semibold text-gray-900">{section.title}</span>
-                    <ChevronDown className={`w-5 h-5 transform transition-transform ${open ? 'rotate-180' : ''}`} />
+                  <Disclosure.Button className="w-full flex justify-between items-center bg-blue-100 px-4 py-3 rounded-lg font-semibold">
+                    <span>{section.title}</span>
+                    <ChevronDown className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} />
                   </Disclosure.Button>
-                  <Disclosure.Panel className="px-4 py-4 bg-gray-50 rounded-lg">
-                    {section.fields.map((field) => (
-                      <div key={field.name} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div className="bg-white p-4 rounded-lg border border-gray-200">
-                          <label className="block text-sm font-bold text-gray-700 mb-1">
-                            {field.label}
-                          </label>
-                          <p className="text-gray-600">{field.defaultValue}</p>
+                  <Disclosure.Panel className="space-y-4 mt-4">
+                    {section.fields.map((field) =>
+                      field.type === 'None' ? (
+                        <div key={field.name} className="md:col-span-2">
+                          <div className="bg-gray-50 p-4 border rounded-lg">
+                            <strong>{field.label}</strong>
+                            <p className="text-gray-600">{field.defaultValue}</p>
+                          </div>
                         </div>
-                        <div className="bg-white p-4 rounded-lg border border-gray-200">
-                          <label className="block text-sm font-bold text-gray-700 mb-1">
-                            Your Preference
-                          </label>
-                          <textarea
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                            rows={2}
-                            value={quoteValues[field.name] || ''}
-                            placeholder={`Enter your preferred ${field.label.toLowerCase()} specifications...`}
-                            onChange={(e) => handleFieldChange(field.name, e.target.value)}
-                          />
+                      ) : (
+                        <div key={field.name} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="bg-gray-50 p-4 border rounded-lg">
+                            <label className="block font-semibold mb-1">{field.label}</label>
+                            <p className="text-gray-600">{field.defaultValue}</p>
+                          </div>
+                          {field.type === 'textarea' ? (
+                            <div className="bg-gray-50 p-4 border rounded-lg">
+                              <label className="block font-semibold mb-1">Your Preference</label>
+                              <textarea
+                                className="w-full border px-3 py-2 rounded-md"
+                                rows={2}
+                                value={quoteValues[field.name] || ''}
+                                placeholder={`Enter your preferred ${field.label.toLowerCase()}`}
+                                onChange={(e) => handleFieldChange(field.name, e.target.value)}
+                              />
+                            </div>
+                          ) : field.type === 'radio' ? (
+                            <div className="bg-gray-50 p-4 border rounded-lg">
+                              <label className="block font-semibold mb-1">Include?</label>
+                              <div className="flex space-x-4">
+                                <label className="inline-flex items-center space-x-2 cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={field.name}
+                                    value="Yes"
+                                    checked={quoteValues[field.name] === 'Yes'}
+                                    onChange={() => handleFieldChange(field.name, 'Yes')}
+                                    className="form-radio accent-blue h-5 w-5 text-blue-600 focus:ring-blue-500"
+                                  />
+                                  <span className="text-gray-800">Yes</span>
+                                </label>
+
+                                <label className="inline-flex items-center space-x-2 cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={field.name}
+                                    value="No"
+                                    checked={quoteValues[field.name] !== 'Yes'}
+                                    onChange={() => handleFieldChange(field.name, 'No')}
+                                    className="form-radio accent-blue h-5 w-5 text-red-600 focus:ring-red-500"
+                                  />
+                                  <span className="text-gray-800">No</span>
+                                </label>
+                              </div>
+                            </div>
+                          ) : null}
                         </div>
-                      </div>
-                    ))}
+                      )
+                    )}
+
                   </Disclosure.Panel>
                 </>
               )}
             </Disclosure>
           ))}
 
-          <div className="flex justify-center mt-8">
+          <div className="text-center">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
             >
               Get Quote
             </button>
           </div>
 
-          {/* Dynamic Message */}
           {message && (
-            <div
-              className={`mt-4 text-center font-bold p-4 rounded-lg ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                }`}
-            >
+            <div className={`mt-4 p-4 text-center rounded-lg ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
               {message.value}
             </div>
           )}
         </div>
       </div>
 
-      {/* Contact Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Contact Details</h2>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <X className="w-6 h-6" />
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Contact Details</h2>
+              <button onClick={() => setIsModalOpen(false)}>
+                <X className="h-5 w-5 text-gray-500" />
               </button>
             </div>
 
             <Formik
-              initialValues={{
-                name: '',
-                email: '',
-                phone: '',
-                address: '',
-              }}
+              initialValues={{ name: '', email: '', phone: '', address: '' }}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
               {({ errors, touched }) => (
                 <Form className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Name*
-                    </label>
-                    <Field
-                      name="name"
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                    {errors.name && touched.name && (
-                      <div className="text-red-500 text-sm mt-1">{errors.name}</div>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Email*
-                    </label>
-                    <Field
-                      name="email"
-                      type="email"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                    {errors.email && touched.email && (
-                      <div className="text-red-500 text-sm mt-1">{errors.email}</div>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone Number*
-                    </label>
-                    <Field
-                      name="phone"
-                      type="tel"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                    {errors.phone && touched.phone && (
-                      <div className="text-red-500 text-sm mt-1">{errors.phone}</div>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Address*
-                    </label>
-                    <Field
-                      name="address"
-                      as="textarea"
-                      rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                    {errors.address && touched.address && (
-                      <div className="text-red-500 text-sm mt-1">{errors.address}</div>
-                    )}
-                  </div>
-
+                  {['name', 'email', 'phone', 'address'].map((field) => (
+                    <div key={field}>
+                      <label className="block text-sm font-medium mb-1 capitalize">{field}*</label>
+                      <Field
+                        name={field}
+                        as={field === 'address' ? 'textarea' : 'input'}
+                        rows={field === 'address' ? 3 : undefined}
+                        className="w-full border px-3 py-2 rounded-md"
+                      />
+                      {(errors as any)[field] && (touched as any)[field] && (
+                        <div className="text-red-500 text-sm mt-1">{(errors as any)[field]}</div>
+                      )}
+                    </div>
+                  ))}
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
                   >
-                    {loading ? (
-                      <div className="flex justify-center">
-                        <Loader2 className="animate-spin w-5 h-5 text-white" />
-                      </div>
-                    ) : (
-                      'Get single Quote'
-                    )}
+                    {loading ? <Loader2 className="animate-spin mx-auto" /> : 'Get Single Quote'}
                   </button>
                 </Form>
               )}
