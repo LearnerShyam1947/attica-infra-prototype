@@ -8,4 +8,5 @@ export interface Builder {
     city: string;
     area: string;
     pincode: string;
+    imageUrl: string;
 }

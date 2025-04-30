@@ -5,15 +5,11 @@ import { Card, CardBody } from '../../components/ui/Card';
 
 interface PropertyFormPageProps {
   property?: Property;
-  onSubmit: (property: Omit<Property, 'id'>) => void;
-  onCancel: () => void;
   isEditing?: boolean;
 }
 
 const PropertyFormPage: React.FC<PropertyFormPageProps> = ({
   property,
-  onSubmit,
-  onCancel,
   isEditing = false,
 }) => {
   return (
@@ -25,8 +21,6 @@ const PropertyFormPage: React.FC<PropertyFormPageProps> = ({
         <CardBody>
           <PropertyForm
             property={property}
-            onSubmit={onSubmit}
-            onCancel={onCancel}
           />
         </CardBody>
       </Card>

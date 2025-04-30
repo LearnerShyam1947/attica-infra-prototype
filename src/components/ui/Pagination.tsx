@@ -21,6 +21,9 @@ const Pagination: React.FC<PaginationProps> = ({
         variant="outline"
         size="sm"
         icon={ChevronLeft}
+        style={{
+          cursor: currentPage === 1 ? "not-allowed" : "pointer"
+        }}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -48,6 +51,9 @@ const Pagination: React.FC<PaginationProps> = ({
         size="sm"
         icon={ChevronRight}
         iconPosition="right"
+        style={{
+          cursor: currentPage === totalPages ? "not-allowed" : "pointer"
+        }}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >

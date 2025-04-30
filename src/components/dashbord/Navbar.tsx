@@ -1,6 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import React from 'react';
-import Logo from '../Logo';
+import Logo from '../layout/Logo';
 
 interface NavbarProps {
   toggleSidebar: () => void;

@@ -23,7 +23,8 @@ import SingleQuote from './pages/SingleQuote';
 import SellBuy from './pages/SellBuy';
 import PropertyDetails from './pages/PropertyDetails';
 import NotFound from './components/NotFound';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
+import MaterialsOrderForm from './MaterialsOrderForm';
 
 const AppContent = () => {
   const [properties, setProperties] = useState<Property[]>(mockProperties);
@@ -53,41 +54,11 @@ const AppContent = () => {
     setSidebarOpen(false);
   };
 
-  const handleAddProperty = (newProperty: Omit<Property, 'id'>) => {
-    const id = Date.now().toString();
-    setProperties([...properties, { ...newProperty, id }]);
-  };
 
-  const handleEditProperty = (property: Omit<Property, 'id'>) => {
-    if (editProperty) {
-      setProperties(
-        properties.map((p) =>
-          p.id === editProperty.id ? { ...property, id: editProperty.id } : p
-        )
-      );
-      setEditProperty(null);
-    }
-  };
 
   const handleDeleteProperty = (id: string) => {
     if (window.confirm('Are you sure you want to delete this property?')) {
       setProperties(properties.filter((p) => p.id !== id));
-    }
-  };
-
-  const handleAddBuilder = (newBuilder: Omit<Builder, 'id'>) => {
-    const id = Date.now().toString();
-    setBuilders([...builders, { ...newBuilder, id }]);
-  };
-
-  const handleEditBuilder = (builder: Omit<Builder, 'id'>) => {
-    if (editBuilder) {
-      setBuilders(
-        builders.map((b) =>
-          b.id === editBuilder.id ? { ...builder, id: editBuilder.id } : b
-        )
-      );
-      setEditBuilder(null);
     }
   };
 
@@ -143,6 +114,7 @@ const AppContent = () => {
 
     <Routes>
       <Route element={<Layout />}>
+      <Route path='/test' element={<MaterialsOrderForm />} />
 
         <Route path="interior-experts" element={<CommingSoon />} />
         <Route path="architecture-design" element={<CommingSoon />} />
@@ -213,10 +185,7 @@ const AppContent = () => {
         <Route
           path="/dashboard/properties/add"
           element={
-            <PropertyFormPage
-              onSubmit={handleAddProperty}
-              onCancel={() => setEditProperty(null)}
-            />
+            <PropertyFormPage/>
           }
         />
 
@@ -225,8 +194,6 @@ const AppContent = () => {
           element={
             <PropertyFormPage
               property={editProperty}
-              onSubmit={handleEditProperty}
-              onCancel={() => setEditProperty(null)}
               isEditing
             />
           }
@@ -255,8 +222,6 @@ const AppContent = () => {
           path="/dashboard/builders/add"
           element={
             <BuilderFormPage
-              onSubmit={handleAddBuilder}
-              onCancel={() => setEditBuilder(null)}
             />
           }
         />
@@ -266,8 +231,6 @@ const AppContent = () => {
           element={
             <BuilderFormPage
               builder={editBuilder}
-              onSubmit={handleEditBuilder}
-              onCancel={() => setEditBuilder(null)}
               isEditing
             />
           }

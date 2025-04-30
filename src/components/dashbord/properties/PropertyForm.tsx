@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useFormik } from 'formik';
 import { Property, PropertyTypeOptions } from '../../../types';
 import Input from '../../ui/Input';
 import Select from '../../ui/Select';
@@ -6,183 +7,293 @@ import TextArea from '../../ui/TextArea';
 import TagInput from '../../ui/TagInput';
 import Button from '../../ui/Button';
 import { Save, X } from 'lucide-react';
+import { propertySchema } from '../../../schema/PropertySchema';
 
 interface PropertyFormProps {
   property?: Property;
-  onSubmit: (property: Omit<Property, 'id'>) => void;
-  onCancel: () => void;
 }
 
-const PropertyForm: React.FC<PropertyFormProps> = ({
-  property,
-  onSubmit,
-  onCancel,
-}) => {
-  const [title, setTitle] = useState(property?.title || '');
-  const [type, setType] = useState(property?.type || '');
-  const [price, setPrice] = useState(property?.price || '');
-  const [city, setCity] = useState(property?.location?.city || '');
-  const [area, setArea] = useState(property?.location?.area || '');
-  const [pincode, setPincode] = useState(property?.location?.pincode || '');
-  const [features, setFeatures] = useState(property?.features || []);
-  const [image, setImage] = useState(property?.image || '');
-  const [description, setDescription] = useState(property?.description || '');
-  const [phone, setPhone] = useState(property?.phone || '');
-  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
+const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
+  const formik = useFormik({
+    initialValues: {
+      title: property?.title || '',
+      type: property?.type || '',
+      price: property?.price || '',
+      phone: property?.phone || '',
+      location: {
+        city: property?.location?.city || '',
+        area: property?.location?.area || '',
+        pincode: property?.location?.pincode || '',
+      },
+      features: property?.features || [],
+      image: property?.image || '',
+      description: property?.description || '',
+    },
+    validationSchema: propertySchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
-    if (!title.trim()) newErrors.title = 'Title is required';
-    if (!type.trim()) newErrors.type = 'Property type is required';
-    if (!price.trim()) newErrors.price = 'Price is required';
-    if (!city.trim()) newErrors.city = 'City is required';
-    if (!area.trim()) newErrors.area = 'Area is required';
-    if (!pincode.trim()) newErrors.pincode = 'Pincode is required';
-    if (features.length === 0) newErrors.features = 'At least one feature is required';
-    if (!description.trim()) newErrors.description = 'Description is required';
-    if (!phone.trim()) newErrors.phone = 'Phone number is required';
-    else if (!/^\d{10}$/.test(phone.trim())) newErrors.phone = 'Phone number must be 10 digits';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const normalizeError = (field: string) => {
+    const error = formik.errors[field as keyof typeof formik.errors];
+    const touched = formik.touched[field as keyof typeof formik.touched];
+    return touched && typeof error === 'string' ? error : undefined;
   };
+  const [uploadProgress, setUploadProgress] = React.useState<number | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (validateForm()) {
-      onSubmit({
-        title,
-        type,
-        price,
-        location: {
-          city,
-          area,
-          pincode,
-        },
-        features,
-        image,
-        description,
-        phone,
-      });
+
+  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (!file) return;
+
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append('file', file);
+
+  //     const response = await fetch('/api/upload', {
+  //       method: 'POST',
+  //       body: formData,
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (data.url) {
+  //       formik.setFieldValue('image', data.url);
+  //     } else {
+  //       console.error('Upload failed: no URL returned.');
+  //     }
+  //   } catch (error) {
+  //     console.error('File upload failed:', error);
+  //   }
+  // };
+
+  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (!file) return;
+
+  //   setUploadProgress(0);
+
+  //   try {
+  //     // Simulate progress over 1.5 seconds
+  //     for (let i = 1; i <= 100; i++) {
+  //       await new Promise((resolve) => setTimeout(resolve, 15)); // ~1500ms total
+  //       setUploadProgress(i);
+  //     }
+
+  //     const mockUrl = `https://mock-storage.com/uploads/${encodeURIComponent(file.name)}`;
+  //     formik.setFieldValue('image', mockUrl);
+  //   } catch (error) {
+  //     console.error('Mock file upload failed:', error);
+  //   } finally {
+  //     setTimeout(() => setUploadProgress(null), 500); // Reset progress
+  //   }
+  // };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+  
+    const formData = new FormData();
+    formData.append('file', file);
+  
+    setUploadProgress(0);
+  
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://httpbin.org/post');
+  
+      xhr.upload.onprogress = (event) => {
+        if (event.lengthComputable) {
+          const percent = Math.round((event.loaded / event.total) * 100);
+          setUploadProgress(percent);
+        }
+      };
+  
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          console.log(response);
+          
+          // Simulate getting an uploaded URL back
+          const mockUrl = `https://httpbin.org/image/${encodeURIComponent(file.name)}`;
+          formik.setFieldValue('image', mockUrl);
+        } else {
+          console.error('Upload failed', xhr.responseText);
+        }
+        setTimeout(() => setUploadProgress(null), 500);
+      };
+  
+      xhr.onerror = () => {
+        console.error('Upload error');
+        setUploadProgress(null);
+      };
+  
+      xhr.send(formData);
+    } catch (error) {
+      console.error('Upload failed', error);
+      setUploadProgress(null);
     }
   };
+  
+
+
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={formik.handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Input
             label="Property Title"
             id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={formik.values.title}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             placeholder="Enter property title"
-            error={errors.title}
+            error={normalizeError('title')}
           />
-          
+
           <Select
             label="Property Type"
             id="type"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            options={PropertyTypeOptions.map(option => ({ value: option, label: option.charAt(0).toUpperCase() + option.slice(1) }))}
-            error={errors.type}
+            value={formik.values.type}
+            onChange={(e) => formik.setFieldValue('type', e.target.value)}
+            onBlur={formik.handleBlur}
+            options={PropertyTypeOptions.map(option => ({
+              value: option,
+              label: option.charAt(0).toUpperCase() + option.slice(1),
+            }))}
+            error={normalizeError('type')}
           />
-          
+
           <Input
             label="Price"
             id="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            value={formik.values.price}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             placeholder="Enter price"
-            error={errors.price}
+            error={normalizeError('price')}
           />
-          
+
           <Input
             label="Phone Number"
             id="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             placeholder="Enter 10-digit phone number"
-            error={errors.phone}
+            error={normalizeError('phone')}
           />
         </div>
-        
+
         <div>
           <div className="grid grid-cols-2 gap-4">
             <Input
               label="City"
-              id="city"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              id="location.city"
+              value={formik.values.location.city}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               placeholder="Enter city"
-              error={errors.city}
+              error={formik.touched.location?.city && formik.errors.location?.city}
             />
-            
+
             <Input
               label="Area"
-              id="area"
-              value={area}
-              onChange={(e) => setArea(e.target.value)}
+              id="location.area"
+              value={formik.values.location.area}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               placeholder="Enter area"
-              error={errors.area}
+              error={formik.touched.location?.area && formik.errors.location?.area}
             />
           </div>
-          
+
           <Input
             label="Pincode"
-            id="pincode"
-            value={pincode}
-            onChange={(e) => setPincode(e.target.value)}
+            id="location.pincode"
+            value={formik.values.location.pincode}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             placeholder="Enter pincode"
-            error={errors.pincode}
+            error={formik.touched.location?.pincode && formik.errors.location?.pincode}
           />
-          
-          <Input
-            label="Image URL"
-            id="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            placeholder="Enter image URL (optional)"
-          />
+
+          {/* Replaced image URL with file input */}
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
+              Property Image
+            </label>
+            <input
+              id="image"
+              name="image"
+              type="file"
+              accept="image/*"
+              style={{ height: "40px" }}
+              onChange={handleFileChange}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+            />
+            {formik.values.image && (
+              <div className="mt-2 text-sm text-gray-600">
+                Uploaded image:{" "}
+                <a
+                  href={formik.values.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline"
+                >
+                  View Image
+                </a>
+              </div>
+            )}
+            {uploadProgress !== null && (
+              <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                <div
+                  className="bg-blue-500 h-2.5 rounded-full transition-all duration-75"
+                  style={{ width: `${uploadProgress}%` }}
+                />
+              </div>
+            )}
+
+          </div>
         </div>
       </div>
-      
+
       <div>
         <label className="block mb-2 text-sm font-medium text-gray-700">
           Features
         </label>
         <TagInput
-          tags={features}
-          onChange={setFeatures}
+          tags={formik.values.features}
+          onChange={(tags) => formik.setFieldValue('features', tags)}
           placeholder="Type feature and press Enter"
-          error={errors.features}
+          error={normalizeError('features')}
         />
         <p className="text-xs text-gray-500 mt-1">Press Enter to add a new feature</p>
       </div>
-      
+
       <TextArea
         label="Description"
         id="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={formik.values.description}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="Enter property description"
         rows={4}
-        error={errors.description}
+        error={normalizeError('description')}
       />
-      
+
       <div className="flex justify-end space-x-4">
         <Button
           type="button"
           variant="outline"
           icon={X}
-          onClick={onCancel}
         >
           Cancel
         </Button>
-        
+
         <Button
           type="submit"
           variant="primary"

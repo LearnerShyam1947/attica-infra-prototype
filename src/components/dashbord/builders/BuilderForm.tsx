@@ -1,37 +1,18 @@
+import { Form, Formik } from 'formik';
+import { Save, X } from 'lucide-react';
 import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
+import { BuilderSchema } from '../../../schema/BuilderSchema';
+import { Builder } from '../../../types';
+import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import TextArea from '../../ui/TextArea';
-import Button from '../../ui/Button';
-import { Save, X } from 'lucide-react';
-import { Builder } from '../../../types';
 
 interface BuilderFormProps {
   builder?: Builder;
-  onSubmit: (values: Omit<Builder, 'id'>) => void;
-  onCancel: () => void;
 }
-
-const BuilderSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  image: Yup.string().url('Must be a valid URL'),
-  description: Yup.string().required('Description is required'),
-  experience: Yup.string().required('Experience is required'),
-  phone: Yup.string()
-    .matches(/^\d{10}$/, 'Phone number must be 10 digits')
-    .required('Phone number is required'),
-  city: Yup.string().required('City is required'),
-  area: Yup.string().required('Area is required'),
-  pincode: Yup.string()
-    .matches(/^\d{6}$/, 'Pincode must be 6 digits')
-    .required('Pincode is required'),
-});
 
 const BuilderForm: React.FC<BuilderFormProps> = ({
   builder,
-  onSubmit,
-  onCancel,
 }) => {
   const initialValues = {
     name: builder?.name || '',
@@ -48,7 +29,9 @@ const BuilderForm: React.FC<BuilderFormProps> = ({
     <Formik
       initialValues={initialValues}
       validationSchema={BuilderSchema}
-      onSubmit={onSubmit}
+      onSubmit = {(values) => {
+        console.log(values);
+      }}
     >
       {({ errors, touched, handleChange, handleBlur, values }) => (
         <Form className="space-y-6">
@@ -152,7 +135,6 @@ const BuilderForm: React.FC<BuilderFormProps> = ({
               type="button"
               variant="outline"
               icon={X}
-              onClick={onCancel}
             >
               Cancel
             </Button>
