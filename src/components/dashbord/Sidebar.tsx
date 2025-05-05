@@ -32,20 +32,20 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, isOpen, onClose }) => {
       id: 'properties',
       label: 'Properties',
       icon: Home,
-      path: '/properties',
+      path: '/dashboard/properties',
       children: [
-        { id: 'properties-list', label: 'List Properties', icon: List, path: '/properties' },
-        { id: 'properties-add', label: 'Add Property', icon: Plus, path: '/properties/add' },
+        { id: 'properties-list', label: 'List Properties', icon: List, path: '/dashboard/properties' },
+        { id: 'properties-add', label: 'Add Property', icon: Plus, path: '/dashboard/properties/add' },
       ],
     },
     {
       id: 'builders',
       label: 'Builders',
       icon: Users,
-      path: '/builders',
+      path: '/dashboard/builders',
       children: [
-        { id: 'builders-list', label: 'List Builders', icon: List, path: '/builders' },
-        { id: 'builders-add', label: 'Add Builder', icon: Plus, path: '/builders/add' },
+        { id: 'builders-list', label: 'List Builders', icon: List, path: '/dashboard/builders' },
+        { id: 'builders-add', label: 'Add Builder', icon: Plus, path: '/dashboard/builders/add' },
       ],
     },
   ];

@@ -1,9 +1,9 @@
-import { ChevronDown, Home, Info, LayoutDashboard, LogOut, Menu, Phone, Wrench, X } from 'lucide-react';
+import { ChevronDown, Home, Info, LayoutDashboard, LogOut, Menu, Wrench, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
-import ContactButton from './ContactButton';
+import { useAuth } from '../../contexts/AuthContext';
+import ContactButton from '../ContactButton';
 
 const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
 
