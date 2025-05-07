@@ -1,16 +1,14 @@
 import React from 'react';
 import { Card, CardBody, CardFooter } from '../../ui/Card';
-import { Builder } from '../../../types';
+import { Builder } from '../../../types/Builder';
 import { Edit, Trash2, MapPin, Phone, Award } from 'lucide-react';
 import Button from '../../ui/Button';
 
 interface BuilderCardProps {
   builder: Builder;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
 }
 
-const BuilderCard: React.FC<BuilderCardProps> = ({ builder, onEdit, onDelete }) => {
+const BuilderCard: React.FC<BuilderCardProps> = ({ builder }) => {
   return (
     <Card className="h-full flex flex-col">
       <div className="relative h-48 overflow-hidden">
@@ -49,7 +47,7 @@ const BuilderCard: React.FC<BuilderCardProps> = ({ builder, onEdit, onDelete }) 
           variant="outline"
           icon={Edit}
           size="sm"
-          onClick={() => onEdit(builder.id)}
+          onClick={() => console.log(builder.id)}
         >
           Edit
         </Button>
@@ -58,7 +56,7 @@ const BuilderCard: React.FC<BuilderCardProps> = ({ builder, onEdit, onDelete }) 
           variant="danger"
           icon={Trash2}
           size="sm"
-          onClick={() => onDelete(builder.id)}
+          onClick={() => console.log(builder.id)}
         >
           Delete
         </Button>

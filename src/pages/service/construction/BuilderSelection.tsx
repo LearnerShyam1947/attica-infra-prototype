@@ -1,5 +1,4 @@
-import React from 'react';
-import BuilderList from '../components/BuilderList';
+import BuilderList from '../../../components/BuilderList';
 
 const BuilderSelection = () => {
   return (

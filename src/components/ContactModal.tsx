@@ -33,7 +33,7 @@ const ContactModal: React.FC<ContactModalProps> = ({
   onClose,
   onSubmit,
   title = 'Contact Us',
-  submitButtonText="Submit",
+  submitButtonText = "Submit",
   additionalInfo = {}
 }) => {
   if (!isOpen) return null;
@@ -47,8 +47,9 @@ const ContactModal: React.FC<ContactModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+    <div className="fixed top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-8 w-full max-w-md h-auto mx-4">
+
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
           <button
