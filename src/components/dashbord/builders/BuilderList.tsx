@@ -1,15 +1,13 @@
 import React from 'react';
-import { Builder } from '../../../types';
+import { Builder } from '../../../types/Builder';
 import BuilderCard from './BuilderCard';
 import Pagination from './../../ui/Pagination';
 
 interface BuilderListProps {
   builders: Builder[];
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
 }
 
-const BuilderList: React.FC<BuilderListProps> = ({ builders, onEdit, onDelete }) => {
+const BuilderList: React.FC<BuilderListProps> = ({ builders }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 6;
   const totalPages = Math.ceil(builders.length / itemsPerPage);
@@ -34,8 +32,6 @@ const BuilderList: React.FC<BuilderListProps> = ({ builders, onEdit, onDelete })
           <BuilderCard
             key={builder.id}
             builder={builder}
-            onEdit={onEdit}
-            onDelete={onDelete}
           />
         ))}
       </div>

@@ -1,8 +1,9 @@
 import { Disclosure } from '@headlessui/react';
 import { Field, Form, Formik } from 'formik';
-import { ChevronDown, X, Loader2 } from 'lucide-react';
+import { ChevronDown, X, Loader2, Loader } from 'lucide-react';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
 const sections = [
   {
@@ -587,6 +588,9 @@ const SingleQuote = () => {
                 </Form>
               )}
             </Formik>
+            {loading && (
+                <LoadingSpinner text='submitting your quote details...' />
+              )}
           </div>
         </div>
       )}

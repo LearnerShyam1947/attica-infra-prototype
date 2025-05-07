@@ -1,7 +1,7 @@
 import { Building2, Home, MapPin, MessageSquare, Phone, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { properties } from '../data/propertyData';
+import { properties } from '../../../data/propertyData';
 
 const PropertyDetails = () => {
   const { type } = useParams();

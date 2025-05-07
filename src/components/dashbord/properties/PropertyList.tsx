@@ -1,15 +1,13 @@
 import React from 'react';
-import { Property } from '../../../types';
+import { Property } from '../../../types/Proerty';
 import PropertyCard from './PropertyCard';
 import Pagination from '../../ui/Pagination';
 
 interface PropertyListProps {
   properties: Property[];
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
 }
 
-const PropertyList: React.FC<PropertyListProps> = ({ properties, onEdit, onDelete }) => {
+const PropertyList: React.FC<PropertyListProps> = ({ properties }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 3;
   const totalPages = Math.ceil(properties.length / itemsPerPage);
@@ -34,8 +32,6 @@ const PropertyList: React.FC<PropertyListProps> = ({ properties, onEdit, onDelet
           <PropertyCard
             key={property.id}
             property={property}
-            onEdit={onEdit}
-            onDelete={onDelete}
           />
         ))}
       </div>

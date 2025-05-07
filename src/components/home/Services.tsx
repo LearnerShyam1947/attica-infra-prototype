@@ -103,7 +103,7 @@ const Services = () => {
       ),
       image: "https://images.unsplash.com/photo-1632832240976-6a2bc97d18d8?auto=format&fit=crop&q=80",
       buttonText: "Get Started",
-      url: "/interior-experts"
+      url: "/interior-design"
     },
   ];
 

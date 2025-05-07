@@ -1,16 +1,14 @@
 import React from 'react';
 import { Card, CardBody, CardFooter } from '../../ui/Card';
-import { Property } from '../../../types';
+import { Property } from '../../../types/Proerty';
 import { Edit, Trash2, MapPin, Phone } from 'lucide-react';
 import Button from '../../ui/Button';
 
 interface PropertyCardProps {
   property: Property;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ property, onEdit, onDelete }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
     <Card className="h-full flex flex-col">
       <div className="relative h-48 overflow-hidden">
@@ -62,7 +60,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onEdit, onDelete 
           variant="outline"
           icon={Edit}
           size="sm"
-          onClick={() => onEdit(property.id)}
+          onClick={() => console.log(property.id)}
         >
           Edit
         </Button>
@@ -71,7 +69,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onEdit, onDelete 
           variant="danger"
           icon={Trash2}
           size="sm"
-          onClick={() => onDelete(property.id)}
+          onClick={() => console.log(property.id)}
         >
           Delete
         </Button>
