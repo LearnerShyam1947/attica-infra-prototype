@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import { Field, Form, Formik } from 'formik';
-import { ChevronDown, X, Loader2, Loader } from 'lucide-react';
+import { ArrowRightCircle, ChevronDown, Loader2, X } from 'lucide-react';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
@@ -52,30 +52,18 @@ const sections = [
         type: 'radio'
       },
       {
-        "label": "Build Up Area",
-        "name": "build_up_area",
-        "defaultValue": "100 (sq. ft)",
-        "type": "textarea"
+        "label": "Soil Test",
+        "name": "soil_test",
+        "defaultValue": "Soil Test",
+        type: 'radio'
       },
-      {
-        "label": "Basement Height",
-        "name": "basement_height",
-        "defaultValue": "Upto 5 feet",
-        "type": "textarea"
-      },
-      {
-        "label": "Steel Reinforcement",
-        "name": "steel_reinforcement",
-        "defaultValue": "As per Standard",
-        "type": "textarea"
-      }
     ]
   },
   {
-    title: 'Structure',
+    title: 'Structure Standard',
     fields: [
       {
-        "label": "Steel",
+        "label": "Steel Reinforcement: As per Design Standard",
         "name": "steel",
         "defaultValue": "Vizag or equivalent",
         "type": "textarea"
@@ -121,7 +109,25 @@ const sections = [
         "name": "parapet_wall",
         "defaultValue": "3.5' Feet Height | 6' Thick (Or) Toughened Glass Railing if Required",
         "type": "textarea"
-      }
+      },
+      {
+        "label": "Plot Size",
+        "name": "build_up_area",
+        "defaultValue": "100 (sq. ft)",
+        "type": "textarea"
+      },
+      {
+        "label": "Basement Height",
+        "name": "basement_height",
+        "defaultValue": "Upto 5 feet",
+        "type": "textarea"
+      },
+      {
+        "label": "Steel Reinforcement",
+        "name": "steel_reinforcement",
+        "defaultValue": "As per Standard",
+        "type": "textarea"
+      },
     ]
   },
   {
@@ -345,43 +351,43 @@ const sections = [
     ]
   },
   {
-    title: 'What’s Not Included?',
+    title: "What's included as Extras",
     fields: [
       {
         "label": "Compound Wall  & Gate",
         "name": "overhead_tank",
-        "defaultValue": "Not Included",
-        "type": "None"
+        "defaultValue": "Included",
+        "type": "textarea"
       },
       {
         "label": "Sump & Septic Tank",
         "name": "underground_sump",
-        "defaultValue": "Not Included",
-        "type": "None"
+        "defaultValue": "Included",
+        "type": "textarea"
       },
       {
         "label": "Lift, Electricity Connection",
         "name": "staircase_railing",
-        "defaultValue": "Not Included",
-        "type": "None"
+        "defaultValue": "Included",
+        "type": "textarea"
       },
       {
         "label": "Building Plan Approval",
         "name": "window_grills",
-        "defaultValue": "Not Included",
-        "type": "None"
+        "defaultValue": "Included",
+        "type": "textarea"
       },
       {
         "label": "Elevation Special Materials",
         "name": "copper_gas_connection",
-        "defaultValue": "Not Included",
-        "type": "None"
+        "defaultValue": "Included",
+        "type": "textarea"
       },
       {
         "label": "Balcony Railing",
         "name": "Balcony_Railing",
-        "defaultValue": "Not Included",
-        "type": "None"
+        "defaultValue": "Included",
+        "type": "textarea"
       }
     ]
   },
@@ -453,148 +459,169 @@ const SingleQuote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-5xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8 text-center">Customize Your Quote</h1>
-        <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
-          {sections.map((section) => (
-            <Disclosure key={section.title}>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className="w-full flex justify-between items-center bg-blue-100 px-4 py-3 rounded-lg font-semibold">
-                    <span>{section.title}</span>
-                    <ChevronDown className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="space-y-4 mt-4">
-                    {section.fields.map((field) =>
-                      field.type === 'None' ? (
-                        <div key={field.name} className="md:col-span-2">
-                          <div className="bg-gray-50 p-4 border rounded-lg">
-                            <strong>{field.label}</strong>
-                            <p className="text-gray-600">{field.defaultValue}</p>
-                          </div>
-                        </div>
-                      ) : (
-                        <div key={field.name} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="bg-gray-50 p-4 border rounded-lg">
-                            <label className="block font-semibold mb-1">{field.label}</label>
-                            <p className="text-gray-600">{field.defaultValue}</p>
-                          </div>
-                          {field.type === 'textarea' ? (
-                            <div className="bg-gray-50 p-4 border rounded-lg">
-                              <label className="block font-semibold mb-1">Your Preference</label>
-                              <textarea
-                                className="w-full border px-3 py-2 rounded-md"
-                                rows={2}
-                                value={quoteValues[field.name] || ''}
-                                placeholder={`Enter your preferred ${field.label.toLowerCase()}`}
-                                onChange={(e) => handleFieldChange(field.name, e.target.value)}
-                              />
-                            </div>
-                          ) : field.type === 'radio' ? (
-                            <div className="bg-gray-50 p-4 border rounded-lg">
-                              <label className="block font-semibold mb-1">Include?</label>
-                              <div className="flex space-x-4">
-                                <label className="inline-flex items-center space-x-2 cursor-pointer">
-                                  <input
-                                    type="radio"
-                                    name={field.name}
-                                    value="Yes"
-                                    checked={quoteValues[field.name] === 'Yes'}
-                                    onChange={() => handleFieldChange(field.name, 'Yes')}
-                                    className="form-radio accent-blue h-5 w-5 text-blue-600 focus:ring-blue-500"
-                                  />
-                                  <span className="text-gray-800">Yes</span>
-                                </label>
-
-                                <label className="inline-flex items-center space-x-2 cursor-pointer">
-                                  <input
-                                    type="radio"
-                                    name={field.name}
-                                    value="No"
-                                    checked={quoteValues[field.name] !== 'Yes'}
-                                    onChange={() => handleFieldChange(field.name, 'No')}
-                                    className="form-radio accent-blue h-5 w-5 text-red-600 focus:ring-red-500"
-                                  />
-                                  <span className="text-gray-800">No</span>
-                                </label>
-                              </div>
-                            </div>
-                          ) : null}
-                        </div>
-                      )
-                    )}
-
-                  </Disclosure.Panel>
-                </>
-              )}
-            </Disclosure>
-          ))}
-
-          <div className="text-center">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
-            >
-              Get Quote
-            </button>
-          </div>
-
-          {message && (
-            <div className={`mt-4 p-4 text-center rounded-lg ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-              {message.value}
-            </div>
-          )}
+    <>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white mb-3 pt-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <h2 className="text-3xl font-bold mb-5 text-gray-900 text-center">
+          In-House Quotation
+          </h2>
+          <p className="text-gray-700 mb-4 text-left">
+            At Attica Infra Services, we take the time to understand your preferences and create a design that matches your vision. Whether you have specific ideas in mind or need tailored concepts, we'll bring your dream home to life using quality materials and thoughtful design.
+          </p>
+          <ul className="space-y-3 mb-4 text-justify">
+            <li className="flex items-start text-gray-800">
+              <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+              <span>
+              We believe that everyone's vision for their dream home is unique.
+              </span>
+            </li>
+            <li className="flex items-start text-gray-800">
+              <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+              <span>
+              Based on your quality requirements, we will provide the best fixed estimate—ensuring transparency, no hidden costs, and a seamless process from start to finish.
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Contact Details</h2>
-              <button onClick={() => setIsModalOpen(false)}>
-                <X className="h-5 w-5 text-gray-500" />
+      <div className="min-h-screen pt-3 pb-12">
+        <div className="max-w-5xl mx-auto px-4">
+          {/* <h1 className="text-3xl font-bold text-center">Customize Your Quote</h1> */}
+          <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
+            {sections.map((section) => (
+              <Disclosure key={section.title}>
+                {({ open }) => (
+                  <>
+                    <Disclosure.Button className="w-full flex justify-between items-center bg-blue-100 px-4 py-3 rounded-lg font-semibold">
+                      <span>{section.title}</span>
+                      <ChevronDown className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} />
+                    </Disclosure.Button>
+                    <Disclosure.Panel className="space-y-4 mt-4">
+                      {section.fields.map((field) =>
+                        field.type === 'None' ? (
+                          <div key={field.name} className="md:col-span-2">
+                            <div className="bg-gray-50 p-4 border rounded-lg">
+                              <strong>{field.label}</strong>
+                              <p className="text-gray-600">{field.defaultValue}</p>
+                            </div>
+                          </div>
+                        ) : (
+                          <div key={field.name} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-gray-50 p-4 border rounded-lg">
+                              <label className="block font-semibold mb-1">{field.label}</label>
+                              <p className="text-gray-600">{field.defaultValue}</p>
+                            </div>
+                            {field.type === 'textarea' ? (
+                              <div className="bg-gray-50 p-4 border rounded-lg">
+                                <label className="block font-semibold mb-1">Your Preference</label>
+                                <textarea
+                                  className="w-full border px-3 py-2 rounded-md"
+                                  rows={2}
+                                  value={quoteValues[field.name] || ''}
+                                  placeholder={`Enter your preferred ${field.label.toLowerCase()}`}
+                                  onChange={(e) => handleFieldChange(field.name, e.target.value)}
+                                />
+                              </div>
+                            ) : field.type === 'radio' ? (
+                              <div className="bg-gray-50 p-4 border rounded-lg">
+                                <label className="block font-semibold mb-1">Include?</label>
+                                <div className="flex space-x-4">
+                                  <label className="inline-flex items-center space-x-2 cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      name={field.name}
+                                      value="Yes"
+                                      checked={quoteValues[field.name] === 'Yes'}
+                                      onChange={() => handleFieldChange(field.name, 'Yes')}
+                                      className="form-radio accent-blue h-5 w-5 text-blue-600 focus:ring-blue-500"
+                                    />
+                                    <span className="text-gray-800">Yes</span>
+                                  </label>
+                                  <label className="inline-flex items-center space-x-2 cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      name={field.name}
+                                      value="No"
+                                      checked={quoteValues[field.name] !== 'Yes'}
+                                      onChange={() => handleFieldChange(field.name, 'No')}
+                                      className="form-radio accent-blue h-5 w-5 text-red-600 focus:ring-red-500"
+                                    />
+                                    <span className="text-gray-800">No</span>
+                                  </label>
+                                </div>
+                              </div>
+                            ) : null}
+                          </div>
+                        )
+                      )}
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            ))}
+            <div className="text-center">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+              >
+                Get Quote
               </button>
             </div>
-
-            <Formik
-              initialValues={{ name: '', email: '', phone: '', address: '' }}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}
-            >
-              {({ errors, touched }) => (
-                <Form className="space-y-4">
-                  {['name', 'email', 'phone', 'address'].map((field) => (
-                    <div key={field}>
-                      <label className="block text-sm font-medium mb-1 capitalize">{field}*</label>
-                      <Field
-                        name={field}
-                        as={field === 'address' ? 'textarea' : 'input'}
-                        rows={field === 'address' ? 3 : undefined}
-                        className="w-full border px-3 py-2 rounded-md"
-                      />
-                      {(errors as any)[field] && (touched as any)[field] && (
-                        <div className="text-red-500 text-sm mt-1">{(errors as any)[field]}</div>
-                      )}
-                    </div>
-                  ))}
-                  <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
-                  >
-                    {loading ? <Loader2 className="animate-spin mx-auto" /> : 'Get Single Quote'}
-                  </button>
-                </Form>
-              )}
-            </Formik>
-            {loading && (
-                <LoadingSpinner text='submitting your quote details...' />
-              )}
+            {message && (
+              <div className={`mt-4 p-4 text-center rounded-lg ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                {message.value}
+              </div>
+            )}
           </div>
         </div>
-      )}
-    </div>
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 max-w-md w-full">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Contact Details</h2>
+                <button onClick={() => setIsModalOpen(false)}>
+                  <X className="h-5 w-5 text-gray-500" />
+                </button>
+              </div>
+              <Formik
+                initialValues={{ name: '', email: '', phone: '', address: '' }}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+              >
+                {({ errors, touched }) => (
+                  <Form className="space-y-4">
+                    {['name', 'email', 'phone', 'address'].map((field) => (
+                      <div key={field}>
+                        <label className="block text-sm font-medium mb-1 capitalize">{field}*</label>
+                        <Field
+                          name={field}
+                          as={field === 'address' ? 'textarea' : 'input'}
+                          rows={field === 'address' ? 3 : undefined}
+                          className="w-full border px-3 py-2 rounded-md"
+                        />
+                        {(errors as any)[field] && (touched as any)[field] && (
+                          <div className="text-red-500 text-sm mt-1">{(errors as any)[field]}</div>
+                        )}
+                      </div>
+                    ))}
+                    <button
+                      type="submit"
+                      className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
+                    >
+                      {loading ? <Loader2 className="animate-spin mx-auto" /> : 'Get Single Quote'}
+                    </button>
+                  </Form>
+                )}
+              </Formik>
+              {loading && (
+                <LoadingSpinner text='submitting your quote details...' />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -49,7 +49,7 @@ const AppContent = () => {
 
   const closeSidebar = () => {
     setSidebarOpen(false);
-  };  
+  };
 
   useEffect(() => {
     closeSidebar();
@@ -59,8 +59,8 @@ const AppContent = () => {
 
     <Routes>
       <Route element={<Layout />}>
-      <Route path='/test' element={<Test />} />
-      <Route path='/materials-order' element={<MaterialsOrderForm />} />
+        <Route path='/test' element={<Test />} />
+        <Route path='/materials-order' element={<MaterialsOrderForm />} />
 
         <Route path="interior-design" element={<InteriorDesign />} />
         <Route path="architecture-design" element={<CommingSoon />} />
@@ -75,94 +75,115 @@ const AppContent = () => {
             <QuoteSelection />
           </ProtectedRoute>
         } />
+
         <Route path="builders" element={
           <ProtectedRoute>
             <BuilderSelection />
           </ProtectedRoute>
         } />
+
         <Route path="construction-form" element={
           <ProtectedRoute>
             <ConstructionForm />
           </ProtectedRoute>
         } />
+
         <Route path="single-quote" element={
           <ProtectedRoute>
             <SingleQuote />
           </ProtectedRoute>
         } />
+
         <Route path="sell-buy" element={
           <ProtectedRoute>
             <SellBuy />
           </ProtectedRoute>
         } />
+
         <Route path="property/:type" element={
           <ProtectedRoute>
             <PropertyDetails />
           </ProtectedRoute>
         } />
+
         <Route path="*" element={<NotFound />} />
       </Route>
 
       <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        } />
 
         <Route
           path="/dashboard/properties"
           element={
-            <PropertiesPage
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              filterType={filterType}
-              setFilterType={setFilterType}
-              propertySearch={propertySearch}
-              setPropertySearch={setPropertySearch}
-            />
+            <ProtectedRoute>
+              <PropertiesPage
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                filterType={filterType}
+                setFilterType={setFilterType}
+                propertySearch={propertySearch}
+                setPropertySearch={setPropertySearch}
+              />
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/dashboard/properties/add"
           element={
-            <PropertyFormPage/>
+            <ProtectedRoute>
+              <PropertyFormPage />
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/dashboard/properties/edit/:id"
           element={
-            <PropertyFormPage
-              property={editProperty}
-              isEditing
-            />
+            <ProtectedRoute>
+              <PropertyFormPage
+                property={editProperty}
+                isEditing
+              />
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/dashboard/builders"
           element={
-            <BuildersPage
-              builderSearch={builderSearch}
-              setBuilderSearch={setBuilderSearch}
-              onAddNew={() => setEditBuilder(null)}
-            />
+            <ProtectedRoute>
+              <BuildersPage
+                builderSearch={builderSearch}
+                setBuilderSearch={setBuilderSearch}
+                onAddNew={() => setEditBuilder(null)}
+              />
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/dashboard/builders/add"
           element={
-            <BuilderFormPage
-            />
+            <ProtectedRoute>
+              <BuilderFormPage />
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/dashboard/builders/edit/:id"
           element={
-            <BuilderFormPage
-              builder={editBuilder}
-              isEditing
-            />
+            <ProtectedRoute>
+              <BuilderFormPage
+                builder={editBuilder}
+                isEditing
+              />
+            </ProtectedRoute>
           }
         />
       </Route>

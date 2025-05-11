@@ -1,7 +1,8 @@
-import { Activity, BookOpen, FileText, Handshake, Home, PencilRuler, PenTool, Sofa, Users, UtensilsCrossed } from 'lucide-react';
+import { Activity, BookOpen, CheckCircle, FileText, Handshake, Home, PencilRuler, PenTool, Sofa, Users, UtensilsCrossed } from 'lucide-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HowItWorksUI from '../../../components/ui/HowItWorks';
+import ImageSlider from '../../../components/ui/ImageSlider';
 import LetsConnect from '../../../components/ui/LetsConnect';
 
 const InteriorDesign: React.FC = () => {
@@ -13,6 +14,13 @@ const InteriorDesign: React.FC = () => {
     console.log(values);
 
   }
+  const sampleData = [
+      { id: '1', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
+      { id: '2', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
+      { id: '3', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
+      { id: '4', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
+      { id: '5', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
+  ];
 
   const steps = [
     {
@@ -103,50 +111,80 @@ const InteriorDesign: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
+    <>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900">End-to-end interior solutions</h1>
-          <p className="mt-4 text-xl text-gray-600">Get an estimate for your <span className="text-blue-600">home</span>. <br />
-            Calculate the cost of doing up your home interiors now.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {cards.map((property, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-xl shadow-lg p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="bg-blue-50 p-6 rounded-full">
-                  {property.icon}
-                </div>
-                <h2 className="text-2xl font-bold text-gray-900">{property.title}</h2>
-                <p className="text-gray-600">{property.description}</p>
-                {/* <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                  {property.buttonText}
-                </button> */}
-                {property.button}
-              </div>
-            </div>
-          ))}
+        <div className="bg-white py-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+            Integrated Interior Design Services
+          </h2>
+          <p className="text-gray-700 mb-4 text-left">
+            At Attica Infra Services, we provide complete in-house interior design solutions alongside our
+            construction services. By planning both structure and interiors together, we help you:
+          </p>
+          <ul className="space-y-3 mb-4 text-left">
+            <li className="flex items-start text-gray-800">
+              <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
+              Save costs through optimized material and space planning
+            </li>
+            <li className="flex items-start text-gray-800">
+              <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
+              Avoid delays with streamlined execution
+            </li>
+            <li className="flex items-start text-gray-800">
+              <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
+              Prevent rework by aligning design with structural elements from day one
+            </li>
+          </ul>
+          <p className="text-gray-700 text-left">
+            Our end-to-end approach ensures a seamless journey—from blueprint to beautifully finished spaces.
+          </p>
         </div>
       </div>
 
-      <LetsConnect 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleSubmit}
-        title='Working'
-        initialContext={{'hello' : 'world'}}
-      />
-
-      <HowItWorksUI 
-        steps={steps}
-        title='Interior Design Process'
-        subtitle='At Attica Infra Services, we follow a streamlined and transparent process to turn your vision into reality:'  
-      />
-    </div>
+      <ImageSlider title="End-to-end offerings" data={sampleData} />
+      <ImageSlider title="Mordern Kitchen Design" data={sampleData} />
+      
+      <div className="min-h-screen bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold text-gray-900">End-to-end interior solutions</h1>
+            <p className="mt-4 text-xl text-gray-600">Get an estimate for your <span className="text-blue-600">home</span>. <br />
+              Calculate the cost of doing up your home interiors now.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {cards.map((property, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl shadow-lg p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="bg-blue-50 p-6 rounded-full">
+                    {property.icon}
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900">{property.title}</h2>
+                  <p className="text-gray-600">{property.description}</p>
+                  {/* <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    {property.buttonText}
+                  </button> */}
+                  {property.button}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <LetsConnect
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={handleSubmit}
+          initialContext={{ 'hello': 'world' }}
+        />
+        <HowItWorksUI
+          steps={steps}
+          title='Interior Design Process'
+          subtitle='At Attica Infra Services, we follow a streamlined and transparent process to turn your vision into reality:'
+        />
+      </div>
+    </>
 
   );
 };

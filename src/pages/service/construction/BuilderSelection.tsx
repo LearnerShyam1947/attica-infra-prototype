@@ -2,16 +2,25 @@ import BuilderList from '../../../components/BuilderList';
 
 const BuilderSelection = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900">Select Your Builders</h1>
-          <p className="mt-4 text-xl text-gray-600">Choose from our trusted network of construction professionals</p>
+        <div className="bg-white py-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+            Multiple Estimates, Your Choice
+          </h2>
+          <p className="text-gray-700 mb-4 text-left">
+            With Attica Infra Services, you can receive multiple estimates from our Partnered Experts, giving you the flexibility to compare and choose the best option for your budget and needs—with no hidden charges.
+          </p>
+          <p className="text-xl pt-3 font-bold text-center">
+            More options, more control. Choose with confidence—no surprises.
+          </p>
         </div>
 
-        <BuilderList />
       </div>
-    </section>
+      <BuilderList />
+
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
-import { ChevronDown, Home, Info, LayoutDashboard, LogOut, Menu, Wrench, X } from 'lucide-react';
+import { Home, Info, LayoutDashboard, LogOut, Menu, Wrench, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from './Logo';
 import { useAuth } from '../../contexts/AuthContext';
-import ContactButton from '../ContactButton';
+import LetsConnect from '../ui/LetsConnect';
+import Logo from './Logo';
 
 const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
 
@@ -32,6 +32,8 @@ const Navbar = () => {
     setShowLogoutConfirm(false);
     navigate('/');
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -123,13 +125,28 @@ const Navbar = () => {
                   </div>
                 )}
 
-                <ContactButton onSubmit={(data) => {
+                <button className='bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors'>
+                  <Link to={"materials-order"}>Order Materials</Link>
+                </button>
+
+                {/* <ContactButton onSubmit={(data) => {
                   console.log(data);
                 }}
                   modalTitle="Let's Connect"
                   buttonClassName="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                   buttonText="Let's Talk"
                   submitButtonText="Let's Connect"
+                /> */}
+                <button onClick={() => setIsModalOpen(true)} className='bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors'>
+                  Let's Connect
+                </button>
+                <LetsConnect
+                  title="Let's Connect"
+                  buttonText="Let's Talk"
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                  onSubmit={() => { }}
+                  initialContext={{ 'hello': 'world' }}
                 />
 
               </div>
@@ -149,46 +166,78 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden bg-white">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</Link>
-              <a href="#about" className="block px-3 py-2 text-gray-700 hover:text-blue-600">About Us</a>
-              <a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Services</a>
-              <div className="relative">
-                <button
-                  onClick={() => setCityDropdown(!cityDropdown)}
-                  className="flex items-center w-full px-3 py-2 text-gray-700 hover:text-blue-600"
-                >
-                  Locations
-                  <ChevronDown className="w-4 h-4 ml-1" />
-                </button>
-                {cityDropdown && (
-                  <div className="pl-6">
-                    {cities.map((city) => (
-                      <a
-                        key={city}
-                        href={`#${city.toLowerCase()}`}
-                        className="block px-3 py-2 text-sm text-gray-700 hover:text-blue-600"
-                      >
-                        {city}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <a href="#contact" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+          // <div className="md:hidden bg-white">
+          //   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          //     <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</Link>
+          //     <a href="#about" className="block px-3 py-2 text-gray-700 hover:text-blue-600">About Us</a>
+          //     <a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Services</a>
+          //     {/* <div className="relative">
+          //       <button
+          //         onClick={() => setCityDropdown(!cityDropdown)}
+          //         className="flex items-center w-full px-3 py-2 text-gray-700 hover:text-blue-600"
+          //       >
+          //         Locations
+          //         <ChevronDown className="w-4 h-4 ml-1" />
+          //       </button>
+          //       {cityDropdown && (
+          //         <div className="pl-6">
+          //           {cities.map((city) => (
+          //             <a
+          //               key={city}
+          //               href={`#${city.toLowerCase()}`}
+          //               className="block px-3 py-2 text-sm text-gray-700 hover:text-blue-600"
+          //             >
+          //               {city}
+          //             </a>
+          //           ))}
+          //         </div>
+          //       )}
+          //     </div> */}
+          //     <a href="#contact" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+
+          //     {isAuthenticated ? (
+          //       <>
+          //         <Link
+          //           to="/dashboard"
+          //           className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+          //         >
+          //           Dashboard
+          //         </Link>
+          //         <button
+          //           onClick={handleLogout}
+          //           className="flex items-center w-full px-3 py-2 text-gray-700 hover:text-blue-600"
+          //         >
+          //           <span className="mr-2">{user?.name}</span>
+          //           <LogOut className="w-4 h-4" />
+          //         </button>
+          //       </>
+          //     ) : (
+          //       <>
+          //         <Link to="/login" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Login</Link>
+          //         <Link to="/register" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Register</Link>
+          //       </>
+          //     )}
+          //   </div>
+          // </div>
+          <div
+            className={`md:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
+          >
+            <div className="px-4 pt-4 pb-6 space-y-4">
+              <Link to="/" className="block text-gray-700 hover:text-blue-600">Home</Link>
+              <a href="#about" className="block text-gray-700 hover:text-blue-600">About Us</a>
+              <a href="#services" className="block text-gray-700 hover:text-blue-600">Services</a>
 
               {isAuthenticated ? (
                 <>
                   <Link
                     to="/dashboard"
-                    className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+                    className="block text-gray-700 hover:text-blue-600"
                   >
                     Dashboard
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="flex items-center w-full px-3 py-2 text-gray-700 hover:text-blue-600"
+                    className="flex items-center w-full text-gray-700 hover:text-blue-600"
                   >
                     <span className="mr-2">{user?.name}</span>
                     <LogOut className="w-4 h-4" />
@@ -196,10 +245,24 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <Link to="/login" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Login</Link>
-                  <Link to="/register" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Register</Link>
+                  <Link to="/login" className="block text-gray-700 hover:text-blue-600">Login</Link>
+                  <Link to="/register" className="block text-gray-700 hover:text-blue-600">Register</Link>
                 </>
               )}
+
+              <Link
+                to="/materials-order"
+                className="block bg-red-500 text-white text-center px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
+              >
+                Order Materials
+              </Link>
+
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="block w-full bg-blue-600 text-white text-center px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Let's Connect
+              </button>
             </div>
           </div>
         )}
