@@ -6,6 +6,7 @@ import { X } from 'lucide-react';
 interface LetsConnectProps {
   isOpen: boolean;
   title?:string;
+  buttonText?:string;
   onClose: () => void;
   onSubmit: (values: any) => void;
   initialContext?: Record<string, any>;
@@ -18,7 +19,7 @@ const validationSchema = Yup.object({
   address: Yup.string().required('Address is required'),
 });
 
-const LetsConnect: React.FC<LetsConnectProps> = ({ isOpen, title, onClose, onSubmit, initialContext = {} }) => {
+const LetsConnect: React.FC<LetsConnectProps> = ({ isOpen, title, buttonText, onClose, onSubmit, initialContext = {} }) => {
   if (!isOpen) return null;
 
   return (
@@ -56,7 +57,7 @@ const LetsConnect: React.FC<LetsConnectProps> = ({ isOpen, title, onClose, onSub
                 </div>
               ))}
               <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
-                Get Estimation
+                {buttonText || "Get Estimation"}
               </button>
             </Form>
           )}
