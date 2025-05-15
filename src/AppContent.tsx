@@ -24,6 +24,8 @@ import Layout from './components/layout/Layout';
 import MaterialsOrderForm from './MaterialsOrderForm';
 import Test from './Test';
 import InteriorDesign from './pages/service/interior-design/InteriorDesign';
+import DesignDetails from './pages/service/interior-design/DesignDetails';
+import ArchitectureDesign from './pages/service/architecture-design/ArchitectureDesign';
 
 const AppContent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -63,7 +65,8 @@ const AppContent = () => {
         <Route path='/materials-order' element={<MaterialsOrderForm />} />
 
         <Route path="interior-design" element={<InteriorDesign />} />
-        <Route path="architecture-design" element={<CommingSoon />} />
+        <Route path="design-details" element={<DesignDetails />} />
+        <Route path="architecture-design" element={<ArchitectureDesign />} />
 
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
