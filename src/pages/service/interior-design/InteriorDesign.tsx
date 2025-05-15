@@ -93,7 +93,7 @@ const InteriorDesign: React.FC = () => {
       buttonText: 'Get Free Estimate',
       button: (
         <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-          <Link to={"/test"}>Get Free Estimate</Link>
+          <Link to={"/design-details"}>Get Free Estimate</Link>
         </button>
       )
     },
@@ -104,7 +104,7 @@ const InteriorDesign: React.FC = () => {
       buttonText: 'Book Free Design Session',
       button: (
         <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-          <Link to={"/test"}>Book Free Design Session</Link>
+          <Link to={"/design-details"}>Book Free Design Session</Link>
         </button>
       )
     },
