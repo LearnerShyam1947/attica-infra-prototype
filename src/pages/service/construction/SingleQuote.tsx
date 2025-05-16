@@ -434,7 +434,7 @@ const SingleQuote = () => {
 
     console.log(data);
 
-    fetch('http://localhost:3000/submit-quote', {
+    fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

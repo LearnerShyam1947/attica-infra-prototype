@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LetsConnect from '../../../components/ui/LetsConnect';
+import { showAlert } from '../../../utils/Alerts';
 
 const DesignDetails: React.FC = () => {
   const maxBedrooms = 2;
@@ -41,7 +42,8 @@ const DesignDetails: React.FC = () => {
     console.log(data);
     
     // console.log('Submitted vals:', vals);
-    alert(JSON.stringify(requiredData, null, 2));
+    // TODO: alert based on response 
+    showAlert("success", "your design request placed successfully", "success");
   };
 
   return (
