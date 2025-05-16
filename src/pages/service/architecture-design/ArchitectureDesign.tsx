@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import LetsConnect from '../../../components/ui/LetsConnect';
+import LoadingSpinner from '../../../components/ui/LoadingSpinner';
+import { showAlert } from '../../../utils/Alerts';
 
 type ServiceOption = {
   name: string;
@@ -27,29 +30,83 @@ const services: ServiceOption[] = [
   { name: 'INTERIOR QUOTATION' },
 ];
 
+type FormDataEntry = {
+  name: string;
+  description?: string;
+  option: string;
+};
+
 const ArchitectureDesign: React.FC = () => {
-  const [formData, setFormData] = useState<{ [key: string]: string }>(
-    services.reduce((acc, service) => {
-      acc[service.name] = 'No'; // Default selection
-      return acc;
-    }, {} as { [key: string]: string })
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState<FormDataEntry[]>(
+    services.map(service => ({
+      name: service.name,
+      description: service.description || '',
+      option: 'No',
+    }))
   );
 
   const handleChange = (serviceName: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [serviceName]: value,
-    }));
+    setFormData(prev =>
+      prev.map(service =>
+        service.name === serviceName
+          ? { ...service, option: value }
+          : service
+      )
+    );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (values: any) => {
+    setLoading(true);
+
+    console.log('Contact Info:', values);
     console.log('Selected Services:', formData);
-    alert('Request submitted!');
+
+    const data = {
+      contactDetails: values,
+      mainData: formData,
+    };
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-architecture-design`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const response = await res.json();
+      console.log(response);
+
+      if (response.error) {
+        showAlert("Error", response.error, "error")
+        return;
+      }
+      
+      showAlert("success", 'design request submitted!', "success");
+    } catch (e) {
+      console.error(e);
+    }
+    finally {
+      setLoading(false);
+      setFormData(
+        services.map(service => ({
+          name: service.name,
+          description: service.description || '',
+          option: 'No',
+        }))
+      );
+      
+    }
   };
 
   return (
     <>
+      { loading && <LoadingSpinner text='process your request' />}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white py-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
           <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
@@ -69,7 +126,7 @@ const ArchitectureDesign: React.FC = () => {
 
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">Service Selection Form</h2>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-300 text-sm mb-6">
               <thead>
@@ -80,7 +137,7 @@ const ArchitectureDesign: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {services.map(service => (
+                {formData.map(service => (
                   <tr key={service.name} className="hover:bg-gray-50">
                     <td className="p-3 border border-gray-300 font-medium text-gray-700">
                       {service.name}
@@ -94,12 +151,11 @@ const ArchitectureDesign: React.FC = () => {
                           <input
                             type="checkbox"
                             className="form-checkbox h-5 w-5 text-blue-600 accent-blue-600"
-                            checked={formData[service.name] === 'Yes'}
+                            checked={service.option === 'Yes'}
                             onChange={(e) =>
                               handleChange(service.name, e.target.checked ? 'Yes' : 'No')
                             }
                           />
-                          {/* <span className="ml-2 text-sm text-gray-700">Select</span> */}
                         </label>
                       </div>
                     </td>
@@ -110,7 +166,8 @@ const ArchitectureDesign: React.FC = () => {
           </div>
           <div className="text-right">
             <button
-              type="submit"
+              type="button"
+              onClick={() => setIsModalOpen(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow"
             >
               Proceed to Request
@@ -118,6 +175,12 @@ const ArchitectureDesign: React.FC = () => {
           </div>
         </form>
       </div>
+
+      <LetsConnect
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleSubmit}
+      />
     </>
   );
 };

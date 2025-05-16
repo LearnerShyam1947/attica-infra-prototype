@@ -40,7 +40,7 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
 
     try {
       const xhr = new XMLHttpRequest();
-      // xhr.open('POST', 'http://localhost:3000/api/v1/upload/');
+      // xhr.open('POST', `${import.meta.env.VITE_BACKEND_API_URL}/api/v1/upload/`);
       xhr.open('POST', 'https://httpbin.org/post');
 
       xhr.upload.onprogress = (event) => {

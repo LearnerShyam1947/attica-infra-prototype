@@ -2,7 +2,7 @@ import { showAlert } from "../utils/Alerts";
 
 export const addProperty = async (data: any) => {
     try {
-        const resp = await fetch("http://localhost:3000/api/v1/properties/", {
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/properties/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,14 +25,14 @@ export const addProperty = async (data: any) => {
         showAlert("success", result.message, "success");
         return { success: true, property: result.property };
     } catch (error: any) {
-        alert("Failed to add the property details: " + error.message);
+        showAlert("error","Failed to add the property details: " + error.message, "error");
         return { success: false, error: error.message };
     }
 };
 
 export const fetchProperties = async () => {
     try {
-        const resp = await fetch("http://localhost:3000/api/v1/properties/");
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/properties/`);
 
         await new Promise(resolve => setTimeout(resolve, 2000));
 

@@ -3,7 +3,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 export const showAlert = (
     title: string,
     text: string,
-    icon: SweetAlertIcon = 'info'
+    icon: SweetAlertIcon = 'success'
 ) => {
     Swal.fire({
         title,

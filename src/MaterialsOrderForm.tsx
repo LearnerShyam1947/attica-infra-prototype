@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
-import { BookOpen, FileText, Home, Loader, Users } from 'lucide-react';
+import { BookOpen, FileText, Home, icons, Loader, Users } from 'lucide-react';
 import LoadingSpinner from './components/ui/LoadingSpinner';
 import HowItWorksUI from './components/ui/HowItWorks';
+import { showAlert } from './utils/Alerts';
 
 type Material = {
   name: string;
@@ -103,7 +104,7 @@ const MaterialsOrderForm: React.FC = () => {
   ) => {
     console.log('Form values:', values);
     try {
-      const res = await fetch('http://localhost:3000/submit-material-order', {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-material-order`, {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',
@@ -118,7 +119,7 @@ const MaterialsOrderForm: React.FC = () => {
 
       // Close modal and alert
       setIsModalOpen(false);
-      alert('Order submitted!');
+      showAlert("success", "materials order placed successfully")
     } catch (e) {
       console.error(e);
     }
@@ -261,11 +262,11 @@ smooth as possible. Here’s how it works:' />
                                                             );
                                                           } else {
                                                             console.error('Upload failed:', data);
-                                                            alert('File upload failed.');
+                                                            showAlert("Error", "File upload failed.", "error")
                                                           }
                                                         } catch (err) {
                                                           console.error('Error uploading file:', err);
-                                                          alert('Something went wrong during file upload.');
+                                                          showAlert("error", 'Something went wrong during file upload.', "error");
                                                         }
                                                         finally {
                                                           setUploading(false);
