@@ -2,26 +2,6 @@ import { Clock, DollarSign, HeartHandshake } from 'lucide-react';
 
 const Features = () => {
   const features = [
-    // {
-    //   icon: <DollarSign className="w-12 h-12 text-blue-600" />,
-    //   title: "Multiple Options for Best Quotations",
-    //   description: "Compare and choose from various competitive quotes all in one place, ensuring you get the best value for your investment."
-    // },
-    // {
-    //   icon: <Clock className="w-12 h-12 text-blue-600" />,
-    //   title: "Quality and Time Delivery",
-    //   description: "We pride ourselves on delivering high-quality construction work within the agreed timeframe, every time."
-    // },
-    // {
-    //   icon: <Shield className="w-12 h-12 text-blue-600" />,
-    //   title: "Safe Money Transaction",
-    //   description: "Secure and transparent payment processes to ensure your financial peace of mind throughout the project."
-    // },
-    // {
-    //   icon: <HeartHandshake className="w-12 h-12 text-blue-600" />,
-    //   title: "End to End Support",
-    //   description: "Comprehensive support from project inception to completion, ensuring a smooth construction journey."
-    // }
     {
       icon: <Clock className="w-12 h-12 text-blue-600" />,
       title: "Save Time",
@@ -39,6 +19,12 @@ const Features = () => {
     }
   ];
 
+  const bgColors = [
+    "bg-orange-100",
+    "bg-blue-100",
+    "bg-green-100",
+  ];
+
   return (
     <section id="features" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +37,7 @@ const Features = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className={`p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ${bgColors[index]}`}
             >
               <div className="flex justify-center mb-4">
                 {feature.icon}

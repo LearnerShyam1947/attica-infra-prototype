@@ -2,7 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure this is imported in your layout or index.css */
+/* Smaller and repositioned Swiper navigation arrows */
+.custom-swiper-prev,
+.custom-swiper-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  background-color: white;
+  border-radius: 9999px; /* Fully rounded */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  padding: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-swiper-prev:hover,
+.custom-swiper-next:hover {
+  background-color: #60A5FA !important; 
+}
+
+.custom-swiper-prev {
+  left: 0;
+}
+
+.custom-swiper-next {
+  right: 0;
+}
+
+
 * {
   box-sizing: border-box;
   margin: 0;

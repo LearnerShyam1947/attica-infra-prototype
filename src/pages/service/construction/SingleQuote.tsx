@@ -63,6 +63,24 @@ const sections = [
     title: 'Structure Standard',
     fields: [
       {
+        "label": "Plot Size",
+        "name": "build_up_area",
+        "defaultValue": "100 (sq. ft)",
+        "type": "textarea"
+      },
+      {
+        "label": "Basement Height",
+        "name": "basement_height",
+        "defaultValue": "Upto 5 feet",
+        "type": "textarea"
+      },
+      {
+        "label": "Ceiling Height",
+        "name": "ceiling_height",
+        "defaultValue": "10 feet (Finished Floor level to Finished Floor level)",
+        "type": "textarea"
+      },
+      {
         "label": "Steel Reinforcement: As per Design Standard",
         "name": "steel",
         "defaultValue": "Vizag or equivalent",
@@ -93,12 +111,6 @@ const sections = [
         "type": "textarea"
       },
       {
-        "label": "Ceiling Height",
-        "name": "ceiling_height",
-        "defaultValue": "10 feet (Finished Floor level to Finished Floor level)",
-        "type": "textarea"
-      },
-      {
         "label": "M Sand and P Sand",
         "name": "M_Sand_and_P_sand",
         "defaultValue": "Blockwork & All Masonry Works  and Plastering Works",
@@ -110,24 +122,12 @@ const sections = [
         "defaultValue": "3.5' Feet Height | 6' Thick (Or) Toughened Glass Railing if Required",
         "type": "textarea"
       },
-      {
-        "label": "Plot Size",
-        "name": "build_up_area",
-        "defaultValue": "100 (sq. ft)",
-        "type": "textarea"
-      },
-      {
-        "label": "Basement Height",
-        "name": "basement_height",
-        "defaultValue": "Upto 5 feet",
-        "type": "textarea"
-      },
-      {
-        "label": "Steel Reinforcement",
-        "name": "steel_reinforcement",
-        "defaultValue": "As per Standard",
-        "type": "textarea"
-      },
+      // {
+      //   "label": "Steel Reinforcement",
+      //   "name": "steel_reinforcement",
+      //   "defaultValue": "As per Standard",
+      //   "type": "textarea"
+      // },
     ]
   },
   {
@@ -391,6 +391,10 @@ const sections = [
       }
     ]
   },
+  {
+    title: "Extras",
+    fields: []
+  }
 ];
 
 const validationSchema = Yup.object({
@@ -463,7 +467,7 @@ const SingleQuote = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white mb-3 pt-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
           <h2 className="text-3xl font-bold mb-5 text-gray-900 text-center">
-          In-House Quotation
+            In-House Quotation
           </h2>
           <p className="text-gray-700 mb-4 text-left">
             At Attica Infra Services, we take the time to understand your preferences and create a design that matches your vision. Whether you have specific ideas in mind or need tailored concepts, we'll bring your dream home to life using quality materials and thoughtful design.
@@ -472,13 +476,13 @@ const SingleQuote = () => {
             <li className="flex items-start text-gray-800">
               <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
               <span>
-              We believe that everyone's vision for their dream home is unique.
+                We believe that everyone's vision for their dream home is unique.
               </span>
             </li>
             <li className="flex items-start text-gray-800">
               <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
               <span>
-              Based on your quality requirements, we will provide the best fixed estimate—ensuring transparency, no hidden costs, and a seamless process from start to finish.
+                Based on your quality requirements, we will provide the best fixed estimate—ensuring transparency, no hidden costs, and a seamless process from start to finish.
               </span>
             </li>
           </ul>
@@ -486,7 +490,7 @@ const SingleQuote = () => {
       </div>
 
       <div className="min-h-screen pt-3 pb-12">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           {/* <h1 className="text-3xl font-bold text-center">Customize Your Quote</h1> */}
           <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
             {sections.map((section) => (
@@ -565,7 +569,7 @@ const SingleQuote = () => {
                 onClick={() => setIsModalOpen(true)}
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
               >
-                Get Quote
+                Get Detailed Estimation
               </button>
             </div>
             {message && (
@@ -609,7 +613,7 @@ const SingleQuote = () => {
                       type="submit"
                       className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
                     >
-                      {loading ? <Loader2 className="animate-spin mx-auto" /> : 'Get Single Quote'}
+                      {loading ? <Loader2 className="animate-spin mx-auto" /> : 'Get Detailed Estimation'}
                     </button>
                   </Form>
                 )}
@@ -620,6 +624,68 @@ const SingleQuote = () => {
             </div>
           </div>
         )}
+      </div>
+
+      <div className=' max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 flex flex-col pb-10'>
+
+        <ul>
+          <li className="pb-3 flex items-start text-gray-800">
+            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+            <span>  We will explain the entire process— from foundation to final painting, we manage the entire
+              construction process and hand over the keys upon completion.
+            </span>
+          </li>
+          
+          <li className=" flex items-start text-gray-800">
+            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+            <span>  Before starting the construction journey, it&#39;s important to understand the process.
+              We offer a detailed explanation meeting (approx. 45 minutes), which we believe
+              is truly worth your time. It gives you clarity on about 99% of what goes into your
+              home even before we begin.
+            </span>
+          </li>
+        </ul>
+
+
+
+        <div className="pb-3 text-xl font-bold pt-5">Why Choose Us</div>
+        <ul>
+          <li className="pb-2 flex items-start text-gray-800">
+            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+            <span>
+              Creative &amp; Functional Designs
+            </span>
+          </li>
+          
+          <li className="pb-2 flex items-start text-gray-800">
+            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+            <span>
+              Strong Civil &amp; Architectural Planning
+            </span>
+          </li>
+          
+          <li className="pb-2 flex items-start text-gray-800">
+            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+            <span>
+              Expert In-House Team (No Subcontracting)
+            </span>
+          </li>
+          
+          <li className="pb-2 flex items-start text-gray-800">
+            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+            <span>
+              Clear, Transparent Pricing
+            </span>
+          </li>
+          
+          <li className="pb-2 flex items-start text-gray-800">
+            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+            <span>
+              Complete Project Ownership
+            </span>
+          </li>
+          
+        </ul>
       </div>
     </>
   );

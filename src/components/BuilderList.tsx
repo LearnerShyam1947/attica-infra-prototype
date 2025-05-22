@@ -1,11 +1,17 @@
 import { MapPin, Phone, Search } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Builder {
   id: string;
   name: string;
-  image: string;
+  images: string[]; // updated
   description: string;
   experience: string;
   phone: string;
@@ -14,11 +20,15 @@ interface Builder {
   pincode: string;
 }
 
+
 const builders: Builder[] = [
   {
     id: '1',
     name: 'Raj Construction Co.',
-    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80'
+    ],
     description: 'Specializing in luxury residential projects with over 15 years of experience',
     experience: '15+ years',
     phone: '+91 98765 43210',
@@ -29,7 +39,10 @@ const builders: Builder[] = [
   {
     id: '2',
     name: 'Kumar Builders',
-    image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80'
+    ],
     description: 'Expert in commercial and residential construction with focus on sustainable building practices',
     experience: '20+ years',
     phone: '+91 98765 43211',
@@ -40,7 +53,10 @@ const builders: Builder[] = [
   {
     id: '3',
     name: 'Singh Infrastructure',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80'
+    ],
     description: 'Specialized in modern architectural designs and premium finishing',
     experience: '12+ years',
     phone: '+91 98765 43212',
@@ -51,7 +67,10 @@ const builders: Builder[] = [
   {
     id: '4',
     name: 'Patel Developers',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80'
+    ],
     description: 'Leading residential property developer with focus on quality construction',
     experience: '18+ years',
     phone: '+91 98765 43213',
@@ -98,7 +117,7 @@ const BuilderList = () => {
 
   return (
     <>
-      
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
@@ -155,18 +174,55 @@ const BuilderList = () => {
               key={builder.id}
               className={`bg-white rounded-lg shadow-md p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 cursor-pointer transition-all duration-200 ${selectedBuilders.includes(builder.id) ? 'ring-2 ring-blue-500' : ''
                 }`}
-              onClick={() => handleBuilderSelect(builder.id)}
+              
             >
               {/* Builder Image */}
-              <div className="w-full sm:w-48 h-48 flex-shrink-0">
+              {/* <div className="w-full sm:w-48 h-48 flex-shrink-0">
                 <img
                   src={builder.image}
                   alt={builder.name}
                   className="w-full h-full object-cover rounded-lg"
                 />
+              </div> */}
+
+              <div className="w-full sm:w-48 h-48 flex-shrink-0">
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  navigation={{
+                    prevEl: '.custom-swiper-prev',
+                    nextEl: '.custom-swiper-next',
+                  }}
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 3000 }}
+                  loop
+                  className="relative h-full rounded-lg"
+                >
+                  {builder.images.map((imgUrl, index) => (
+                    <SwiperSlide key={index}>
+                      <img
+                        src={imgUrl}
+                        alt={`${builder.name} image ${index + 1}`}
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                    </SwiperSlide>
+                  ))}
+
+                  {/* Custom arrows */}
+                  <div className="custom-swiper-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow p-1 cursor-pointer hover:bg-gray-100">
+                    <ChevronLeft className="w-5 h-5 text-gray-700" />
+                  </div>
+                  
+                  <div className="custom-swiper-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow p-1 cursor-pointer hover:bg-gray-100">
+                    <ChevronRight className="w-5 h-5 text-gray-700" />
+                  </div>
+                </Swiper>
               </div>
+
+
               {/* Builder Details */}
-              <div className="flex-grow flex flex-col justify-between">
+              <div 
+              onClick={() => handleBuilderSelect(builder.id)}
+              className="flex-grow flex flex-col justify-between">
                 <div className="flex flex-col sm:flex-row justify-between gap-2">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900">{builder.name}</h3>
