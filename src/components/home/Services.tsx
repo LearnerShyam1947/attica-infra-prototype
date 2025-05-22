@@ -7,25 +7,27 @@ const Services = () => {
       icon: <Home className="w-12 h-12 text-blue-600" />,
       title: "Buy/Sell",
       description: (
-        <div className="space-y-2">
+        <div className="space-y-2 text-gray-800 ">
           <p>Attica Infra Services works with trusted developers to offer the best plots, flats, and homes for sale. We ensure every property is carefully verified with the following services:</p>
           <ul className="list-none space-y-2">
-            <li className="flex items-start gap-2">
-              <CheckCircle size={30} className="text-green-500" />
+            <li className="flex items-start">
+              <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
               <span><strong>Legal Title Check:</strong> We ensure the property’s ownership is clear and safe for your investment.</span>
             </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle size={30} className="text-green-500" />
+            
+            <li className="flex items-start">
+              <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
               <span><strong>Market Research:</strong> Our team compares the prices of similar plots, flats, and homes to make sure you get the best deal.</span>
             </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle size={30} className="text-green-500" />
+
+            <li className="flex items-start">
+              <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
               <span><strong>Trusted Developers:</strong> We only work with reliable developers who focus on quality and honesty.</span>
             </li>
           </ul>
         </div>
       ),
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+      image: "./home/buy-sell.jpg",
       buttonText: "Learn More",
       url: "/sell-buy"
     },
@@ -33,7 +35,7 @@ const Services = () => {
       icon: <Building2 className="w-12 h-12 text-blue-600" />,
       title: "Architecture Design",
       description: (
-        <div className="space-y-4">
+        <div className="space-y-4 text-gray-800">
           <p>
             Attica Infra Services specializes in the best architecture and innovative designs, providing:
           </p>
@@ -56,7 +58,7 @@ const Services = () => {
           <p>We also offer customized solutions based on customer requirements.</p>
         </div>
       ),
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
+      image: "./home/architecture-design.jpg",
       buttonText: "Explore Services",
       url: "/architecture-design"
     },
@@ -64,23 +66,23 @@ const Services = () => {
       icon: <Factory className="w-12 h-12 text-blue-600" />,
       title: "Construction Experts",
       description: (
-        <div className="space-y-4">
+        <div className="space-y-4 text-gray-800">
           <p>
             Attica Infra Services partners with trusted, expert contractors to build your dream home with care and precision.
           </p>
           <ul className="space-y-2">
-            <li className="flex items-start gap-2">
-              <CheckCircle size={38} className="text-green-500" />
+            <li className="flex items-start">
+              <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
               <span>Whether it's an independent house, duplex/triplex, or modular home, we offer the best construction at the best prices.</span>
             </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle size={38} className="text-green-500" />
+            <li className="flex items-start">
+              <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
               <span>You don’t need to waste time or money—Attica Infra Services gives you the best estimates from reliable professionals, ensuring you get top value, quality, and convenience all in one place!</span>
             </li>
           </ul>
         </div>
       ),
-      image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80",
+      image: "./home/construction.jpg",
       buttonText: "View Projects",
       url: "/quote"
     },
@@ -88,7 +90,7 @@ const Services = () => {
       icon: <Warehouse className="w-12 h-12 text-blue-600" />,
       title: "Home Interior Experts",
       description: (
-        <div className="space-y-4">
+        <div className="space-y-4 text-gray-800">
           <ul className="space-y-2">
             <li className="flex items-start gap-2">
               <CheckCircle size={38} className="text-green-500" />
@@ -101,26 +103,35 @@ const Services = () => {
           </ul>
         </div>
       ),
-      image: "https://images.unsplash.com/photo-1632832240976-6a2bc97d18d8?auto=format&fit=crop&q=80",
+      image: "./home/interior.jpg",
       buttonText: "Get Started",
-      url: "/interior-design"
+      url: "/interior-experts"
     },
   ];
+
+  const bgColors = [
+    "bg-orange-100",
+    "bg-blue-100",
+    "bg-green-100",
+    "bg-yellow-100",
+  ]
 
   return (
 
     <section id="services" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> */}
+      <div className="">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Services</h2>
           <p className="mt-4 text-xl text-gray-600">Comprehensive Construction Solutions for Every Need</p>
         </div>
 
-        <div className="space-y-20">
-          {services.map((service, index) => (
+
+        {services.map((service, index) => (
+          <div className={`${bgColors[index]} py-5`}>
             <div
               key={index}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}
+              className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}
             >
               <div className="w-full lg:w-1/2 space-y-6">
                 <div className="flex items-center gap-4">
@@ -134,7 +145,6 @@ const Services = () => {
                   <Link to={service.url}>{service.buttonText}</Link>
                 </button>
               </div>
-
               <div className="w-full lg:w-1/2">
                 <img
                   src={service.image}
@@ -143,8 +153,9 @@ const Services = () => {
                 />
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+
       </div>
     </section>
   );

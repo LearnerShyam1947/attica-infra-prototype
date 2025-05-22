@@ -3,6 +3,7 @@ import { Property } from "../types/Proerty";
 export const properties: Property[] = [
     // --- Houses (10) ---
     {
+        _id: '1',
         id: '1',
         title: 'Luxury Villa',
         phone: "9876543210",
@@ -14,6 +15,7 @@ export const properties: Property[] = [
         description: 'Luxurious villa with modern amenities and spacious rooms'
     },
     {
+        _id: '2',
         id: '2',
         title: 'Urban House',
         phone: "9876543210",
@@ -25,6 +27,7 @@ export const properties: Property[] = [
         description: 'Elegant urban home in a premium neighborhood'
     },
     {
+        _id: '3',
         id: '3',
         title: 'Cozy Bungalow',
         phone: "9876543210",
@@ -36,6 +39,7 @@ export const properties: Property[] = [
         description: 'Charming bungalow in a quiet, green neighborhood'
     },
     {
+        _id: '4',
         id: '4',
         title: 'Green Villa',
         phone: "9876543210",
@@ -47,6 +51,7 @@ export const properties: Property[] = [
         description: 'Eco-friendly luxury villa with modern tech features'
     },
     {
+        _id: '5',
         id: '5',
         title: 'Heritage House',
         phone: "9876543210",
@@ -58,6 +63,7 @@ export const properties: Property[] = [
         description: 'A blend of tradition and comfort with heritage design'
     },
     {
+        _id: '6',
         id: '6',
         title: 'Lakeview Villa',
         phone: "9876543210",
@@ -69,6 +75,7 @@ export const properties: Property[] = [
         description: 'Premium lake-facing villa with serene views'
     },
     {
+        _id: '7',
         id: '7',
         title: 'Compact Duplex',
         phone: "9876543210",
@@ -80,6 +87,7 @@ export const properties: Property[] = [
         description: 'Affordable duplex perfect for small families'
     },
     {
+        _id: '8',
         id: '8',
         title: 'Sunshine Villa',
         phone: "9876543210",
@@ -91,6 +99,7 @@ export const properties: Property[] = [
         description: 'Bright and airy villa with all luxury amenities'
     },
     {
+        _id: '9',
         id: '9',
         title: 'Peaceful Cottage',
         phone: "9876543210",
@@ -102,6 +111,7 @@ export const properties: Property[] = [
         description: 'Perfect family home with peaceful vibes'
     },
     {
+        _id: '10',
         id: '10',
         title: 'Elegant Home',
         phone: "9876543210",
@@ -115,6 +125,7 @@ export const properties: Property[] = [
 
     // --- Plots (10) ---
     {
+        _id: '11',
         id: '11',
         title: 'Premium Plot',
         phone: "9876543210",
@@ -126,6 +137,7 @@ export const properties: Property[] = [
         description: 'Premium corner plot in a gated community'
     },
     {
+        _id: '12',
         id: '12',
         title: 'Garden Plot',
         phone: "9876543210",
@@ -137,6 +149,7 @@ export const properties: Property[] = [
         description: 'Well-located plot with nearby greenery and amenities'
     },
     {
+        _id: '13',
         id: '13',
         title: 'Lakefront Plot',
         phone: "9876543210",
@@ -148,6 +161,7 @@ export const properties: Property[] = [
         description: 'Spacious plot with excellent resale potential'
     },
     {
+        _id: '14',
         id: '14',
         title: 'Affordable Plot',
         phone: "9876543210",
@@ -159,6 +173,7 @@ export const properties: Property[] = [
         description: 'Ideal for budget-conscious home builders'
     },
     {
+        _id: '15',
         id: '15',
         title: 'Sunrise Plot',
         phone: "9876543210",
@@ -170,6 +185,7 @@ export const properties: Property[] = [
         description: 'Best suited for villa construction near tech zone'
     },
     {
+        _id: '16',
         id: '16',
         title: 'Hill View Plot',
         phone: "9876543210",
@@ -181,6 +197,7 @@ export const properties: Property[] = [
         description: 'Exclusive plot in a fast-developing suburb'
     },
     {
+        _id: '17',
         id: '17',
         title: 'Developer Plot',
         phone: "9876543210",
@@ -192,6 +209,7 @@ export const properties: Property[] = [
         description: 'Plot in a well-developed layout with all facilities'
     },
     {
+        _id: '18',
         id: '18',
         title: 'Investment Plot',
         phone: "9876543210",
@@ -203,6 +221,7 @@ export const properties: Property[] = [
         description: 'Ideal for investment with strong appreciation'
     },
     {
+        _id: '19',
         id: '19',
         title: 'Twin Plot',
         phone: "9876543210",
@@ -214,6 +233,7 @@ export const properties: Property[] = [
         description: 'Spacious dual plot for large homes'
     },
     {
+        _id: '20',
         id: '20',
         title: 'Mega Plot',
         phone: "9876543210",
@@ -227,6 +247,7 @@ export const properties: Property[] = [
 
     // Apartments (to be continued...)
     {
+        _id: '21',
         id: '21',
         title: 'Modern Apartment',
         phone: "9876543210",
@@ -238,6 +259,7 @@ export const properties: Property[] = [
         description: 'Modern apartment with premium amenities'
     },
     {
+        _id: '22',
         id: '22',
         title: 'Skyline Heights',
         phone: "9876543210",
@@ -249,6 +271,7 @@ export const properties: Property[] = [
         description: 'Luxury high-rise living with beautiful city views'
     },
     {
+        _id: '23',
         id: '23',
         title: 'Budget Apartment',
         phone: "9876543210",
@@ -260,6 +283,7 @@ export const properties: Property[] = [
         description: 'Affordable and compact flat in prime area'
     },
     {
+        _id: '24',
         id: '24',
         title: 'Elite Towers',
         phone: "9876543210",
@@ -271,6 +295,7 @@ export const properties: Property[] = [
         description: 'Elite apartments with state-of-the-art amenities'
     },
     {
+        _id: '25',
         id: '25',
         title: 'Central Residency',
         phone: "9876543210",
@@ -282,6 +307,7 @@ export const properties: Property[] = [
         description: 'Centrally located, perfect for working professionals'
     },
     {
+        _id: '26',
         id: '26',
         title: 'Sea Breeze Apartment',
         phone: "9876543210",
@@ -293,6 +319,7 @@ export const properties: Property[] = [
         description: 'Premium beachside apartment with fantastic views'
     },
     {
+        _id: '27',
         id: '27',
         title: 'Tech Park View',
         phone: "9876543210",
@@ -304,6 +331,7 @@ export const properties: Property[] = [
         description: 'Comfortable apartment near IT hubs'
     },
     {
+        _id: '28',
         id: '28',
         title: 'Hilltop Residency',
         phone: "9876543210",
@@ -315,6 +343,7 @@ export const properties: Property[] = [
         description: 'Spacious apartment in serene hilltop community'
     },
     {
+        _id: '29',
         id: '29',
         title: 'Urban Nest',
         phone: "9876543210",
@@ -326,6 +355,7 @@ export const properties: Property[] = [
         description: 'Cozy and safe apartment for small families'
     },
     {
+        _id: '30',
         id: '30',
         title: 'Luxury Penthouse',
         phone: "9876543210",

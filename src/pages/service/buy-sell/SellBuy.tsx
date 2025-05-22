@@ -25,6 +25,13 @@ const SellBuy = () => {
     }
   ];
 
+  // Array of background colors
+  const bgColors = [
+    "bg-green-100",
+    "bg-red-100",
+    "bg-yellow-100",
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,16 +41,15 @@ const SellBuy = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {propertyTypes.map((property) => (
+          {propertyTypes.map((property, index) => (
             <div
               key={property.type}
               onClick={() => navigate(`/property/${property.type}`)}
-              className="bg-white rounded-xl shadow-lg p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className={`rounded-xl shadow-lg p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${bgColors[index]}`}
             >
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="bg-blue-50 p-6 rounded-full">
-                  {property.icon}
-                </div>
+                {/* Removed the bg-blue-50 and surrounding div */}
+                {property.icon}
                 <h2 className="text-2xl font-bold text-gray-900">{property.title}</h2>
                 <p className="text-gray-600">{property.description}</p>
                 <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">

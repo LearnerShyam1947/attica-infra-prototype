@@ -85,7 +85,7 @@ const ArchitectureDesign: React.FC = () => {
         showAlert("Error", response.error, "error")
         return;
       }
-      
+
       showAlert("success", 'design request submitted!', "success");
     } catch (e) {
       console.error(e);
@@ -99,13 +99,13 @@ const ArchitectureDesign: React.FC = () => {
           option: 'No',
         }))
       );
-      
+
     }
   };
 
   return (
     <>
-      { loading && <LoadingSpinner text='process your request' />}
+      {loading && <LoadingSpinner text='process your request' />}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white py-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -118,13 +118,16 @@ const ArchitectureDesign: React.FC = () => {
               Architects, Civil Engineers, Structural Engineers, 3D Visualizers, and Project Managers
             </span>.
           </p>
-          <p className="text-gray-700 text-left">
+          <p className="text-gray-700 text-left pb-5">
             We ensure every design is both creative and practical for construction, giving you a beautiful yet functional home.
           </p>
+
+          <div className="font-bold">How We Work:</div>
+          We'll receive your email and get back to you with a detailed quotation and samples.
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col pb-10">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">Service Selection Form</h2>
         <form>
           <div className="overflow-x-auto">
@@ -164,7 +167,7 @@ const ArchitectureDesign: React.FC = () => {
               </tbody>
             </table>
           </div>
-          <div className="text-right">
+          <div className="text-center">
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}

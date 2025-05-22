@@ -198,7 +198,7 @@ export default function HeroSection() {
           {/* RIGHT IMAGE */}
           <div className="relative h-[400px] w-full">
             <img
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80"
+              src="./home/main-image.jpg"
               alt="Construction Site"
               className="rounded-lg object-cover w-full h-full shadow-2xl"
             />
