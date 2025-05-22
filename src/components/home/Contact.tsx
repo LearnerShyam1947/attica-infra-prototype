@@ -1,4 +1,4 @@
-import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -67,15 +67,15 @@ const Contact = () => {
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
                   <Phone className="w-6 h-6 text-blue-600" />
-                  <span>+91 98765 43210</span>
+                  <span>+91 78999 97784</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <Mail className="w-6 h-6 text-blue-600" />
-                  <span>info@atticainfra.com</span>
+                  <span>atticainfra@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <MapPin className="w-6 h-6 text-blue-600" />
-                  <span>123, Sector 15, Gurugram, Haryana 122001</span>
+                  <span>G05, Silver stone, 5th cross, chinnapanalli, Bangalore, 560037</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <Clock className="w-6 h-6 text-blue-600" />
@@ -87,13 +87,13 @@ const Contact = () => {
             <div>
               <h3 className="text-xl font-semibold mb-4">Connect With Us</h3>
               <div className="flex space-x-6">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
+                <a href="https://www.facebook.com/sekhar.muthakana.2025/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
                   <Facebook className="w-8 h-8" />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
-                  <Twitter className="w-8 h-8" />
+                <a href="https://www.youtube.com/@atticainfra" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
+                  <Youtube className="w-8 h-8" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
+                <a href="https://www.instagram.com/atticainfraservices?igsh=MXVjbm11ZjZidGhlNQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
                   <Instagram className="w-8 h-8" />
                 </a>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">

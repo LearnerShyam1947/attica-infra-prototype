@@ -200,7 +200,7 @@ export default function HeroSection() {
             <img
               src="./home/main-image.jpg"
               alt="Construction Site"
-              className="rounded-lg object-cover w-full h-full shadow-2xl"
+              className="rounded-lg object-fit w-full h-full shadow-2xl"
             />
           </div>
         </div>
