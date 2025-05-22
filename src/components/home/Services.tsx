@@ -105,7 +105,7 @@ const Services = () => {
       ),
       image: "./home/interior.jpg",
       buttonText: "Get Started",
-      url: "/interior-experts"
+      url: "/interior-design"
     },
   ];
 
