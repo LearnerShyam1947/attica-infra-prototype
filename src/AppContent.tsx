@@ -26,6 +26,7 @@ import Test from './Test';
 import InteriorDesign from './pages/service/interior-design/InteriorDesign';
 import DesignDetails from './pages/service/interior-design/DesignDetails';
 import ArchitectureDesign from './pages/service/architecture-design/ArchitectureDesign';
+import MultipleQuote from './pages/service/construction/MultipleQuote';
 
 const AppContent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -88,6 +89,12 @@ const AppContent = () => {
         <Route path="construction-form" element={
           <ProtectedRoute>
             <ConstructionForm />
+          </ProtectedRoute>
+        } />
+
+        <Route path="multiple-quote" element={
+          <ProtectedRoute>
+            <MultipleQuote />
           </ProtectedRoute>
         } />
 

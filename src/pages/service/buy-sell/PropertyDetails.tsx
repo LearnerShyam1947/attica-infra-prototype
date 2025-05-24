@@ -2,6 +2,12 @@ import { Building2, Home, MapPin, MessageSquare, Phone, Search } from 'lucide-re
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { properties } from '../../../data/propertyData';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PropertyDetails = () => {
   const { type } = useParams();
@@ -93,13 +99,48 @@ const PropertyDetails = () => {
           {currentProperties.map((property) => (
             <div key={property.id} className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-3 h-full">
-                <div className="md:col-span-1">
+                {/* <div className="md:col-span-1">
                   <img
-                    src={property.image}
+                    src={property.images[0]}
                     alt={property.title}
                     className="w-full h-full object-cover"
                   />
+                  
+                </div> */}
+
+                <div className="md:col-span-1 relative h-full">
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    navigation={{
+                      prevEl: '.custom-swiper-prev',
+                      nextEl: '.custom-swiper-next',
+                    }}
+                    pagination={{ clickable: true }}
+                    autoplay={{ delay: 3000 }}
+                    loop
+                    className="h-full rounded-lg"
+                  >
+                    {property.images.map((imgUrl, index) => (
+                      <SwiperSlide key={index}>
+                        <img
+                          src={imgUrl}
+                          alt={`${property._id} image ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </SwiperSlide>
+                    ))}
+
+                    {/* Navigation Buttons */}
+                    <div className="custom-swiper-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow p-1 cursor-pointer hover:bg-gray-100">
+                      <ChevronLeft className="w-5 h-5 text-gray-700" />
+                    </div>
+                    <div className="custom-swiper-next absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow p-1 cursor-pointer hover:bg-gray-100">
+                      <ChevronRight className="w-5 h-5 text-gray-700" />
+                    </div>
+                  </Swiper>
                 </div>
+
+
                 <div className="md:col-span-2 p-6">
                   <div className="h-full flex flex-col">
                     <div>

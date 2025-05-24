@@ -14,12 +14,34 @@ const InteriorDesign: React.FC = () => {
     console.log(values);
 
   }
-  const sampleData = [
-      { id: '1', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-      { id: '2', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-      { id: '3', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-      { id: '4', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-      { id: '5', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
+  const endToEnd = [
+      { id: '1', imageUrl: './interior-design/end-to-end/1.jpg' },
+      { id: '2', imageUrl: './interior-design/end-to-end/2.jpg' },
+      { id: '3', imageUrl: './interior-design/end-to-end/3.jpg' },
+      { id: '4', imageUrl: './interior-design/end-to-end/4.jpg' },
+      { id: '5', imageUrl: './interior-design/end-to-end/5.jpg' },
+  ];
+  
+  const kitchen = [
+      { id: '1', imageUrl: './interior-design/kitchen/1.jpg' },
+      { id: '2', imageUrl: './interior-design/kitchen/2.jpg' },
+      { id: '3', imageUrl: './interior-design/kitchen/3.jpg' },
+      { id: '4', imageUrl: './interior-design/kitchen/4.jpg' },
+      { id: '5', imageUrl: './interior-design/kitchen/5.jpg' },
+  ];
+  const livingRoom = [
+      { id: '1', imageUrl: './interior-design/living-room/1.jpg' },
+      { id: '2', imageUrl: './interior-design/living-room/2.jpg' },
+      { id: '3', imageUrl: './interior-design/living-room/3.jpg' },
+      { id: '4', imageUrl: './interior-design/living-room/4.jpg' },
+      { id: '5', imageUrl: './interior-design/living-room/5.jpg' },
+  ];
+  const wardrobe = [
+      { id: '1', imageUrl: './interior-design/wardrode/1.jpg' },
+      { id: '2', imageUrl: './interior-design/wardrode/2.jpg' },
+      { id: '3', imageUrl: './interior-design/wardrode/3.jpg' },
+      { id: '4', imageUrl: './interior-design/wardrode/4.jpg' },
+      { id: '5', imageUrl: './interior-design/wardrode/5.jpg' },
   ];
 
   const steps = [
@@ -28,64 +50,64 @@ const InteriorDesign: React.FC = () => {
       number: 1,
       title: 'Consultation & Requirement Gathering',
       description: 'We begin by understanding your lifestyle, taste, functional needs, and budget through an in-depth discussion.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+      image: './how-it-works/interior-design/1.jpg',
     },
     {
       icon: <Users className="w-5 h-5" />,
       number: 2,
       title: 'Site Visit & Measurements',
       description: 'Our team visits your site to take accurate measurements and evaluate space usage, lighting, and existing layout.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+      image: './how-it-works/interior-design/2.jpg',
     },
     {
       icon: <BookOpen className="w-5 h-5" />,
       number: 3,
       title: 'Concept Design & Mood Boards',
       description: 'We share initial layout plans, 2D/3D visuals, and material samples to align on style, color palettes, and design direction.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+      image: './how-it-works/interior-design/3.jpg',
     },
     {
       icon: <PenTool className="w-5 h-5" />,
       number: 4,
       title: 'Detailed Design & Estimation',
       description: 'Once concepts are approved, we create detailed drawings, working plans, and give you a transparent quotation.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+      image: './how-it-works/interior-design/4.jpg',
     },
     {
       icon: <Activity className="w-5 h-5" />,
       number: 5,
       title: 'Material Selection',
       description: 'We assist in selecting premium-quality materials, finishes, fittings, and furnishings within your budget.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+      image: './how-it-works/interior-design/5.jpg',
     },
     {
       icon: <Home className="w-5 h-5" />,
       number: 6,
       title: 'Execution & Supervision',
       description: 'Our in-house team executes the project under strict supervision, ensuring quality, timelines, and minimal disruptions.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+      image: './how-it-works/interior-design/6.jpg',
     },
     {
       icon: <Handshake className="w-5 h-5" />,
       number: 7,
       title: 'Handover & Final Touches',
       description: 'After a thorough quality check, we hand over the completed interiors—clean, polished, and ready to move in.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
+      image: './how-it-works/interior-design/7.jpg',
     },
   ];
 
   const cards = [
-    {
-      icon: <Sofa className="w-8 h-8 text-blue-500" />,
-      title: 'Full Home Interiors',
-      description: 'Get the estimate price for your full home interiors.',
-      buttonText: 'Get Free Estimate',
-      button: (
-        <button onClick={() => setIsModalOpen(true)} className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-          Get Free Estimate
-        </button>
-      )
-    },
+    // {
+    //   icon: <Sofa className="w-8 h-8 text-blue-500" />,
+    //   title: 'Full Home Interiors',
+    //   description: 'Get the estimate price for your full home interiors.',
+    //   buttonText: 'Get Free Estimate',
+    //   button: (
+    //     <button onClick={() => setIsModalOpen(true)} className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+    //       Get Free Estimate
+    //     </button>
+    //   )
+    // },
     {
       icon: <UtensilsCrossed className="w-8 h-8 text-blue-500" />,
       title: 'Kitchen',
@@ -109,6 +131,11 @@ const InteriorDesign: React.FC = () => {
       )
     },
   ];
+
+  const colors = [
+    'bg-green-100',
+    'bg-yellow-100'
+  ]
 
   return (
     <>
@@ -141,8 +168,10 @@ const InteriorDesign: React.FC = () => {
         </div>
       </div>
 
-      <ImageSlider title="End-to-end offerings" data={sampleData} />
-      <ImageSlider title="Mordern Kitchen Design" data={sampleData} />
+      <ImageSlider title="End-to-end offerings" data={endToEnd} />
+      <ImageSlider title="Mordern Kitchen Design" data={kitchen} />
+      <ImageSlider title="Living Room Design" data={livingRoom} />
+      <ImageSlider title="Wardrobe Design" data={wardrobe} />
       
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -151,11 +180,11 @@ const InteriorDesign: React.FC = () => {
             <p className="mt-4 text-xl text-gray-600">Get an estimate for your <span className="text-blue-600">home</span>. <br />
               Calculate the cost of doing up your home interiors now.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10">
             {cards.map((property, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-xl shadow-lg p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className={`${colors[idx]} rounded-xl shadow-lg p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl`}
               >
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="bg-blue-50 p-6 rounded-full">

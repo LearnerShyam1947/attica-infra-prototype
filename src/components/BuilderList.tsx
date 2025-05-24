@@ -96,7 +96,7 @@ const BuilderList = () => {
   };
 
   const handleContinue = () => {
-    navigate('/construction-form', { state: { selectedBuilders } });
+    navigate('/multiple-quote', { state: { selectedBuilders } });
   };
 
   const handleCall = (phone: string) => {
@@ -105,7 +105,7 @@ const BuilderList = () => {
 
   const handleGetQuote = (builderId: string) => {
     setSelectedBuilders([builderId]);
-    navigate('/construction-form', { state: { selectedBuilders: [builderId] } });
+    navigate('/multiple-quote', { state: { selectedBuilders: [builderId] } });
   };
 
   const filteredBuilders = builders.filter(builder => {
