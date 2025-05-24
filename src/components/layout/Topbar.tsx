@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 
 const Topbar = () => {
   return (
@@ -9,21 +9,21 @@ const Topbar = () => {
           <div className="flex space-x-4">
             <a href="tel:+91-9876543210" className="flex items-center text-sm hover:text-blue-200">
               <Phone className="w-4 h-4 mr-1" />
-              +91 98765 43210
+              +91 78999 97784
             </a>
             <a href="mailto:info@atticainfra.com" className="flex items-center text-sm hover:text-blue-200">
               <Mail className="w-4 h-4 mr-1" />
-              info@atticainfra.com
+              atticainfra@gmail.com
             </a>
           </div>
           <div className="flex space-x-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
+            <a href="https://www.facebook.com/sekhar.muthakana.2025/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
               <Facebook className="w-4 h-4" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
-              <Twitter className="w-4 h-4" />
+            <a href="https://www.youtube.com/@atticainfra" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
+              <Youtube className="w-4 h-4" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
+            <a href="https://www.instagram.com/atticainfraservices?igsh=MXVjbm11ZjZidGhlNQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
               <Instagram className="w-4 h-4" />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">

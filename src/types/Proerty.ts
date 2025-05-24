@@ -10,7 +10,7 @@ export interface Property {
         pincode: string;
     };
     features: string[];
-    image: string;
+    images: string[];
     description: string;
     phone: string;
 }

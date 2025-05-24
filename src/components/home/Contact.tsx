@@ -1,4 +1,4 @@
-import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -77,10 +77,10 @@ const Contact = () => {
                   <MapPin className="w-6 h-6 text-blue-600" />
                   <span>G05, Silver stone, 5th cross, chinnapanalli, Bangalore, 560037</span>
                 </div>
-                <div className="flex items-center space-x-4">
+                {/* <div className="flex items-center space-x-4">
                   <Clock className="w-6 h-6 text-blue-600" />
                   <span>Mon-Sat: 10:00 AM - 7:00 PM</span>
-                </div>
+                </div> */}
               </div>
             </div>
 
