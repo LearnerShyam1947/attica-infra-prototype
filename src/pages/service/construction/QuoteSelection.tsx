@@ -7,35 +7,48 @@ const QuoteSelection = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="bg-white pt-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
-    <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-      Why Offer Two Quote Options?
-    </h2>
-    <ul className="space-y-3 mb-4 text-justify">
-      <li className="flex items-start text-gray-800">
-        <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-        <span>
-          Every home is unique, with different needs, priorities, and budgets.
-        </span>
-      </li>
-      <li className="flex items-start text-gray-800">
-        <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-        <span>
-          At Attica Infra Services, we give you the flexibility to choose how your project is executed—without compromising on quality, design, or transparency.
-        </span>
-      </li>
-      <li className="flex items-start text-gray-800">
-        <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-        <span>
-          Whether you prefer our In-House Quotation for full support or go with Partnered Experts for flexible comparisons, both options follow Attica's high standards and are tailored to your comfort.
-        </span>
-      </li>
-    </ul>
-    <p className="text-xl pt-3 font-bold text-center">
-      Your home, your choice—built your way.
-    </p>
-  </div>
-</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-16">
+
+          {/* LEFT COLUMN */}
+          <div className="bg-white max-w-6xl">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 text-left">
+              Why Offer Two Quote Options?
+            </h2>
+            <ul className="space-y-3 mb-4 text-justify">
+              <li className="flex text-gray-800">
+                <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span>
+                  Every home is unique, with different needs, priorities, and budgets.
+                </span>
+              </li>
+              <li className="flex items-start text-gray-800">
+                <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span>
+                  At Attica Infra Services, we give you the flexibility to choose how your project is executed—without compromising on quality, design, or transparency.
+                </span>
+              </li>
+              <li className="flex items-start text-gray-800">
+                <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span>
+                  Whether you prefer our In-House Quotation for full support or go with Partnered Experts for flexible comparisons, both options follow Attica's high standards and are tailored to your comfort.
+                </span>
+              </li>
+            </ul>
+            <p className="text-xl pt-3 font-bold text-left">
+              Your home, your choice—built your way.
+            </p>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="relative h-[300px] w-full">
+            <img
+              src="./services/bulid-your-way.jpeg"
+              alt="Construction Site"
+              className="rounded-lg object-fix w-full h-full shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
 
 
       {/* <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center"> */}

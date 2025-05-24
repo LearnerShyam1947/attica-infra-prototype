@@ -65,7 +65,7 @@ const sections = [
       {
         "label": "Plot Size",
         "name": "build_up_area",
-        "defaultValue": "100 (sq. ft)",
+        "defaultValue": "1200 (sq. ft)",
         "type": "textarea"
       },
       {
@@ -464,28 +464,42 @@ const SingleQuote = () => {
 
   return (
     <>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white mb-3 pt-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <h2 className="text-3xl font-bold mb-5 text-gray-900 text-center">
-            In-House Quotation
-          </h2>
-          <p className="text-gray-700 mb-4 text-left">
-            At Attica Infra Services, we take the time to understand your preferences and create a design that matches your vision. Whether you have specific ideas in mind or need tailored concepts, we'll bring your dream home to life using quality materials and thoughtful design.
-          </p>
-          <ul className="space-y-3 mb-4 text-justify">
-            <li className="flex items-start text-gray-800">
-              <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-              <span>
-                We believe that everyone's vision for their dream home is unique.
-              </span>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-              <span>
-                Based on your quality requirements, we will provide the best fixed estimate—ensuring transparency, no hidden costs, and a seamless process from start to finish.
-              </span>
-            </li>
-          </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-6">
+
+          {/* LEFT COLUMN */}
+          <div className="bg-white mb-3 px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <h2 className="text-3xl font-bold mb-5 text-gray-900">
+              In-House Quotation
+            </h2>
+            <p className="text-gray-700 mb-4 text-left">
+              At Attica Infra Services, we take the time to understand your preferences and create a design that matches your vision. Whether you have specific ideas in mind or need tailored concepts, we'll bring your dream home to life using quality materials and thoughtful design.
+            </p>
+            <ul className="space-y-3 mb-4 text-justify">
+              <li className="flex items-start text-gray-800">
+                <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span>
+                  We believe that everyone's vision for their dream home is unique.
+                </span>
+              </li>
+              <li className="flex items-start text-gray-800">
+                <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span>
+                  Based on your quality requirements, we will provide the best fixed estimate—ensuring transparency, no hidden costs, and a seamless process from start to finish.
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="relative h-[300px] w-full">
+            <img
+              src="./services/in-house.jpeg"
+              alt="Construction Site"
+              className="rounded-lg object-cover w-full h-full shadow-2xl"
+            />
+          </div>
         </div>
       </div>
 
@@ -635,7 +649,7 @@ const SingleQuote = () => {
               construction process and hand over the keys upon completion.
             </span>
           </li>
-          
+
           <li className=" flex items-start text-gray-800">
             <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
             <span>  Before starting the construction journey, it&#39;s important to understand the process.
@@ -656,35 +670,35 @@ const SingleQuote = () => {
               Creative &amp; Functional Designs
             </span>
           </li>
-          
+
           <li className="pb-2 flex items-start text-gray-800">
             <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
             <span>
               Strong Civil &amp; Architectural Planning
             </span>
           </li>
-          
+
           <li className="pb-2 flex items-start text-gray-800">
             <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
             <span>
               Expert In-House Team (No Subcontracting)
             </span>
           </li>
-          
+
           <li className="pb-2 flex items-start text-gray-800">
             <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
             <span>
               Clear, Transparent Pricing
             </span>
           </li>
-          
+
           <li className="pb-2 flex items-start text-gray-800">
             <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
             <span>
               Complete Project Ownership
             </span>
           </li>
-          
+
         </ul>
       </div>
     </>

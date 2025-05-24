@@ -28,7 +28,7 @@ const Services = () => {
         </div>
       ),
       image: "./home/buy-sell.jpg",
-      buttonText: "Learn More",
+      buttonText: "View Properties",
       url: "/sell-buy"
     },
     {
@@ -83,7 +83,7 @@ const Services = () => {
         </div>
       ),
       image: "./home/construction.jpg",
-      buttonText: "View Projects",
+      buttonText: "Meet Our experts",
       url: "/quote"
     },
     {
@@ -104,7 +104,7 @@ const Services = () => {
         </div>
       ),
       image: "./home/interior.jpg",
-      buttonText: "Get Started",
+      buttonText: "Explore Interior Design",
       url: "/interior-design"
     },
   ];

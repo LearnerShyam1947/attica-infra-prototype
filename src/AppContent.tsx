@@ -27,6 +27,7 @@ import InteriorDesign from './pages/service/interior-design/InteriorDesign';
 import DesignDetails from './pages/service/interior-design/DesignDetails';
 import ArchitectureDesign from './pages/service/architecture-design/ArchitectureDesign';
 import MultipleQuote from './pages/service/construction/MultipleQuote';
+import About from './components/About';
 
 const AppContent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -70,6 +71,7 @@ const AppContent = () => {
         <Route path="architecture-design" element={<ArchitectureDesign />} />
 
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="forgot-password" element={<ForgotPassword />} />

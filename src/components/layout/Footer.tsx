@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -43,16 +43,16 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-blue-400">
+              <a href="https://www.facebook.com/sekhar.muthakana.2025/" className="text-gray-400 hover:text-blue-400">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400">
-                <Twitter className="w-6 h-6" />
+              <a href="https://www.youtube.com/@atticainfra" className="text-gray-400 hover:text-blue-400">
+                <Youtube className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400">
+              <a href="https://www.instagram.com/atticainfraservices?igsh=MXVjbm11ZjZidGhlNQ%3D%3D&utm_source=qr" className="text-gray-400 hover:text-blue-400">
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400">
+              <a href="http://www.linkedin.com/in/attica-infra-service-343179360" className="text-gray-400 hover:text-blue-400">
                 <Linkedin className="w-6 h-6" />
               </a>
             </div>

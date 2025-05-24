@@ -78,24 +78,6 @@ const HowItWorksUI: React.FC<HowItWorksProps> = ({
           className="max-w-4xl mx-auto"
         >
           {steps.map((step, index) => (
-            // <SwiperSlide key={index}>
-            //   <div className="grid md:grid-cols-2 gap-10 items-center bg-white p-8 rounded-xl shadow-lg">
-            //     <img
-            //       src={step.image}
-            //       alt={step.title}
-            //       className="w-full h-64 object-cover rounded-lg shadow-md"
-            //     />
-            //     <div>
-            //       <div className="flex items-center justify-start mb-4">
-            //         <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold mr-4">
-            //           {step.icon}
-            //         </div>
-            //         <h3 className="text-xl font-semibold text-gray-900">{step.title}</h3>
-            //       </div>
-            //       <p className="text-gray-600 text-sm">{step.description}</p>
-            //     </div>
-            //   </div>
-            // </SwiperSlide>
             <SwiperSlide key={index}>
               <div className="bg-white p-8 rounded-xl shadow-lg max-w-4xl w-full mx-auto flex flex-col items-center text-center min-h-[600px]">
                 {/* Icon and Heading */}
@@ -109,7 +91,7 @@ const HowItWorksUI: React.FC<HowItWorksProps> = ({
                 <img
                   src={step.image}
                   alt={step.title}
-                  className="w-full h-96 object-cover rounded-lg shadow-md mt-4"
+                  className="h-[400px] rounded-lg w-auto object-contain mx-auto"
                 />
 
               </div>
