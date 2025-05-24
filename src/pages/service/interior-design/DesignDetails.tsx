@@ -50,7 +50,7 @@ const DesignDetails: React.FC = () => {
     <div style={{ height: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="w-1/2 mx-auto my-auto space-y-6 font-sans p-6 border rounded shadow">
         {/* Kitchen aligned to right */}
-        <div className="flex items-center justify-between">
+        {/* <div className="flex items-center justify-between">
           <div className="text-lg w-full">Kitchen</div>
           <div className="flex justify-end w-full">
             <input
@@ -58,6 +58,20 @@ const DesignDetails: React.FC = () => {
               checked={kitchen}
               onChange={() => setKitchen(!kitchen)}
               className="accent-blue-500 w-5 h-5"
+            />
+          </div>
+        </div> */}
+        
+        {/* Number of Floors */}
+        <div className="flex items-center justify-between">
+          <div className="text-lg w-full">No of Floors</div>
+          <div className="flex justify-end w-full">
+            <input
+              type="number"
+              min={1}
+              value={floors}
+              onChange={(e) => setFloors(Math.max(1, parseInt(e.target.value) || 1))}
+              className="w-20 border border-blue-300 hover:border-blue-500 rounded px-2 py-1"
             />
           </div>
         </div>
@@ -88,20 +102,6 @@ const DesignDetails: React.FC = () => {
           onIncrement={() => handleIncrement(setCrockery, crockery)}
           onDecrement={() => handleDecrement(setCrockery, crockery)}
         />
-
-        {/* Number of Floors */}
-        <div className="flex items-center justify-between">
-          <div className="text-lg w-full">No of Floors</div>
-          <div className="flex justify-end w-full">
-            <input
-              type="number"
-              min={1}
-              value={floors}
-              onChange={(e) => setFloors(Math.max(1, parseInt(e.target.value) || 1))}
-              className="w-20 border border-blue-300 hover:border-blue-500 rounded px-2 py-1"
-            />
-          </div>
-        </div>
 
         {/* Send button */}
         <div className="pt-4">

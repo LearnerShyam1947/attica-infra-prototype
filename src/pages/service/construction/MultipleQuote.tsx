@@ -414,7 +414,7 @@ const MultipleQuote = () => {
   const location = useLocation();
   const selectedBuilders = location.state?.selectedBuilders || [];
   console.log("Selected Buliders : ", selectedBuilders);
-  
+
   const handleFieldChange = (name: string, value: string) => {
     setQuoteValues((prev) => ({
       ...prev,
@@ -469,28 +469,43 @@ const MultipleQuote = () => {
 
   return (
     <>
+
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white mb-3 pt-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <h2 className="text-3xl font-bold mb-5 text-gray-900 text-center">
-            Partnered Experts Quotation
-          </h2>
-          <p className="text-gray-700 mb-4 text-left">
-            At Attica Infra Services, we take the time to understand your preferences and create a design that matches your vision. Whether you have specific ideas in mind or need tailored concepts, we'll bring your dream home to life using quality materials and thoughtful design.
-          </p>
-          <ul className="space-y-3 mb-4 text-justify">
-            <li className="flex items-start text-gray-800">
-              <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-              <span>
-                We believe that everyone's vision for their dream home is unique.
-              </span>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-              <span>
-                Based on your quality requirements, we will provide the best fixed estimate—ensuring transparency, no hidden costs, and a seamless process from start to finish.
-              </span>
-            </li>
-          </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-6">
+
+          {/* LEFT COLUMN */}
+          <div className="bg-white mb-3 px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <h2 className="text-3xl font-bold mb-5 text-gray-900 text-left">
+              Partnered Experts Quotation
+            </h2>
+            <p className="text-gray-700 mb-4 text-left">
+              At Attica Infra Services, we take the time to understand your preferences and create a design that matches your vision. Whether you have specific ideas in mind or need tailored concepts, we'll bring your dream home to life using quality materials and thoughtful design.
+            </p>
+            <ul className="space-y-3 mb-4 text-justify">
+              <li className="flex items-start text-gray-800">
+                <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span>
+                  We believe that everyone's vision for their dream home is unique.
+                </span>
+              </li>
+              <li className="flex items-start text-gray-800">
+                <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span>
+                  Based on your quality requirements, we will provide the best fixed estimate—ensuring transparency, no hidden costs, and a seamless process from start to finish.
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="relative h-[300px] w-full">
+            <img
+              src="./services/partered.jpeg"
+              alt="Construction Site"
+              className="rounded-lg object-cover w-full h-full shadow-2xl"
+            />
+          </div>
         </div>
       </div>
 

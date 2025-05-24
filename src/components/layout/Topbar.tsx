@@ -26,7 +26,7 @@ const Topbar = () => {
             <a href="https://www.instagram.com/atticainfraservices?igsh=MXVjbm11ZjZidGhlNQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
               <Instagram className="w-4 h-4" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
+            <a href="http://www.linkedin.com/in/attica-infra-service-343179360" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200">
               <Linkedin className="w-4 h-4" />
             </a>
           </div>

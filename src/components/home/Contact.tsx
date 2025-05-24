@@ -96,7 +96,7 @@ const Contact = () => {
                 <a href="https://www.instagram.com/atticainfraservices?igsh=MXVjbm11ZjZidGhlNQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
                   <Instagram className="w-8 h-8" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
+                <a href="http://www.linkedin.com/in/attica-infra-service-343179360" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
                   <Linkedin className="w-8 h-8" />
                 </a>
               </div>

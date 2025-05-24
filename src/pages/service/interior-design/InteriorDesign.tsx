@@ -1,4 +1,4 @@
-import { Activity, BookOpen, CheckCircle, FileText, Handshake, Home, PencilRuler, PenTool, Sofa, Users, UtensilsCrossed } from 'lucide-react';
+import { Activity, BookOpen, CheckCircle, FileText, Handshake, Home, PencilRuler, PenTool, Users, UtensilsCrossed } from 'lucide-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HowItWorksUI from '../../../components/ui/HowItWorks';
@@ -15,33 +15,33 @@ const InteriorDesign: React.FC = () => {
 
   }
   const endToEnd = [
-      { id: '1', imageUrl: './interior-design/end-to-end/1.jpg' },
-      { id: '2', imageUrl: './interior-design/end-to-end/2.jpg' },
-      { id: '3', imageUrl: './interior-design/end-to-end/3.jpg' },
-      { id: '4', imageUrl: './interior-design/end-to-end/4.jpg' },
-      { id: '5', imageUrl: './interior-design/end-to-end/5.jpg' },
+    { id: '1', imageUrl: './interior-design/end-to-end/1.jpg' },
+    { id: '2', imageUrl: './interior-design/end-to-end/2.jpg' },
+    { id: '3', imageUrl: './interior-design/end-to-end/3.jpg' },
+    { id: '4', imageUrl: './interior-design/end-to-end/4.jpg' },
+    { id: '5', imageUrl: './interior-design/end-to-end/5.jpg' },
   ];
-  
+
   const kitchen = [
-      { id: '1', imageUrl: './interior-design/kitchen/1.jpg' },
-      { id: '2', imageUrl: './interior-design/kitchen/2.jpg' },
-      { id: '3', imageUrl: './interior-design/kitchen/3.jpg' },
-      { id: '4', imageUrl: './interior-design/kitchen/4.jpg' },
-      { id: '5', imageUrl: './interior-design/kitchen/5.jpg' },
+    { id: '1', imageUrl: './interior-design/kitchen/1.jpg' },
+    { id: '2', imageUrl: './interior-design/kitchen/2.jpg' },
+    { id: '3', imageUrl: './interior-design/kitchen/3.jpg' },
+    { id: '4', imageUrl: './interior-design/kitchen/4.jpg' },
+    { id: '5', imageUrl: './interior-design/kitchen/5.jpg' },
   ];
   const livingRoom = [
-      { id: '1', imageUrl: './interior-design/living-room/1.jpg' },
-      { id: '2', imageUrl: './interior-design/living-room/2.jpg' },
-      { id: '3', imageUrl: './interior-design/living-room/3.jpg' },
-      { id: '4', imageUrl: './interior-design/living-room/4.jpg' },
-      { id: '5', imageUrl: './interior-design/living-room/5.jpg' },
+    { id: '1', imageUrl: './interior-design/living-room/1.jpg' },
+    { id: '2', imageUrl: './interior-design/living-room/2.jpg' },
+    { id: '3', imageUrl: './interior-design/living-room/3.jpg' },
+    { id: '4', imageUrl: './interior-design/living-room/4.jpg' },
+    { id: '5', imageUrl: './interior-design/living-room/5.jpg' },
   ];
   const wardrobe = [
-      { id: '1', imageUrl: './interior-design/wardrode/1.jpg' },
-      { id: '2', imageUrl: './interior-design/wardrode/2.jpg' },
-      { id: '3', imageUrl: './interior-design/wardrode/3.jpg' },
-      { id: '4', imageUrl: './interior-design/wardrode/4.jpg' },
-      { id: '5', imageUrl: './interior-design/wardrode/5.jpg' },
+    { id: '1', imageUrl: './interior-design/wardrode/1.jpg' },
+    { id: '2', imageUrl: './interior-design/wardrode/2.jpg' },
+    { id: '3', imageUrl: './interior-design/wardrode/3.jpg' },
+    { id: '4', imageUrl: './interior-design/wardrode/4.jpg' },
+    { id: '5', imageUrl: './interior-design/wardrode/5.jpg' },
   ];
 
   const steps = [
@@ -97,21 +97,10 @@ const InteriorDesign: React.FC = () => {
   ];
 
   const cards = [
-    // {
-    //   icon: <Sofa className="w-8 h-8 text-blue-500" />,
-    //   title: 'Full Home Interiors',
-    //   description: 'Get the estimate price for your full home interiors.',
-    //   buttonText: 'Get Free Estimate',
-    //   button: (
-    //     <button onClick={() => setIsModalOpen(true)} className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-    //       Get Free Estimate
-    //     </button>
-    //   )
-    // },
     {
       icon: <UtensilsCrossed className="w-8 h-8 text-blue-500" />,
-      title: 'Kitchen',
-      description: 'Get costing for your kitchen interiors.',
+      title: 'End-to-end interior solutions',
+      description: 'Get costing for your entire interiors.',
       buttonText: 'Get Free Estimate',
       button: (
         <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
@@ -140,31 +129,48 @@ const InteriorDesign: React.FC = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white py-10 px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-            Integrated Interior Design Services
-          </h2>
-          <p className="text-gray-700 mb-4 text-left">
-            At Attica Infra Services, we provide complete in-house interior design solutions alongside our
-            construction services. By planning both structure and interiors together, we help you:
-          </p>
-          <ul className="space-y-3 mb-4 text-left">
-            <li className="flex items-start text-gray-800">
-              <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
-              Save costs through optimized material and space planning
-            </li>
-            <li className="flex items-start text-gray-800">
-              <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
-              Avoid delays with streamlined execution
-            </li>
-            <li className="flex items-start text-gray-800">
-              <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
-              Prevent rework by aligning design with structural elements from day one
-            </li>
-          </ul>
-          <p className="text-gray-700 text-left">
-            Our end-to-end approach ensures a seamless journey—from blueprint to beautifully finished spaces.
-          </p>
+
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-6 pb-8">
+
+          {/* LEFT COLUMN */}
+          <div className="bg-white  px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+              Integrated Interior Design Services
+            </h2>
+            <p className="text-gray-700 mb-4 text-left">
+              At Attica Infra Services, we provide complete in-house interior design solutions alongside our
+              construction services. By planning both structure and interiors together, we help you:
+            </p>
+            <ul className="space-y-3 mb-4 text-left">
+              <li className="flex items-start text-gray-800">
+                <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
+                Save costs through optimized material and space planning
+              </li>
+              <li className="flex items-start text-gray-800">
+                <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
+                Avoid delays with streamlined execution
+              </li>
+              <li className="flex items-start text-gray-800">
+                <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
+                Prevent rework by aligning design with structural elements from day one
+              </li>
+            </ul>
+            <p className="text-gray-700 text-left">
+              Our end-to-end approach ensures a seamless journey—from blueprint to beautifully finished spaces.
+            </p>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="relative h-[300px] w-full">
+            <img
+              src="./services/in-house.jpeg"
+              alt="Construction Site"
+              className="rounded-lg object-cover w-full h-full shadow-2xl"
+            />
+          </div>
         </div>
       </div>
 
@@ -172,7 +178,7 @@ const InteriorDesign: React.FC = () => {
       <ImageSlider title="Mordern Kitchen Design" data={kitchen} />
       <ImageSlider title="Living Room Design" data={livingRoom} />
       <ImageSlider title="Wardrobe Design" data={wardrobe} />
-      
+
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">

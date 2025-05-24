@@ -13,8 +13,8 @@ import BrandCarousel from '../components/home/BrandsCarousel';
 const Home = () => {
   return (
     <>
-      {/* <About /> */}
       <SimpleHero />
+      {/* <About /> */}
       {/* <Hero /> */}
       <Services />
       <Features />
