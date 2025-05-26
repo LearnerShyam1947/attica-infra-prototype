@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -7,6 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-2xl font-bold text-blue-400 mb-4">Attica Infra Services</h3>
+            {/* <Logo /> */}
             <p className="text-gray-400">
               Building dreams into reality with quality construction and timely delivery.
             </p>

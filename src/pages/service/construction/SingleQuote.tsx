@@ -1,9 +1,11 @@
 import { Disclosure } from '@headlessui/react';
 import { Field, Form, Formik } from 'formik';
-import { ArrowRightCircle, ChevronDown, Loader2, X } from 'lucide-react';
+import { ArrowRightCircle, BadgeDollarSign, Building2, ChevronDown, Loader2, Paintbrush, ShieldCheck, Users, X } from 'lucide-react';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
+import FeatureGrid from '../../../components/ui/FeatureGrid';
+import ImageSlider from '../../../components/ui/ImageSlider';
 
 const sections = [
   {
@@ -397,12 +399,57 @@ const sections = [
   }
 ];
 
+const features = [
+  {
+    icon: <Paintbrush className="w-12 h-12 text-blue-600" />,
+    title: "Creative & Functional Designs",
+    description: "We combine innovation with practicality to create spaces that are both visually stunning and highly usable."
+  },
+  {
+    icon: <Building2 className="w-12 h-12 text-blue-600" />,
+    title: "Strong Civil & Architectural Planning",
+    description: "Our thorough planning process ensures structurally sound and aesthetically impressive results."
+  },
+  {
+    icon: <Users className="w-12 h-12 text-blue-600" />,
+    title: "Expert In-House Team (No Subcontracting)",
+    description: "Our in-house team manages your entire project to maintain quality, consistency, and accountability."
+  },
+  {
+    icon: <BadgeDollarSign className="w-12 h-12 text-blue-600" />,
+    title: "Clear, Transparent Pricing",
+    description: "No hidden fees or surprise costs—just honest pricing that reflects the true value of our work."
+  },
+  {
+    icon: <ShieldCheck className="w-12 h-12 text-blue-600" />,
+    title: "Complete Project Ownership",
+    description: "From concept to completion, we take full responsibility to ensure a seamless experience."
+  },
+];
+
+const bgColors = [
+  "bg-orange-100",
+  "bg-blue-100",
+  "bg-green-100",
+  "bg-yellow-100",
+  "bg-purple-100",
+];
+
+const endToEnd = [
+  { id: '1', imageUrl: './quote/1.jpg' },
+  { id: '2', imageUrl: './quote/2.jpg' },
+  { id: '3', imageUrl: './quote/3.jpg' },
+  { id: '4', imageUrl: './quote/4.jpg' },
+  { id: '5', imageUrl: './quote/5.jpg' },
+];
+
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
   phone: Yup.string().matches(/^[0-9]{10}$/, 'Phone number must be 10 digits').required('Phone number is required'),
   address: Yup.string().required('Address is required'),
 });
+
 
 const SingleQuote = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -660,47 +707,19 @@ const SingleQuote = () => {
           </li>
         </ul>
 
-
-
-        <div className="pb-3 text-xl font-bold pt-5">Why Choose Us</div>
-        <ul>
-          <li className="pb-2 flex items-start text-gray-800">
-            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-            <span>
-              Creative &amp; Functional Designs
-            </span>
-          </li>
-
-          <li className="pb-2 flex items-start text-gray-800">
-            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-            <span>
-              Strong Civil &amp; Architectural Planning
-            </span>
-          </li>
-
-          <li className="pb-2 flex items-start text-gray-800">
-            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-            <span>
-              Expert In-House Team (No Subcontracting)
-            </span>
-          </li>
-
-          <li className="pb-2 flex items-start text-gray-800">
-            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-            <span>
-              Clear, Transparent Pricing
-            </span>
-          </li>
-
-          <li className="pb-2 flex items-start text-gray-800">
-            <ArrowRightCircle className="min-w-[20px] min-h-[20px] w-5 h-5 text-green-600 mt-1 mr-2" />
-            <span>
-              Complete Project Ownership
-            </span>
-          </li>
-
-        </ul>
       </div>
+
+      <FeatureGrid
+        features={features}
+        bgColors={bgColors}
+        subheading=' '
+      />
+
+      <ImageSlider
+        title=' '
+        data={endToEnd} />
+
+      <div style={{ paddingBottom: "15px" }}></div>
     </>
   );
 };
