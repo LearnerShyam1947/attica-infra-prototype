@@ -16,7 +16,7 @@ export const mockProperties: Property[] = [
     features: ['3 Bedrooms', '2 Bathrooms', 'Garden', 'Swimming Pool', 'Parking'],
     image: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     description: 'Luxurious modern villa with spacious rooms, garden, and swimming pool in a prime location.',
-    phone: '9876543210'
+    phone: '7899997784'
   },
   {
     id: '2',

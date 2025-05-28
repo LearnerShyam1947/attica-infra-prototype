@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import { Save, X } from 'lucide-react';
+import { Plus, Save, Trash2, X } from 'lucide-react';
 import React, { useState } from 'react';
 import { BuilderSchema } from '../../../schema/BuilderSchema';
 import { Builder } from '../../../types/Builder';
@@ -17,7 +17,7 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
 
   const initialValues = {
     name: builder?.name || '',
-    image: builder?.image || '',
+    images: builder?.images || [''], // changed from single image to array
     description: builder?.description || '',
     experience: builder?.experience || '',
     phone: builder?.phone || '',
@@ -26,9 +26,12 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
     pincode: builder?.pincode || '',
   };
 
+
   const handleFileChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
-    setFieldValue: (field: string, value: any) => void
+    index: number,
+    setFieldValue: (field: string, value: any) => void,
+    values: any
   ) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -38,40 +41,49 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
 
     setUploadProgress(0);
 
-    try {
-      const xhr = new XMLHttpRequest();
-      // xhr.open('POST', `${import.meta.env.VITE_BACKEND_API_URL}/api/v1/upload/`);
-      xhr.open('POST', 'https://httpbin.org/post');
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://httpbin.org/post');
 
-      xhr.upload.onprogress = (event) => {
-        if (event.lengthComputable) {
-          const percent = Math.round((event.loaded / event.total) * 100);
-          setUploadProgress(percent);
-        }
-      };
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 100);
+        setUploadProgress(percent);
+      }
+    };
 
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          const response = JSON.parse(xhr.responseText);
-          console.log(response);
-          setFieldValue('image', response.imageUrl);
-        } else {
-          console.error('Upload failed', xhr.responseText);
-        }
-        setTimeout(() => setUploadProgress(null), 500);
-      };
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        console.log(response);
+        
+        // Simulated URL
+        const updatedImages = [...values.images];
+        updatedImages[index] = 'https://via.placeholder.com/300'; // replace with actual image URL
+        setFieldValue('images', updatedImages);
+      } else {
+        console.error('Upload failed', xhr.responseText);
+      }
+      setTimeout(() => setUploadProgress(null), 500);
+    };
 
-      xhr.onerror = () => {
-        console.error('Upload error');
-        setUploadProgress(null);
-      };
-
-      xhr.send(formData);
-    } catch (error) {
-      console.error('Upload failed', error);
+    xhr.onerror = () => {
+      console.error('Upload error');
       setUploadProgress(null);
-    }
+    };
+
+    xhr.send(formData);
   };
+
+  const addImageField = (images: string[], setFieldValue: any) => {
+    setFieldValue('images', [...images, '']);
+  };
+
+  const removeImageField = (index: number, images: string[], setFieldValue: any) => {
+    const newImages = [...images];
+    newImages.splice(index, 1);
+    setFieldValue('images', newImages.length ? newImages : ['']);
+  };
+
 
   return (
     <Formik
@@ -166,42 +178,60 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
           </div>
 
           <div>
-            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
-              Upload Builder Image
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Upload Builder Images
             </label>
 
-            <label
-              htmlFor="image"
-              className="flex items-center justify-center px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition"
-            >
-              <span className="text-gray-600 text-sm">
-                Click to upload or drag & drop an image here
-              </span>
-              <input
-                id="image"
-                name="image"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => handleFileChange(e, setFieldValue)}
-              />
-            </label>
+            {values.images.map((img: string, index: number) => (
+              <div key={index} className="mb-4 border p-3 rounded-md relative">
+                <label
+                  htmlFor={`image-${index}`}
+                  className="flex items-center justify-center px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition"
+                >
+                  <span className="text-gray-600 text-sm">
+                    {values.images[index] ? 'Change Image' : 'Click to upload or drag & drop'}
+                  </span>
+                  <input
+                    id={`image-${index}`}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => handleFileChange(e, index, setFieldValue, values)}
+                  />
+                </label>
 
-            {values.image && (
-              <div className="mt-3">
-                <p className="text-sm text-gray-600">
-                  Uploaded image:{" "}
-                  <a
-                    href={values.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline"
+                {values.images[index] && (
+                  <div className="mt-2 text-sm text-gray-600">
+                    <a
+                      href={values.images[index]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
+                      View Image
+                    </a>
+                  </div>
+                )}
+
+                {values.images.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeImageField(index, values.images, setFieldValue)}
+                    className="absolute top-2 right-2 text-red-500 hover:text-red-700"
                   >
-                    View Image
-                  </a>
-                </p>
+                    <Trash2 size={16} />
+                  </button>
+                )}
               </div>
-            )}
+            ))}
+
+            <button
+              type="button"
+              onClick={() => addImageField(values.images, setFieldValue)}
+              className="flex items-center text-blue-600 hover:text-blue-800 text-sm"
+            >
+              <Plus className="mr-1" size={16} /> Add another image
+            </button>
 
             {uploadProgress !== null && (
               <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
@@ -212,6 +242,7 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
               </div>
             )}
           </div>
+
 
           <TextArea
             label="Description"

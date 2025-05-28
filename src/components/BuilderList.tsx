@@ -31,7 +31,7 @@ const builders: Builder[] = [
     ],
     description: 'Specializing in luxury residential projects with over 15 years of experience',
     experience: '15+ years',
-    phone: '+91 98765 43210',
+    phone: '+91 78999 97784',
     city: 'Gurugram',
     area: 'Sector 15',
     pincode: '122001'

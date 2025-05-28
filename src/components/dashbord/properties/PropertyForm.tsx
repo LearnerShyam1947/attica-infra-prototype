@@ -6,16 +6,67 @@ import Select from '../../ui/Select';
 import TextArea from '../../ui/TextArea';
 import TagInput from '../../ui/TagInput';
 import Button from '../../ui/Button';
-import { Save, X } from 'lucide-react';
+import { Plus, Save, Trash2, X } from 'lucide-react';
 import { propertySchema } from '../../../schema/PropertySchema';
 import { addProperty } from '../../../services/PropertyService';
-
 interface PropertyFormProps {
   property?: Property;
 }
 
 const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
   const [uploadProgress, setUploadProgress] = React.useState<number | null>(null);
+
+  const handleImageUpload = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    setUploadProgress(0);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://httpbin.org/post');
+
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.floor((event.loaded / event.total) * 100);
+        setUploadProgress(percent);
+      }
+    };
+
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        console.log(response);
+
+        // Simulated image URL from response
+        const updatedImages = [...formik.values.images];
+        updatedImages[index] = 'https://via.placeholder.com/300';
+
+        formik.setFieldValue('images', updatedImages);
+      } else {
+        console.error('Upload failed', xhr.responseText);
+      }
+      setTimeout(() => setUploadProgress(null), 500);
+    };
+
+    xhr.onerror = () => {
+      console.error('Upload error');
+      setUploadProgress(null);
+    };
+
+    xhr.send(formData);
+  };
+
+  const removeImage = (index: number) => {
+    const newImages = [...formik.values.images];
+    newImages.splice(index, 1);
+    formik.setFieldValue('images', newImages.length ? newImages : ['']);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -29,7 +80,7 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
         pincode: property?.location?.pincode || '',
       },
       features: property?.features || [],
-      image: property?.image || '',
+      images: property?.images || [],
       description: property?.description || '',
     },
     validationSchema: propertySchema,
@@ -51,55 +102,6 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
     }
 
     return touched && typeof error === 'string' ? error : undefined;
-  };
-
-  const handleFileChange = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setFieldValue: (field: string, value: any) => void
-  ) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    setUploadProgress(0);
-
-    try {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://httpbin.org/post'); // use this for testing
-
-      xhr.upload.onprogress = (event) => {
-        if (event.lengthComputable) {
-          const percent = Math.floor((event.loaded / event.total) * 100);
-          
-          setUploadProgress(percent);
-        }
-      };
-
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          const response = JSON.parse(xhr.responseText);
-          console.log(response);
-
-          // Fake image URL for test purpose
-          setFieldValue('image', 'https://via.placeholder.com/300');
-        } else {
-          console.error('Upload failed', xhr.responseText);
-        }
-        setTimeout(() => setUploadProgress(null), 500);
-      };
-
-      xhr.onerror = () => {
-        console.error('Upload error');
-        setUploadProgress(null);
-      };
-
-      xhr.send(formData);
-    } catch (error) {
-      console.error('Upload failed', error);
-      setUploadProgress(null);
-    }
   };
 
   return (
@@ -139,15 +141,7 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
             error={normalizeError('price')}
           />
 
-          <Input
-            label="Phone Number"
-            id="phone"
-            value={formik.values.phone}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            placeholder="Enter 10-digit phone number"
-            error={normalizeError('phone')}
-          />
+
         </div>
 
         <div>
@@ -183,41 +177,81 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
             error={normalizeError('location.pincode')}
           />
 
-          {/* Custom File Upload */}
-          <div className="mt-4">
-            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
-              Upload Property Image
+                    <Input
+            label="Phone Number"
+            id="phone"
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter 10-digit phone number"
+            error={normalizeError('phone')}
+          />
+
+        </div>
+
+      </div>
+
+        <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Upload Property Images
             </label>
 
-            <label
-              htmlFor="image"
-              className="flex items-center justify-center px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition"
-            >
-              <span className="text-gray-600 text-sm">
-                Click to upload or drag & drop an image here
-              </span>
-              <input
-                id="image"
-                name="image"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => handleFileChange(e, formik.setFieldValue)}
-              />
-            </label>
-
-            {formik.values.image && (
-              <div className="mt-3 text-sm text-gray-600">
-                Uploaded image:{' '}
-                <a
-                  href={formik.values.image}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 underline"
+            {formik.values.images.map((img, index) => (
+              <div key={index} className="mb-4 border p-3 rounded-md relative">
+                <label
+                  htmlFor={`image-${index}`}
+                  className="flex items-center justify-center px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition"
                 >
-                  View Image
-                </a>
+                  <span className="text-gray-600 text-sm">
+                    {formik.values.images[index]
+                      ? 'Change Image'
+                      : 'Click to upload or drag & drop'}
+                  </span>
+                  <input
+                    id={`image-${index}`}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => handleImageUpload(e, index)}
+                  />
+                </label>
+
+                {formik.values.images[index] && (
+                  <div className="mt-2 text-sm text-gray-600">
+                    <a
+                      href={formik.values.images[index]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
+                      View Image
+                    </a>
+                  </div>
+                )}
+
+                {formik.values.images.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeImage(index)}
+                    className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                )}
               </div>
+            ))}
+
+            {/* Add Image Button */}
+            <button
+              type="button"
+              onClick={() => formik.setFieldValue('images', [...formik.values.images, ''])}
+              className="flex items-center text-blue-600 hover:text-blue-800 text-sm"
+            >
+              <Plus className="mr-1" size={16} /> Add another image
+            </button>
+
+            {normalizeError('images') && (
+              <p className="text-red-500 text-sm mt-1">{normalizeError('images')}</p>
             )}
 
             {uploadProgress !== null && (
@@ -229,9 +263,7 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
               </div>
             )}
           </div>
-        </div>
-      </div>
-
+          
       <div>
         <label className="block mb-2 text-sm font-medium text-gray-700">Features</label>
         <TagInput
@@ -264,8 +296,8 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
               ? 'Updating...'
               : 'Submitting...'
             : property
-            ? 'Update Property'
-            : 'Add Property'}
+              ? 'Update Property'
+              : 'Add Property'}
         </Button>
       </div>
     </form>

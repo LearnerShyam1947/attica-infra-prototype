@@ -7,7 +7,7 @@ const steps = [
     number: 1,
     title: 'Request a Quote',
     description: 'Submit your construction requirements through our platform.',
-    image: './how-it-works/home/1.jpg',
+    image: './how-it-works/home/1.webp',
   },
   {
     icon: <Users className="w-5 h-5" />,

@@ -7,7 +7,7 @@ const Logo = () => {
       <div className="relative">
         {/* <Building2 className="w-8 h-8 text-blue-600" /> */}
         <Link to={"/"}>
-          <img style={{ height: "50px"}}    src="/logo-full.png" alt="" />
+          <img style={{ height: "45px"}}    src="/logo-full.png" alt="" />
         </Link>
         {/* <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-600 rounded-full border-2 border-white" /> */}
       </div>

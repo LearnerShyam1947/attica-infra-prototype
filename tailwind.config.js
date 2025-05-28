@@ -2,7 +2,13 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'], // or your custom font
+        serif: ['Georgia', 'serif'],
+        mono: ['Menlo', 'monospace'],
+      },
+    },
   },
   plugins: [],
 };

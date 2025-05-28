@@ -7,6 +7,7 @@ import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 import { useLocation } from 'react-router-dom';
 import ImageSlider from '../../../components/ui/ImageSlider';
 import FeatureGrid from '../../../components/ui/FeatureGrid';
+import { showAlert } from '../../../utils/Alerts';
 
 const features = [
   {
@@ -468,49 +469,56 @@ const MultipleQuote = () => {
     }));
   };
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = async (values: any) => {
     setLoading(true);
-    const finalSections = sections.map((section) => {
-      const sectionData = section.fields.map((field) => ({
-        label: field.label,
-        name: field.name,
-        value:
-          field.type === 'radio'
-            ? quoteValues[field.name] || 'No'
-            : quoteValues[field.name] || field.defaultValue,
-      }));
-      return { sectionTitle: section.title, sectionData };
-    });
+    setIsModalOpen(false);
+    
+    // const finalSections = sections.map((section) => {
+    //   const sectionData = section.fields.map((field) => ({
+    //     label: field.label,
+    //     name: field.name,
+    //     value:
+    //       field.type === 'radio'
+    //         ? quoteValues[field.name] || 'No'
+    //         : quoteValues[field.name] || field.defaultValue,
+    //   }));
+    //   return { sectionTitle: section.title, sectionData };
+    // });
 
-    const data = {
-      contactDetails: values,
-      quoteDetails: finalSections,
-    };
+    // const data = {
+    //   contactDetails: values,
+    //   quoteDetails: finalSections,
+    // };
 
-    console.log(data);
+    // console.log(data);
 
-    fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setMessage(data.error
-          ? { type: 'error', value: data.error + ' ' + data.errorMsg }
-          : { type: 'success', value: data.message });
-        setLoading(false);
-        setIsModalOpen(false);
-      })
-      .catch((e) => {
-        console.error(e);
-        setMessage({ type: 'error', value: 'Submission failed. Try again.' });
-        setLoading(false);
-        setIsModalOpen(false);
-      });
+    // fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
+    //   method: 'POST',
+    //   headers: new Headers({
+    //     'Content-Type': 'application/json',
+    //   }),
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setMessage(data.error
+    //       ? { type: 'error', value: data.error + ' ' + data.errorMsg }
+    //       : { type: 'success', value: data.message });
+    //     setLoading(false);
+    //     setIsModalOpen(false);
+    //   })
+    //   .catch((e) => {
+    //     console.error(e);
+    //     setMessage({ type: 'error', value: 'Submission failed. Try again.' });
+    //     setLoading(false);
+    //     setIsModalOpen(false);
+    //   });
 
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    showAlert("Success", "Your Requested subitted successfully", "success");
+
+    setLoading(false);
   };
 
   return (

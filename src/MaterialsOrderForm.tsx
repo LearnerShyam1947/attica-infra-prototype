@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FormikErrors, useFormik } from "formik";
 import * as Yup from "yup";
 import LetsConnect from "./components/ui/LetsConnect";
+import { showAlert } from "./utils/Alerts";
+import LoadingSpinner from "./components/ui/LoadingSpinner";
 
 const materialsData = [
   {
@@ -320,42 +322,50 @@ const validationSchema = Yup.object().shape({
   )
 });
 
-const onSubmit = (values: any) => {
-  const groupedMaterials: any[] = [];
-  let flatIndex = 0;
-
-  for (const section of materialsData) {
-    const selectedItems = [];
-
-    for (const item of section.items) {
-      const formItem = values.materials[flatIndex];
-      if (formItem.checked) {
-        selectedItems.push({
-          material: formItem.material,
-          grade: formItem.grade,
-          unit: formItem.unit,
-          quantity: formItem.quantity,
-          brand: formItem.brand,
-          fileUrl: formItem.fileUrl || null
-        });
-      }
-      flatIndex++;
-    }
-
-    if (selectedItems.length > 0) {
-      groupedMaterials.push({
-        section: section.section,
-        items: selectedItems
-      });
-    }
-  }
-
-  console.log(JSON.stringify(groupedMaterials, null, 2));
-};
-
 const ConstructionMaterialsForm: React.FC = () => {
 
   const [isModelOpen, setIsModelOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (values: any) => {
+    const groupedMaterials: any[] = [];
+    let flatIndex = 0;
+    setLoading(true);
+
+    for (const section of materialsData) {
+      const selectedItems = [];
+  
+      for (const item of section.items) {
+        const formItem = values.materials[flatIndex];
+        if (formItem.checked) {
+          selectedItems.push({
+            material: formItem.material,
+            grade: formItem.grade,
+            unit: formItem.unit,
+            quantity: formItem.quantity,
+            brand: formItem.brand,
+            fileUrl: formItem.fileUrl || null
+          });
+        }
+        flatIndex++;
+      }
+  
+      if (selectedItems.length > 0) {
+        groupedMaterials.push({
+          section: section.section,
+          items: selectedItems
+        });
+      }
+    }
+  
+    console.log(JSON.stringify(groupedMaterials, null, 2));
+  
+    
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setLoading(false);
+
+    showAlert("Success", "YOur order details submitted successfully");
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -419,6 +429,7 @@ const ConstructionMaterialsForm: React.FC = () => {
 
   return (
     <>
+    {loading && <LoadingSpinner text="submitting your order details..." />}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <form onSubmit={formik.handleSubmit} className="p-4">
           {materialsData.map((section, sectionIndex) => (

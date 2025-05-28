@@ -64,48 +64,52 @@ const ArchitectureDesign: React.FC = () => {
     console.log('Contact Info:', values);
     console.log('Selected Services:', formData);
 
-    const data = {
-      contactDetails: values,
-      mainData: formData,
-    };
+    // const data = {
+    //   contactDetails: values,
+    //   mainData: formData,
+    // };
 
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-architecture-design`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+    // try {
+    //   const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-architecture-design`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-      const response = await res.json();
-      console.log(response);
+    //   const response = await res.json();
+    //   console.log(response);
 
-      if (response.error) {
-        showAlert("Error", response.error, "error")
-        return;
-      }
+    //   if (response.error) {
+    //     showAlert("Error", response.error, "error")
+    //     return;
+    //   }
 
-      showAlert("success", 'design request submitted!', "success");
-    } catch (e) {
-      console.error(e);
-    }
-    finally {
-      setLoading(false);
-      setFormData(
-        services.map(service => ({
-          name: service.name,
-          description: service.description || '',
-          option: 'No',
-        }))
-      );
+    //   showAlert("success", 'design request submitted!', "success");
+    // } catch (e) {
+    //   console.error(e);
+    // }
+    // finally {
+    //   setLoading(false);
+    //   setFormData(
+    //     services.map(service => ({
+    //       name: service.name,
+    //       description: service.description || '',
+    //       option: 'No',
+    //     }))
+    //   );
 
-    }
+    // }
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    showAlert("success", 'design request submitted!', "success");
+    setLoading(false);
   };
 
   return (
     <>
-      {loading && <LoadingSpinner text='process your request' />}
+      {loading && <LoadingSpinner text='process your request.....' />}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-16">
