@@ -1,7 +1,7 @@
 export interface Builder {
     id: string;
     name: string;
-    image: string;
+    images: string[];
     description: string;
     experience: string;
     phone: string;

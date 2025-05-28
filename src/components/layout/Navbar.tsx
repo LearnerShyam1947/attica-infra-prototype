@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import LetsConnect from '../ui/LetsConnect';
 import Logo from './Logo';
+import LoadingSpinner from '../ui/LoadingSpinner';
+import { showAlert } from '../../utils/Alerts';
 
 const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
 
@@ -34,9 +36,12 @@ const Navbar = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
+      {loading && <LoadingSpinner text='submitting your detais...' />}
+
       <nav className={`sticky top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-white'
         }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -145,7 +150,12 @@ const Navbar = () => {
                   buttonText="Let's Talk"
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}
-                  onSubmit={() => { }}
+                  onSubmit={async () => {
+                    setLoading(true);
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    showAlert("Success", "your experts will contact you soon.", "success");
+                    setLoading(false);
+                  }}
                   initialContext={{ 'hello': 'world' }}
                 />
 
@@ -224,8 +234,8 @@ const Navbar = () => {
           >
             <div className="px-4 pt-4 pb-6 space-y-4">
               <Link to="/" className="block text-gray-700 hover:text-blue-600">Home</Link>
-              <a href="#about" className="block text-gray-700 hover:text-blue-600">About Us</a>
-              <a href="#services" className="block text-gray-700 hover:text-blue-600">Services</a>
+              <Link to="/about" className="block text-gray-700 hover:text-blue-600">About Us</Link>
+              <a href="/#services" className="block text-gray-700 hover:text-blue-600">Services</a>
 
               {isAuthenticated ? (
                 <>

@@ -7,7 +7,7 @@ export const mockBuilders: Builder[] = [
     image: 'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     description: 'Experienced builder specializing in modern residential projects with a focus on sustainable construction practices.',
     experience: '15',
-    phone: '9876543210',
+    phone: '7899997784',
     city: 'Mumbai',
     area: 'Andheri West',
     pincode: '400053'
