@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LetsConnect from '../../../components/ui/LetsConnect';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 import { showAlert } from '../../../utils/Alerts';
+import { CheckCircle } from 'lucide-react';
 
 type ServiceOption = {
   name: string;
@@ -119,15 +120,24 @@ const ArchitectureDesign: React.FC = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4 text-left">
               Our Architectural Design Services: Creativity Meets Practicality
             </h2>
-            <p className="text-gray-700 mb-4 text-left">
-              At Attica Infra Services, we bring your dream home to life with a team of skilled{' '}
-              <span className="font-bold">
-                Architects, Civil Engineers, Structural Engineers, 3D Visualizers, and Project Managers
-              </span>.
-            </p>
-            <p className="text-gray-700 text-left pb-5">
-              We ensure every design is a perfect blend of aesthetic creativity and construction practicality, resulting in a home that's both beautiful and functional.
-            </p>
+            
+            <ul>
+              <li className="flex items-start pb-5">
+                <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span className='text-justify'>
+                  At Attica Infra Services, we bring your dream home to life with a team of skilled{' '}
+                  <span className="font-bold">
+                    Architects, Civil Engineers, Structural Engineers, 3D Visualizers, and Project Managers
+                  </span>.
+                </span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
+                <span className='text-justify'>
+                  We ensure every design is a perfect blend of aesthetic creativity and construction practicality, resulting in a home that's both beautiful and functional.
+                </span>
+              </li>
+            </ul>
           </div>
 
           {/* RIGHT IMAGE */}
@@ -192,8 +202,12 @@ const ArchitectureDesign: React.FC = () => {
           </form>
         </div>
 
-        <div className="font-bold text-center text-3xl">How We Work</div>
-        <p className="text-xl pb-10">We'll receive your email and get back to you with a detailed quotation and samples.</p>
+        <div className="font-bold text-center text-3xl pb-3">How We Work</div>
+        <li className="flex items-start">
+              <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
+              <p className="text-xl text-justify pb-10">We'll receive your email and get back to you with a detailed quotation and samples.</p>
+            </li>
+       
 
       </div>
 

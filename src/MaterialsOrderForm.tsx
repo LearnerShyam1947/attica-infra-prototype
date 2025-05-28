@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import LetsConnect from "./components/ui/LetsConnect";
 import { showAlert } from "./utils/Alerts";
 import LoadingSpinner from "./components/ui/LoadingSpinner";
+import { CheckCircle } from "lucide-react";
 
 const materialsData = [
   {
@@ -334,7 +335,7 @@ const ConstructionMaterialsForm: React.FC = () => {
 
     for (const section of materialsData) {
       const selectedItems = [];
-  
+
       for (const item of section.items) {
         const formItem = values.materials[flatIndex];
         if (formItem.checked) {
@@ -349,7 +350,7 @@ const ConstructionMaterialsForm: React.FC = () => {
         }
         flatIndex++;
       }
-  
+
       if (selectedItems.length > 0) {
         groupedMaterials.push({
           section: section.section,
@@ -357,10 +358,10 @@ const ConstructionMaterialsForm: React.FC = () => {
         });
       }
     }
-  
+
     console.log(JSON.stringify(groupedMaterials, null, 2));
-  
-    
+
+
     await new Promise(resolve => setTimeout(resolve, 2000));
     setLoading(false);
 
@@ -429,7 +430,61 @@ const ConstructionMaterialsForm: React.FC = () => {
 
   return (
     <>
-    {loading && <LoadingSpinner text="submitting your order details..." />}
+      {loading && <LoadingSpinner text="submitting your order details..." />}
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-6 pb-8">
+
+          {/* LEFT COLUMN */}
+          <div className="bg-white  px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Order Materials
+            </h2>
+            <p className="text-gray-700 mb-4 text-justify">
+              Attica Infra Services, we specialize in delivering top-quality construction solutions at unbeatable wholesale prices. Whether you're developing residential, commercial, or industrial projects, we ensure superior craftsmanship, timely delivery, and exceptional value for your investment.
+            </p>
+            <ul className="space-y-3 text-justify">
+  <li className="flex items-start gap-2">
+    <span className="mt-1">
+      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+    </span>
+    <span>Best Price Guarantee</span>
+  </li>
+  <li className="flex items-start gap-2">
+    <span className="mt-1">
+      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+    </span>
+    <span>Trusted Wholesale Construction Partner</span>
+  </li>
+  <li className="flex items-start gap-2">
+    <span className="mt-1">
+      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+    </span>
+    <span>Superior Quality & Reliable Service</span>
+  </li>
+  <li className="flex items-start gap-2">
+    <span className="mt-1">
+      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+    </span>
+    <span>Tailored Solutions for Every Project. Build with confidence.</span>
+  </li>
+</ul>
+
+
+
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="relative h-[350px] w-full">
+            <img
+              src="./services/order-material.jpeg"
+              alt="Construction Site"
+              className="rounded-lg object-fit w-full h-full shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <form onSubmit={formik.handleSubmit} className="p-4">
           {materialsData.map((section, sectionIndex) => (

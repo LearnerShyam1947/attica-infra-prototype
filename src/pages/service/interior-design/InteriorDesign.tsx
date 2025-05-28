@@ -121,7 +121,7 @@ const InteriorDesign: React.FC = () => {
       description: 'Share your ideas and home plan to receive personalised 3D designs and an instant quote.',
       buttonText: 'Book Free Design Session',
       button: (
-        <button onClick={() => {setIsModalOpen(true)}} className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+        <button onClick={() => { setIsModalOpen(true) }} className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
           Book Free Design Session
         </button>
         // <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
@@ -145,36 +145,42 @@ const InteriorDesign: React.FC = () => {
 
           {/* LEFT COLUMN */}
           <div className="bg-white  px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Integrated Interior Design Services
             </h2>
-            <p className="text-gray-700 mb-4 text-left">
+            <p className="text-gray-700 mb-4 text-justify">
               At Attica Infra Services, we provide complete in-house interior design solutions alongside our
               construction services. By planning both structure and interiors together, we help you:
             </p>
-            <ul className="space-y-3 mb-4 text-left">
-              <li className="flex items-start text-gray-800">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
-                Save costs through optimized material and space planning
+
+            <ul className="space-y-3 mb-4 text-justify">
+              <li className="grid grid-cols-[auto_1fr] gap-2 items-start">
+                <CheckCircle size={20}  className="text-green-600" />
+                <span>Save costs through optimized material and space planning</span>
               </li>
-              <li className="flex items-start text-gray-800">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
-                Avoid delays with streamlined execution
+
+              <li className="grid grid-cols-[auto_1fr] gap-2 items-start">
+                <CheckCircle size={20} className="text-green-600" />
+                <span> Avoid delays with streamlined execution</span>
               </li>
-              <li className="flex items-start text-gray-800">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-1 mr-2" />
-                Prevent rework by aligning design with structural elements from day one
+
+              <li className="grid grid-cols-[auto_1fr] gap-2 items-start">
+                <CheckCircle size={20}  className="text-green-600" />
+                <span>Prevent rework by aligning design with structural elements from day one</span>
               </li>
             </ul>
+
+
+
             <p className="text-gray-700 text-left">
               Our end-to-end approach ensures a seamless journey—from blueprint to beautifully finished spaces.
             </p>
           </div>
 
           {/* RIGHT IMAGE */}
-          <div className="relative h-[300px] w-full">
+          <div className="relative h-[400px] w-full">
             <img
-              src="./services/in-house.jpeg"
+              src="./services/interoir.jpeg"
               alt="Construction Site"
               className="rounded-lg object-cover w-full h-full shadow-2xl"
             />
