@@ -4,15 +4,22 @@ import { Link } from 'react-router-dom';
 import HowItWorksUI from '../../../components/ui/HowItWorks';
 import ImageSlider from '../../../components/ui/ImageSlider';
 import LetsConnect from '../../../components/ui/LetsConnect';
+import { showAlert } from '../../../utils/Alerts';
+import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
 const InteriorDesign: React.FC = () => {
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = async (values: any) => {
     console.log(values);
 
+    setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setLoading(false);
+    showAlert("Success", "Your details submitted successfully. Your experts will contact you.")
   }
   const endToEnd = [
     { id: '1', imageUrl: './interior-design/end-to-end/1.jpg' },
@@ -114,9 +121,12 @@ const InteriorDesign: React.FC = () => {
       description: 'Share your ideas and home plan to receive personalised 3D designs and an instant quote.',
       buttonText: 'Book Free Design Session',
       button: (
-        <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-          <Link to={"/design-details"}>Book Free Design Session</Link>
+        <button onClick={() => {setIsModalOpen(true)}} className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+          Book Free Design Session
         </button>
+        // <button className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+        //   <Link to={"/design-details"}>Book Free Design Session</Link>
+        // </button>
       )
     },
   ];
@@ -128,9 +138,7 @@ const InteriorDesign: React.FC = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      </div>
+      {loading && <LoadingSpinner text='Submitting your details....' />}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-6 pb-8">
@@ -175,7 +183,7 @@ const InteriorDesign: React.FC = () => {
       </div>
 
       <ImageSlider title="End-to-end offerings" data={endToEnd} />
-      <ImageSlider title="Mordern Kitchen Design" data={kitchen} />
+      <ImageSlider title="Modern Kitchen Design" data={kitchen} />
       <ImageSlider title="Living Room Design" data={livingRoom} />
       <ImageSlider title="Wardrobe Design" data={wardrobe} />
 
@@ -211,7 +219,8 @@ const InteriorDesign: React.FC = () => {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           onSubmit={handleSubmit}
-          initialContext={{ 'hello': 'world' }}
+          title='Enter your contact details'
+          buttonText='submit details'
         />
         <HowItWorksUI
           steps={steps}

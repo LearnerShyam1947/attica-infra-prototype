@@ -14,7 +14,7 @@ const AboutUs: React.FC = () => {
     <div className="bg-gray-50 text-gray-800 font-sans leading-relaxed">
       {/* Main About Section */}
       <section className="bg-white shadow-md">
-        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col lg:flex-row justify-between items-center gap-12">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col lg:flex-row justify-between items-center gap-12">
 
           <div className="flex-1">
             <h2 className="text-3xl font-bold text-blue-700 mb-4 sm:text-4xl">About Attica Infra</h2>
@@ -60,7 +60,7 @@ const AboutUs: React.FC = () => {
 
       {/* Quote Section */}
       <section className="bg-blue-100">
-        <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="max-w-7xl mx-auto px-6 py-12">
           <blockquote className="text-2xl italic text-center text-gray-700">
             “At Attica Infra Services, we don't just build homes—<span className="font-semibold text-blue-600">we build trust, value, and lasting relationships.</span>”
           </blockquote>
