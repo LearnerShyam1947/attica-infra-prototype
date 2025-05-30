@@ -1,5 +1,4 @@
-import React from 'react';
-import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone, Youtube } from 'lucide-react';
 
 const Topbar = () => {
   return (
@@ -11,7 +10,7 @@ const Topbar = () => {
               <Phone className="w-4 h-4 mr-1" />
               +91 78999 97784
             </a>
-            <a href="mailto:info@atticainfra.com" className="flex items-center text-sm hover:text-blue-200">
+            <a href="mailto:atticainfra@gmail.com" className="flex items-center text-sm hover:text-blue-200">
               <Mail className="w-4 h-4 mr-1" />
               atticainfra@gmail.com
             </a>
