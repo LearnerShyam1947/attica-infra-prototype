@@ -76,7 +76,7 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ property }) => {
     setImageUploadProgress(newProgress);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', `${import.meta.env.VITE_BACKEND_API_URL}/api/v1/upload/cloudinary`);
+    xhr.open('POST', `https://ais-backend-prototype.onrender.com/api/v1/upload/cloudinary`);
 
     xhr.upload.onprogress = (event) => {
       if (event.lengthComputable) {

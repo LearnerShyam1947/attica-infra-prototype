@@ -45,7 +45,7 @@ const DesignDetails: React.FC = () => {
     console.log(data);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-interior-design`, {
+      const res = await fetch(`https://ais-backend-prototype.onrender.com/submit-interior-design`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

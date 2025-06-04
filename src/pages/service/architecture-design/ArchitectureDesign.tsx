@@ -96,7 +96,7 @@ const ArchitectureDesign: React.FC = () => {
     };
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-architecture-design`, {
+      const res = await fetch(`https://ais-backend-prototype.onrender.com/submit-architecture-design`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

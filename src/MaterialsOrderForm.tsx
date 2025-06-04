@@ -452,7 +452,7 @@ const ConstructionMaterialsForm: React.FC = () => {
     console.log(JSON.stringify(data, null, 2));
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-material-order`, {
+      const res = await fetch(`https://ais-backend-prototype.onrender.com/submit-material-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -638,7 +638,7 @@ const ConstructionMaterialsForm: React.FC = () => {
                                 setUploadProgress(prev => ({ ...prev, [globalIndex]: 0 }));
 
                                 const xhr = new XMLHttpRequest();
-                                xhr.open("POST", `${import.meta.env.VITE_BACKEND_API_URL}/api/v1/upload/`);
+                                xhr.open("POST", `https://ais-backend-prototype.onrender.com/api/v1/upload/`);
 
                                 xhr.upload.onprogress = (event) => {
                                   if (event.lengthComputable) {

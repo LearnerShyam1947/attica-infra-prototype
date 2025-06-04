@@ -485,7 +485,7 @@ const SingleQuote = () => {
 
     console.log(data);
 
-    fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
+    fetch(`https://ais-backend-prototype.onrender.com/submit-quote`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
