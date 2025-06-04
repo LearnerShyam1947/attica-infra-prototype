@@ -8,8 +8,13 @@ RUN npm install
 
 COPY . .
 
+# Optional: debug what's in /etc/secrets
+RUN echo "Secrets:" && ls -la /etc/secrets
+
+# Copy .env from Render secret files
 RUN cp /etc/secrets/.env .env
 
+# Build with env vars
 RUN npm run build
 
 FROM nginx:alpine
