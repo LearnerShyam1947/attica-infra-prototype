@@ -34,10 +34,10 @@ const Footer = () => {
                 <Mail className="w-4 h-4 mr-2" />
                  atticainfra@gmail.com
               </li>
-              <li className="flex items-center text-gray-400">
+              {/* <li className="flex items-center text-gray-400">
                 <MapPin className="w-4 h-4 mr-2" />
                 G05, Silver stone, 5th cross, chinnapanalli, Bangalore, 560037
-              </li>
+              </li> */}
             </ul>
           </div>
           

@@ -7,12 +7,9 @@ import Logo from './Logo';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import { showAlert } from '../../utils/Alerts';
 
-const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [cityDropdown, setCityDropdown] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
@@ -34,6 +31,37 @@ const Navbar = () => {
     setShowLogoutConfirm(false);
     navigate('/');
   };
+
+  const handleSubmit = async (contactDetails: any) => {
+    console.log(contactDetails);
+    setLoading(true);
+    
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-contact-details`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactDetails),
+      });
+
+      const response = await res.json();
+      console.log(response);
+
+      if (response.error) {
+        showAlert("Error", response.error, "error")
+        return;
+      }
+      showAlert("success", 'Your Contact request submitted successfully!', "success");
+    } catch (e: any) {
+      console.error(e);
+      showAlert("Error", e.message || String(e), "error");
+    }
+    
+    finally {
+      setLoading(false);
+    }
+  }
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -68,34 +96,6 @@ const Navbar = () => {
                   Services
                 </a>
 
-                {/* <div className="relative">
-                  <button
-                    onClick={() => setCityDropdown(!cityDropdown)}
-                    className="flex items-center text-gray-700 hover:text-blue-600"
-                  >
-                    Locations
-                    <ChevronDown className="w-4 h-4 ml-1" />
-                  </button>
-                  {cityDropdown && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
-                      {cities.map((city) => (
-                        <a
-                          key={city}
-                          href={`#${city.toLowerCase()}`}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50"
-                        >
-                          {city}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div> */}
-
-                {/* <a href="#contact" className="flex items-center text-gray-700 hover:text-blue-600">
-                  <Phone className="w-4 h-4 mr-1" />
-                  Contact
-                </a> */}
-
                 {isAuthenticated ? (
                   <div className="flex items-center space-x-4">
                     <Link
@@ -121,27 +121,13 @@ const Navbar = () => {
                     >
                       Login
                     </Link>
-                    {/* <Link
-                      to="/register"
-                      className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
-                    >
-                      Register
-                    </Link> */}
+
                   </div>
                 )}
 
                 <button className='bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors'>
                   <Link to={"materials-order"}>Order Materials</Link>
                 </button>
-
-                {/* <ContactButton onSubmit={(data) => {
-                  console.log(data);
-                }}
-                  modalTitle="Let's Connect"
-                  buttonClassName="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
-                  buttonText="Let's Talk"
-                  submitButtonText="Let's Connect"
-                /> */}
                 <button onClick={() => setIsModalOpen(true)} className='bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors'>
                   Let's Connect
                 </button>
@@ -150,13 +136,8 @@ const Navbar = () => {
                   buttonText="Let's Talk"
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}
-                  onSubmit={async () => {
-                    setLoading(true);
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-                    showAlert("Success", "your experts will contact you soon.", "success");
-                    setLoading(false);
-                  }}
-                  initialContext={{ 'hello': 'world' }}
+                  onSubmit={handleSubmit}
+                  initialContext={{ 'from': 'Contact details from home page' }}
                 />
 
               </div>
@@ -176,59 +157,6 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          // <div className="md:hidden bg-white">
-          //   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          //     <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</Link>
-          //     <a href="#about" className="block px-3 py-2 text-gray-700 hover:text-blue-600">About Us</a>
-          //     <a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Services</a>
-          //     {/* <div className="relative">
-          //       <button
-          //         onClick={() => setCityDropdown(!cityDropdown)}
-          //         className="flex items-center w-full px-3 py-2 text-gray-700 hover:text-blue-600"
-          //       >
-          //         Locations
-          //         <ChevronDown className="w-4 h-4 ml-1" />
-          //       </button>
-          //       {cityDropdown && (
-          //         <div className="pl-6">
-          //           {cities.map((city) => (
-          //             <a
-          //               key={city}
-          //               href={`#${city.toLowerCase()}`}
-          //               className="block px-3 py-2 text-sm text-gray-700 hover:text-blue-600"
-          //             >
-          //               {city}
-          //             </a>
-          //           ))}
-          //         </div>
-          //       )}
-          //     </div> */}
-          //     <a href="#contact" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
-
-          //     {isAuthenticated ? (
-          //       <>
-          //         <Link
-          //           to="/dashboard"
-          //           className="block px-3 py-2 text-gray-700 hover:text-blue-600"
-          //         >
-          //           Dashboard
-          //         </Link>
-          //         <button
-          //           onClick={handleLogout}
-          //           className="flex items-center w-full px-3 py-2 text-gray-700 hover:text-blue-600"
-          //         >
-          //           <span className="mr-2">{user?.name}</span>
-          //           <LogOut className="w-4 h-4" />
-          //         </button>
-          //       </>
-          //     ) : (
-          //       <>
-          //         <Link to="/login" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Login</Link>
-          //         <Link to="/register" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Register</Link>
-          //       </>
-          //     )}
-          //   </div>
-          // </div>
           <div
             className={`md:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
           >

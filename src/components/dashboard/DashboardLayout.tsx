@@ -21,7 +21,7 @@ const DashboardLayout = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-100 scroll-container">
       <Sidebar
         activeTab={location.pathname}
         setActiveTab={() => {}}

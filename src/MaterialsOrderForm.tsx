@@ -5,6 +5,7 @@ import LetsConnect from "./components/ui/LetsConnect";
 import { showAlert } from "./utils/Alerts";
 import LoadingSpinner from "./components/ui/LoadingSpinner";
 import { CheckCircle } from "lucide-react";
+import UploadProgressBar from "./components/ui/UploadProgressBar";
 
 const materialsData = [
   {
@@ -16,7 +17,8 @@ const materialsData = [
         unit: "Bag (50kg)",
         minQty: 10,
         brand: "UltraTech, ACC, Dalmia",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Portland Pozzolana Cement(PPC)",
@@ -24,7 +26,8 @@ const materialsData = [
         unit: "Bag (50kg)",
         minQty: 10,
         brand: "JK Cement, Ambuja, Ramco",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Ready Mix Concrete (RMC)",
@@ -33,7 +36,7 @@ const materialsData = [
         minQty: 5,
         brand: "UltraTech, ACC, Local Plants",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Concrete Blocks",
@@ -41,7 +44,8 @@ const materialsData = [
         unit: "Piece",
         minQty: 500,
         brand: "Siporex, Aerocon, Local",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -54,7 +58,8 @@ const materialsData = [
         unit: "1000 pcs",
         minQty: 1000,
         brand: "Local Kilns",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Fly Ash Bricks",
@@ -62,7 +67,8 @@ const materialsData = [
         unit: "1000 pcs",
         minQty: 1000,
         brand: "EcoBricks, Magicrete",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "AAC Blocks",
@@ -70,7 +76,8 @@ const materialsData = [
         unit: "Piece",
         minQty: 500,
         brand: "Siporex, Magicrete, Birla",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -84,7 +91,7 @@ const materialsData = [
         minQty: 1000,
         brand: "Tata Tiscon, JSW, Kamdhenu",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Binding Wire",
@@ -92,7 +99,8 @@ const materialsData = [
         unit: "kg",
         minQty: 50,
         brand: "Tata Wiron, ISI Local",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Structural Steel",
@@ -101,7 +109,7 @@ const materialsData = [
         minQty: 500,
         brand: "SAIL, Jindal, Essar",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -114,7 +122,8 @@ const materialsData = [
         unit: "Ton",
         minQty: 10,
         brand: "Natural River",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "M Sand",
@@ -122,7 +131,8 @@ const materialsData = [
         unit: "Ton",
         minQty: 10,
         brand: "Robo, MSand India",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Coarse Aggregate",
@@ -130,7 +140,8 @@ const materialsData = [
         unit: "Ton",
         minQty: 10,
         brand: "Blue Metal",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Fine Aggregate",
@@ -138,7 +149,8 @@ const materialsData = [
         unit: "Ton",
         minQty: 10,
         brand: "Local Crushers",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -152,7 +164,7 @@ const materialsData = [
         minQty: 5,
         brand: "Greenply, Century",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "UPVC Windows",
@@ -161,7 +173,7 @@ const materialsData = [
         minQty: 50,
         brand: "Fenesta, Prominance, LG",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Aluminum Frames",
@@ -170,7 +182,7 @@ const materialsData = [
         minQty: 50,
         brand: "Jindal, Hindalco",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -183,7 +195,8 @@ const materialsData = [
         unit: "Length",
         minQty: 50,
         brand: "Ashirvad, Supreme, Finolex",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "CP Fittings",
@@ -191,7 +204,8 @@ const materialsData = [
         unit: "Piece",
         minQty: 10,
         brand: "Jaquar, Hindware, Cera",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Electrical Cables",
@@ -199,7 +213,8 @@ const materialsData = [
         unit: "Roll",
         minQty: 10,
         brand: "Polycab, Finolex, RR Kabel",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Switches & Boards",
@@ -207,7 +222,8 @@ const materialsData = [
         unit: "Piece",
         minQty: 50,
         brand: "Anchor, GM, Legrand",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -220,7 +236,8 @@ const materialsData = [
         unit: "Bag",
         minQty: 20,
         brand: "Birla White, JK",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Paint",
@@ -228,7 +245,8 @@ const materialsData = [
         unit: "Litre",
         minQty: 10,
         brand: "Asian Paints, Berger",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Tiles",
@@ -237,7 +255,7 @@ const materialsData = [
         minQty: 100,
         brand: "Kajaria, Somany, Johnson",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Granite/Marble",
@@ -246,7 +264,7 @@ const materialsData = [
         minQty: 100,
         brand: "Rajasthani, Local",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -260,7 +278,7 @@ const materialsData = [
         minQty: 20,
         brand: "Dr. Fixit, Asian Paints",
         isFileRequired: true,
-        allowedFileTypes: ["application/pdf"]
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Admixtures",
@@ -268,7 +286,8 @@ const materialsData = [
         unit: "Litre/kg",
         minQty: 10,
         brand: "MYK Arment, Fosroc",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   },
@@ -281,7 +300,8 @@ const materialsData = [
         unit: "Piece",
         minQty: 20,
         brand: "Karam, Udyogi",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Wheel Barrows",
@@ -289,7 +309,8 @@ const materialsData = [
         unit: "Piece",
         minQty: 5,
         brand: "Local Fabricators",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       },
       {
         material: "Ladders & Scaffolds",
@@ -297,7 +318,8 @@ const materialsData = [
         unit: "Piece",
         minQty: 5,
         brand: "Local Supply",
-        isFileRequired: false
+        isFileRequired: false,
+        allowedFileTypes: ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg", "image/png", "image/gif", "image/webp"] // PDF, DOC, DOCX, JPG, PNG, GIF, WEBP
       }
     ]
   }
@@ -392,9 +414,12 @@ const ConstructionMaterialsForm: React.FC = () => {
     onSubmit
   });
 
-  const handleSubmit = (contactDetails: any) => {
+  const handleSubmit = async (contactDetails: any) => {
+    setLoading(true);
+
     const groupedMaterials: any[] = [];
     let flatIndex = 0;
+    console.log(formik.errors);
 
     for (const section of materialsData) {
       const selectedItems = [];
@@ -426,7 +451,35 @@ const ConstructionMaterialsForm: React.FC = () => {
     const data = { groupedMaterials, contactDetails }
     console.log(JSON.stringify(data, null, 2));
 
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-material-order`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const response = await res.json();
+      console.log(response);
+
+      if (response.error) {
+        showAlert("Error", response.error, "error")
+        return;
+      }
+
+      showAlert("success", 'Your material order request submitted successfully!', "success");
+    } catch (e) {
+      console.error(e);
+    }
+    finally {
+      setLoading(false);
+    }
+
   }
+
+  const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
+  const [uploadProgress, setUploadProgress] = useState<Record<number, number>>({});
 
   return (
     <>
@@ -444,31 +497,31 @@ const ConstructionMaterialsForm: React.FC = () => {
               Attica Infra Services, we specialize in delivering top-quality construction solutions at unbeatable wholesale prices. Whether you're developing residential, commercial, or industrial projects, we ensure superior craftsmanship, timely delivery, and exceptional value for your investment.
             </p>
             <ul className="space-y-3 text-justify">
-  <li className="flex items-start gap-2">
-    <span className="mt-1">
-      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
-    </span>
-    <span>Best Price Guarantee</span>
-  </li>
-  <li className="flex items-start gap-2">
-    <span className="mt-1">
-      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
-    </span>
-    <span>Trusted Wholesale Construction Partner</span>
-  </li>
-  <li className="flex items-start gap-2">
-    <span className="mt-1">
-      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
-    </span>
-    <span>Superior Quality & Reliable Service</span>
-  </li>
-  <li className="flex items-start gap-2">
-    <span className="mt-1">
-      <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
-    </span>
-    <span>Tailored Solutions for Every Project. Build with confidence.</span>
-  </li>
-</ul>
+              <li className="flex items-start gap-2">
+                <span className="mt-1">
+                  <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+                </span>
+                <span>Best Price Guarantee</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1">
+                  <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+                </span>
+                <span>Trusted Wholesale Construction Partner</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1">
+                  <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+                </span>
+                <span>Superior Quality & Reliable Service</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1">
+                  <CheckCircle className="text-green-600 w-4 h-4 sm:w-4 sm:h-4" />
+                </span>
+                <span>Tailored Solutions for Every Project. Build with confidence.</span>
+              </li>
+            </ul>
 
 
 
@@ -512,6 +565,7 @@ const ConstructionMaterialsForm: React.FC = () => {
                       <tr key={index} className="border">
                         <td className="p-2 border text-center">
                           <input
+                            className="accent-blue-600"
                             type="checkbox"
                             name={`materials[${globalIndex}].checked`}
                             checked={formItem.checked}
@@ -556,40 +610,87 @@ const ConstructionMaterialsForm: React.FC = () => {
                             className="border rounded p-1 w-full"
                           />
                         </td>
+
                         <td className="p-2 border">
                           <div className="flex flex-col">
                             <input
                               type="file"
                               name={`materials[${globalIndex}].file`}
                               accept={formItem.allowedFileTypes?.join(',')}
-                              onChange={e => {
+                              disabled={!formItem.checked}
+                              onChange={async (e) => {
                                 const file = e.currentTarget.files?.[0] || null;
                                 const allowedTypes = formItem.allowedFileTypes;
-                                if (file) {
-                                  if (allowedTypes.includes(file.type)) {
-                                    formik.setFieldValue(`materials[${globalIndex}].fileUrl`, file.name);
-                                    formik.setFieldError(`materials[${globalIndex}].fileUrl`, ""); // clear previous error
-                                  } else {
-                                    console.log("hr");
 
-                                    const errorMessage = "Invalid file type. Only PDF, Word, JPG, or PNG allowed.";
-                                    alert(errorMessage);
-                                    e.target.value = '';
+                                if (!file) return;
+                                if (!allowedTypes.includes(file.type)) {
+                                  alert("Invalid file type. Only PDF allowed.");
+                                  e.target.value = "";
+                                  formik.setFieldValue(`materials[${globalIndex}].fileUrl`, "");
+                                  return;
+                                }
+
+                                const formData = new FormData();
+                                formData.append("image", file);
+                                formData.append("folderName", "material-file-upload");
+
+                                setUploadingIndex(globalIndex);
+                                setUploadProgress(prev => ({ ...prev, [globalIndex]: 0 }));
+
+                                const xhr = new XMLHttpRequest();
+                                xhr.open("POST", `${import.meta.env.VITE_BACKEND_API_URL}/api/v1/upload/`);
+
+                                xhr.upload.onprogress = (event) => {
+                                  if (event.lengthComputable) {
+                                    const percentComplete = Math.round((event.loaded / event.total) * 100);
+                                    setUploadProgress(prev => ({ ...prev, [globalIndex]: percentComplete }));
+                                  }
+                                };
+
+                                xhr.onload = () => {
+                                  setUploadingIndex(null);
+                                  if (xhr.status === 200) {
+                                    const response = JSON.parse(xhr.responseText);
+                                    console.log(response);
+
+                                    const url = response.url || `https://mock-file.com/${file.name}`;
+                                    formik.setFieldValue(`materials[${globalIndex}].fileUrl`, url);
+                                  } else {
+                                    alert("Upload failed");
                                     formik.setFieldValue(`materials[${globalIndex}].fileUrl`, "");
                                   }
-                                }
+                                };
+
+                                xhr.onerror = () => {
+                                  setUploadingIndex(null);
+                                  alert("Upload error");
+                                  formik.setFieldValue(`materials[${globalIndex}].fileUrl`, "");
+                                };
+
+                                xhr.send(formData);
                               }}
-                              disabled={!formItem.checked}
                               className="w-full"
                             />
-                            {formItem.fileUrl && (
-                              <div className="text-sm text-gray-600 mt-1">Selected:
-                                <a href={formItem.fileUrl}>{formItem.fileUrl}</a>
+
+                            {uploadingIndex === globalIndex && (
+                              <UploadProgressBar progress={uploadProgress[globalIndex]} />
+                            )}
+
+                            {formItem.fileUrl && !uploadingIndex && (
+                              <div className="text-sm text-green-700 mt-1 truncate">
+                                <a
+                                  href={formItem.fileUrl}
+                                  className="text-blue-600 underline"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  View Uploaded File
+                                </a>
                               </div>
                             )}
                           </div>
-
                         </td>
+
                       </tr>
                     );
                   })}

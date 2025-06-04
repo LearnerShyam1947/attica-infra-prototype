@@ -1,7 +1,7 @@
 import React from 'react';
 import { Builder } from '../../../types/Builder';
 import BuilderCard from './BuilderCard';
-import Pagination from './../../ui/Pagination';
+import Pagination from '../../ui/Pagination';
 
 interface BuilderListProps {
   builders: Builder[];

@@ -456,7 +456,6 @@ const MultipleQuote = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quoteValues, setQuoteValues] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<{ type: 'error' | 'success'; value: string } | null>(null);
 
   const location = useLocation();
   const selectedBuilders = location.state?.selectedBuilders || [];
@@ -472,58 +471,65 @@ const MultipleQuote = () => {
   const handleSubmit = async (values: any) => {
     setLoading(true);
     setIsModalOpen(false);
-    
-    // const finalSections = sections.map((section) => {
-    //   const sectionData = section.fields.map((field) => ({
-    //     label: field.label,
-    //     name: field.name,
-    //     value:
-    //       field.type === 'radio'
-    //         ? quoteValues[field.name] || 'No'
-    //         : quoteValues[field.name] || field.defaultValue,
-    //   }));
-    //   return { sectionTitle: section.title, sectionData };
-    // });
 
-    // const data = {
-    //   contactDetails: values,
-    //   quoteDetails: finalSections,
-    // };
+    const finalSections = sections.map((section) => {
+      const sectionData = section.fields.map((field) => ({
+        label: field.label,
+        name: field.name,
+        value:
+          field.type === 'radio'
+            ? quoteValues[field.name] || 'No'
+            : quoteValues[field.name] || field.defaultValue,
+      }));
+      return { sectionTitle: section.title, sectionData };
+    });
 
-    // console.log(data);
+    const data = {
+      contactDetails: values,
+      quoteDetails: finalSections,
+      builders: selectedBuilders
+    };
 
-    // fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
-    //   method: 'POST',
-    //   headers: new Headers({
-    //     'Content-Type': 'application/json',
-    //   }),
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setMessage(data.error
-    //       ? { type: 'error', value: data.error + ' ' + data.errorMsg }
-    //       : { type: 'success', value: data.message });
-    //     setLoading(false);
-    //     setIsModalOpen(false);
-    //   })
-    //   .catch((e) => {
-    //     console.error(e);
-    //     setMessage({ type: 'error', value: 'Submission failed. Try again.' });
-    //     setLoading(false);
-    //     setIsModalOpen(false);
-    //   });
+    console.log(data);
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        setIsModalOpen(false);
+        if (data.error) {
+          showAlert("Error", data.error, "error");
+          return;
+        }
+        else {
+          showAlert("success", data.message, "success");
+          return;
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+        showAlert('error', 'Submission failed. Try again.', "error");
+        setLoading(false);
+        setIsModalOpen(false);
+      });
 
-    showAlert("Success", "Your Requested subitted successfully", "success");
+    // await new Promise(resolve => setTimeout(resolve, 2000));
 
-    setLoading(false);
+    // showAlert("Success", "Your Requested subitted successfully", "success");
+
   };
 
   return (
     <>
-
+      {loading && (
+        <LoadingSpinner text='submitting your quote details...' />
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-6">
@@ -612,7 +618,7 @@ const MultipleQuote = () => {
                                       value="Yes"
                                       checked={quoteValues[field.name] === 'Yes'}
                                       onChange={() => handleFieldChange(field.name, 'Yes')}
-                                      className="form-radio accent-blue h-5 w-5 text-blue-600 focus:ring-blue-500"
+                                      className="form-radio accent-blue h-5 w-5 text-blue-600 focus:ring-blue-500 accent-blue-700"
                                     />
                                     <span className="text-gray-800">Yes</span>
                                   </label>
@@ -646,11 +652,6 @@ const MultipleQuote = () => {
                 Get Detailed Estimation
               </button>
             </div>
-            {message && (
-              <div className={`mt-4 p-4 text-center rounded-lg ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                {message.value}
-              </div>
-            )}
           </div>
         </div>
         {isModalOpen && (
@@ -692,9 +693,6 @@ const MultipleQuote = () => {
                   </Form>
                 )}
               </Formik>
-              {loading && (
-                <LoadingSpinner text='submitting your quote details...' />
-              )}
             </div>
           </div>
         )}

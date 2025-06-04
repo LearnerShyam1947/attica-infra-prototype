@@ -4,13 +4,14 @@ export interface Property {
     title: string;
     type: string;
     price: string;
+    email: string;
     location: {
         city: string;
         area: string;
         pincode: string;
     };
     features: string[];
-    images: string[];
+    imageUrls: string[];
     description: string;
     phone: string;
 }

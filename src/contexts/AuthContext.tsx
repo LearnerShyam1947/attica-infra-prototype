@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { showAlert } from '../utils/Alerts';
 
 export type UserRole = 'admin' | 'builder' | 'customer';
 
@@ -13,7 +13,6 @@ interface User {
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
   logout: () => void;
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (token: string, password: string) => Promise<void>;
@@ -35,65 +34,93 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check for existing auth token
-    const token = Cookies.get('authToken');
-    if (token) {
-      // In a real app, validate token with backend
-      const savedUser = Cookies.get('user');
-      if (savedUser) {
-        setUser(JSON.parse(savedUser));
+    const checkAuth = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/auth/current`, { credentials: 'include' });
+        console.log(res);
+
+        if (!res.ok) throw new Error();
+
+        const user: User = await res.json();
+        setUser(user);
         setIsAuthenticated(true);
+      } catch {
+        setUser(null);
+        setIsAuthenticated(false);
       }
-    }
+    };
+
+    checkAuth();
   }, []);
+
 
   const login = async (email: string, password: string) => {
     try {
-      // Mock API call - replace with real API
-      const mockUser: User = {
-        id: '1',
-        email,
-        name: 'Admin User',
-        role: 'customer'
-      };
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/auth/login`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: email, password })
+      });
 
-      // Set auth token
-      Cookies.set('authToken', 'mock-token', { expires: 7 });
-      Cookies.set('user', JSON.stringify(mockUser), { expires: 7 });
+      const resp = await response.json();
+      console.log(resp);
 
-      setUser(mockUser);
-      setIsAuthenticated(true);
+      if (!response.ok) {
+        showAlert("Error", resp.error, "error");
+        throw new Error('Login failed');
+      }
+
+      // Optional: fetch user info from another endpoint
+      const userData = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/auth/current`, { credentials: 'include' });
+      const user: any = await userData.json();
+      console.log(user);
+
+      if (user.error) {
+        showAlert("Error", resp.error, "error");
+        return;
+      }
+      else {
+        showAlert("Success", "successfully logged in");
+        setUser(user);
+        setIsAuthenticated(true);
+        return;
+      }
+
     } catch (error) {
       throw new Error('Login failed');
     }
   };
 
-  const register = async (email: string, password: string, name: string, role: UserRole) => {
+  const logout = async () => {
     try {
-      // Mock API call - replace with real API
-      const mockUser: User = {
-        id: '1',
-        email,
-        name,
-        role
-      };
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/auth/logout`, {
+        method: 'POST',
+        credentials: 'include',
+      });
 
-      Cookies.set('authToken', 'mock-token', { expires: 7 });
-      Cookies.set('user', JSON.stringify(mockUser), { expires: 7 });
-
-      setUser(mockUser);
-      setIsAuthenticated(true);
-    } catch (error) {
-      throw new Error('Registration failed');
+      const resp = await response.json();
+      console.log(resp);
+      
+      if (!response.ok) {
+        showAlert("Error", resp.error, "error");
+        throw new Error('Logout failed');
+      }
+      else {
+        showAlert("Success", "Successfully logged out")
+        setUser(null);
+        setIsAuthenticated(false);
+        return;
+      }
+      
+    } catch (error: any) {
+      showAlert("Error", "Logout error : "+ error, "error");
+      console.error('Logout error:', error);
     }
   };
 
-  const logout = () => {
-    Cookies.remove('authToken');
-    Cookies.remove('user');
-    setUser(null);
-    setIsAuthenticated(false);
-  };
 
   const forgotPassword = async (email: string) => {
     try {
@@ -118,7 +145,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       value={{
         user,
         login,
-        register,
         logout,
         forgotPassword,
         resetPassword,

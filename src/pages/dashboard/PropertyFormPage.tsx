@@ -1,6 +1,6 @@
 import React from 'react';
 import { Property } from '../../types';
-import PropertyForm from '../../components/dashbord/properties/PropertyForm';
+import PropertyForm from '../../components/dashboard/properties/PropertyForm';
 import { Card, CardBody } from '../../components/ui/Card';
 
 interface PropertyFormPageProps {

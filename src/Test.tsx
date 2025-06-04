@@ -1,138 +1,16 @@
-// import ImageSlider from "./components/ui/ImageSlider";
+import React from 'react';
 
-// const sampleData = [
-//     { id: '1', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-//     { id: '2', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-//     { id: '3', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-//     { id: '4', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-//     { id: '5', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSG2sk6peNhSUfnsu7W7bHAsNlThy3zd1unYiGpKp_93C2kHQGjSbmYZmL84BTpDWanc&usqp=CAU' },
-// ];
-
-// const Test = () => (
-//     <div className="max-w-7xl mx-auto py-10">
-//         <ImageSlider title="End-to-end offerings" data={sampleData} />
-//         <ImageSlider title="Modular Kitchen Designs" data={sampleData} />
-//     </div>
-// );
-
-// export default Test;
-
-import React, { useState } from 'react';
-
-type ServiceOption = {
-  name: string;
-  description?: string;
-};
-
-const services: ServiceOption[] = [
-  { name: 'STRUCTURAL DRAWINGS' },
-  { name: 'SOIL TESTING REPORT' },
-  { name: 'SITE ASSESSMENT & SITE PLAN' },
-  { name: 'SCHEME DRAWING', description: 'All Floors (2D)' },
-  { name: 'FURNITURE LAYOUT', description: 'All Floors (2D)' },
-  { name: 'ELEVATION DESIGN', description: '3D' },
-  { name: 'ELECTRICAL DRAWINGS', description: 'All Floors (2D)' },
-  { name: 'PLUMBING DRAWING', description: 'All Floors (2D)' },
-  { name: 'WORKING DRAWING', description: 'All Floors (2D)' },
-  { name: 'ELEVATION DETAIL DRAWING', description: '2D' },
-  { name: 'HALF LAYOUT', description: 'All Floors (3D)' },
-  { name: 'INTERIOR VIEWS', description: 'All Rooms (3D)' },
-  { name: 'INTERIOR DETAILING', description: 'All Rooms (2D)' },
-  { name: 'MATERIAL & BRAND SELECTION' },
-  { name: 'LANDSCAPING ARCHITECTURE DESIGNS' },
-  { name: 'TOPOGRAPHICAL SURVEY' },
-  { name: 'APPROVAL DRAWING' },
-  { name: 'CONSTRUCTION QUOTATION' },
-  { name: 'INTERIOR QUOTATION' },
-];
-
-const ServiceForm: React.FC = () => {
-  const [formData, setFormData] = useState<{ [key: string]: string }>(
-    services.reduce((acc, service) => {
-      acc[service.name] = 'No'; // Default selection
-      return acc;
-    }, {} as { [key: string]: string })
-  );
-
-  const handleChange = (serviceName: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [serviceName]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Selected Services:', formData);
-    // You can route to next page or call an API here
-    alert('Request submitted!');
-  };
-
+const AnimatedLogo: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">Service Selection Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 text-sm mb-6">
-            <thead>
-              <tr className="bg-gray-100 text-left">
-                <th className="p-3 border border-gray-300">Service/Category</th>
-                <th className="p-3 border border-gray-300">Description</th>
-                <th className="p-3 border border-gray-300 text-center">Option</th>
-              </tr>
-            </thead>
-            <tbody>
-              {services.map(service => (
-                <tr key={service.name} className="hover:bg-gray-50">
-                  <td className="p-3 border border-gray-300 font-medium text-gray-700">
-                    {service.name}
-                  </td>
-                  <td className="p-3 border border-gray-300 text-gray-600">
-                    {service.description || '-'}
-                  </td>
-                  <td className="p-3 border border-gray-300 text-center">
-                    <div className="flex items-center justify-center gap-4">
-                      <label className="flex items-center gap-1">
-                        <input
-                          type="radio"
-                          name={service.name}
-                          value="Yes"
-                          checked={formData[service.name] === 'Yes'}
-                          onChange={() => handleChange(service.name, 'Yes')}
-                          className="accent-blue-600"
-                        />
-                        <span className="text-sm text-gray-700">Yes</span>
-                      </label>
-                      <label className="flex items-center gap-1">
-                        <input
-                          type="radio"
-                          name={service.name}
-                          value="No"
-                          checked={formData[service.name] === 'No'}
-                          onChange={() => handleChange(service.name, 'No')}
-                          className="accent-red-500"
-                        />
-                        <span className="text-sm text-gray-700">No</span>
-                      </label>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="text-right">
-          <button
-            type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow"
-          >
-            Proceed to Request
-          </button>
-        </div>
-      </form>
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 C4.95852731 4.82018686 8.83711569 10.46048071 12.5625 16.25 C17.65555657 24.03105865 22.92154638 31.6736918 28.27954102 39.27441406 C31.24350588 43.48111084 34.17108845 47.70116383 37 52 C36.505 52.99 36.505 52.99 36 54 C15.87 54 -4.26 54 -25 54 C-20.25324931 42.13312328 -20.25324931 42.13312328 -15 38 C-8.42856139 36.3790349 -0.36120812 36.87959729 6 39 C4.39726826 36.58237088 2.79287303 34.1658743 1.1875 31.75 C0.73568359 31.06808594 0.28386719 30.38617188 -0.18164062 29.68359375 C-2.37331959 26.38807647 -4.57249788 23.12913895 -7 20 C-13.50830728 28.80158878 -19.9220217 37.66051566 -26.20214844 46.62670898 C-26.9257959 47.6584021 -26.9257959 47.6584021 -27.6640625 48.7109375 C-28.09154785 49.32243652 -28.5190332 49.93393555 -28.95947266 50.56396484 C-30 52 -30 52 -31 53 C-32.48638992 53.15655027 -33.97949127 53.25066943 -35.47265625 53.31640625 C-36.37177734 53.35830078 -37.27089844 53.40019531 -38.19726562 53.44335938 C-39.14279297 53.48267578 -40.08832031 53.52199219 -41.0625 53.5625 C-42.01189453 53.60568359 -42.96128906 53.64886719 -43.93945312 53.69335938 C-46.29281353 53.79979276 -48.64628354 53.90181008 -51 54 C-50.3772503 50.72367524 -49.2203031 48.57702043 -47.296875 45.8671875 C-46.73500488 45.06982178 -46.17313477 44.27245605 -45.59423828 43.45092773 C-44.98563965 42.60087158 -44.37704102 41.75081543 -43.75 40.875 C-43.12464355 39.99207275 -42.49928711 39.10914551 -41.85498047 38.19946289 C-39.91109528 35.46066314 -37.95746349 32.72910842 -36 30 C-35.40413086 29.16871582 -34.80826172 28.33743164 -34.19433594 27.48095703 C-31.44482759 23.65100808 -28.6830022 19.83082698 -25.90234375 16.0234375 C-24.10960706 13.561544 -22.3680932 11.08130461 -20.69140625 8.5390625 C-15.40094621 0.68071835 -15.40094621 0.68071835 -10.9375 -1.3125 C-6.30002947 -2.12221708 -4.23516405 -2.07908054 0 0 Z" fill="#2B4E93" transform="translate(119,93)" className="animate-pulse" />
+        <path d="M0 0 C5.09314826 4.90158685 9.09305331 10.7705309 13 16.625 C14.1208182 18.28664423 15.24192459 19.9480941 16.36328125 21.609375 C16.94803223 22.47884766 17.5327832 23.34832031 18.13525391 24.24414062 C20.10788805 27.15944492 22.10389068 30.05762459 24.10546875 32.953125 C24.78544922 33.93974121 25.46542969 34.92635742 26.16601562 35.94287109 C27.49095236 37.86466943 28.81896997 39.78434818 30.15039062 41.70166016 C31.0562793 43.02109619 31.0562793 43.02109619 31.98046875 44.3671875 C32.51567139 45.14175293 33.05087402 45.91631836 33.60229492 46.71435547 C35 49 35 49 37 54 C16.54 54 -3.92 54 -25 54 C-20.19665272 41.9916318 -20.19665272 41.9916318 -15 38 C-8.89462464 36.57211904 0.27583761 36.1379188 6 39 C4.05283819 35.99260813 2.09048016 32.99544574 0.125 30 C-0.70837891 28.71222656 -0.70837891 28.71222656 -1.55859375 27.3984375 C-2.09355469 26.58632812 -2.62851562 25.77421875 -3.1796875 24.9375 C-3.67194824 24.18339844 -4.16420898 23.42929688 -4.67138672 22.65234375 C-5.1098291 22.10707031 -5.54827148 21.56179687 -6 21 C-6.66 21 -7.32 21 -8 21 C-9.7295828 23.32136246 -11.34485404 25.64922428 -12.9375 28.0625 C-13.92116662 29.52479192 -14.90690168 30.98569422 -15.89453125 32.4453125 C-16.40322754 33.1971582 -16.91192383 33.94900391 -17.43603516 34.72363281 C-19.92639267 38.34837421 -22.51702438 41.89683644 -25.125 45.4375 C-25.59800537 46.08146729 -26.07101074 46.72543457 -26.55834961 47.38891602 C-29.85231495 51.85231495 -29.85231495 51.85231495 -31 53 C-32.48638992 53.15655027 -33.97949127 53.25066943 -35.47265625 53.31640625 C-36.37177734 53.35830078 -37.27089844 53.40019531 -38.19726562 53.44335938 C-39.14279297 53.48267578 -40.08832031 53.52199219 -41.0625 53.5625 C-42.01189453 53.60568359 -42.96128906 53.64886719 -43.93945312 53.69335938 C-46.29281353 53.79979276 -48.64628354 53.90181008 -51 54 C-49.7473218 50.60763799 -48.32892465 47.78378804 -46.234375 44.83984375 C-45.68088379 44.05585205 -45.12739258 43.27186035 -44.55712891 42.46411133 C-43.96077637 41.63032959 -43.36442383 40.79654785 -42.75 39.9375 C-41.48141677 38.14868854 -40.21319831 36.35961835 -38.9453125 34.5703125 C-38.29336914 33.65282227 -37.64142578 32.73533203 -36.96972656 31.79003906 C-35.04092265 29.05796531 -33.13729754 26.31021534 -31.2421875 23.5546875 C-30.63536133 22.67562744 -30.02853516 21.79656738 -29.40332031 20.89086914 C-28.2552395 19.22627805 -27.11106789 17.55898081 -25.97167969 15.88842773 C-16.1711503 1.74736853 -16.1711503 1.74736853 -9.9375 -1.6875 C-5.90560195 -2.11642532 -3.71855949 -1.69618503 0 0 Z" fill="#2B4E93" transform="translate(426,93)" className="animate-pulse" />
+        <path d="M0 0 C1.04590805 0.00222061 2.0918161 0.00444122 3.16941833 0.00672913 C4.35056717 0.00680466 5.531716 0.00688019 6.74865723 0.00695801 C8.03404892 0.01211929 9.31944061 0.01728058 10.64378357 0.02259827 C12.60601112 0.02472069 12.60601112 0.02472069 14.60787964 0.02688599 C18.09150591 0.03071042 21.57509071 0.04054005 25.05870056 0.05158997 C28.6111444 0.06180569 32.16359491 0.06638395 35.71604919 0.07142639 C42.69067564 0.0821624 49.66527449 0.09923792 56.63987732 0.12025452 C55.79821129 4.0749753 54.11252546 6.54337666 51.70237732 9.80775452 C50.99210388 10.7809967 50.28183044 11.75423889 49.55003357 12.75697327 C47.63987732 15.12025452 47.63987732 15.12025452 45.63987732 16.12025452 C40.02987732 16.12025452 34.41987732 16.12025452 28.63987732 16.12025452 C28.63987732 28.66025452 28.63987732 41.20025452 28.63987732 54.12025452 C22.69987732 54.12025452 16.75987732 54.12025452 10.63987732 54.12025452 C10.30987732 41.58025452 9.97987732 29.04025452 9.63987732 16.12025452 C2.04987732 16.12025452 -5.54012268 16.12025452 -13.36012268 16.12025452 C-12.25211422 11.68822065 -10.77391432 9.88596644 -7.86012268 6.43275452 C-7.04543518 5.45951233 -6.23074768 4.48627014 -5.39137268 3.48353577 C-2.50705323 0.12774102 -2.50705323 0.12774102 0 0 Z" fill="#335092" transform="translate(165.36012268066406,91.87974548339844)" className="animate-fade" />
+        <path d="M0 0 C8.58 0 17.16 0 26 0 C26 1.98 26 3.96 26 6 C20.06 6 14.12 6 8 6 C8 8.31 8 10.62 8 13 C13.61 13 19.22 13 25 13 C25 15.31 25 17.62 25 20 C19.39 20 13.78 20 8 20 C8 22.64 8 25.28 8 28 C14.27 28 20.54 28 27 28 C27 30.31 27 32.62 27 35 C18.09 35 9.18 35 0 35 C0 23.45 0 11.9 0 0 Z" fill="#825DAA" transform="translate(260,159)" className="animate-rotate" />
+      </svg>
     </div>
   );
 };
 
-export default ServiceForm;
+export default AnimatedLogo;

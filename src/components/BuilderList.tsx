@@ -11,11 +11,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 interface Builder {
   id: string;
   name: string;
-  images: string[]; // updated
+  images: string[];
   description: string;
   experience: string;
   phone: string;
   city: string;
+  email?: string;
   area: string;
   pincode: string;
 }
@@ -82,31 +83,36 @@ const builders: Builder[] = [
 
 const BuilderList = () => {
   const navigate = useNavigate();
-  const [selectedBuilders, setSelectedBuilders] = useState<string[]>([]);
+  const [selectedBuilders, setSelectedBuilders] = useState<Builder[]>([]);
   const [searchCity, setSearchCity] = useState('');
   const [searchArea, setSearchArea] = useState('');
   const [searchPincode, setSearchPincode] = useState('');
 
-  const handleBuilderSelect = (builderId: string) => {
-    setSelectedBuilders(prev =>
-      prev.includes(builderId)
-        ? prev.filter(id => id !== builderId)
-        : [...prev, builderId]
-    );
+  const handleBuilderSelect = (builder: Builder) => {
+    setSelectedBuilders(prev => {
+      const alreadySelected = prev.find(b => b.id === builder.id);
+      if (alreadySelected) {
+        return prev.filter(b => b.id !== builder.id);
+      } else {
+        return [...prev, builder];
+      }
+    });
   };
-
+  
   const handleContinue = () => {
     navigate('/multiple-quote', { state: { selectedBuilders } });
   };
+  
+  const handleGetQuote = (builder: Builder) => {
+    setSelectedBuilders([builder]);
+    navigate('/multiple-quote', { state: { selectedBuilders: [builder] } });
+  };
+  
 
   const handleCall = (phone: string) => {
     window.location.href = `tel:${phone}`;
   };
 
-  const handleGetQuote = (builderId: string) => {
-    setSelectedBuilders([builderId]);
-    navigate('/multiple-quote', { state: { selectedBuilders: [builderId] } });
-  };
 
   const filteredBuilders = builders.filter(builder => {
     const cityMatch = builder.city.toLowerCase().includes(searchCity.toLowerCase());
@@ -172,7 +178,7 @@ const BuilderList = () => {
           {filteredBuilders.map(builder => (
             <div
               key={builder.id}
-              className={`bg-white rounded-lg shadow-md p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 cursor-pointer transition-all duration-200 ${selectedBuilders.includes(builder.id) ? 'ring-2 ring-blue-500' : ''
+              className={`bg-white rounded-lg shadow-md p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 cursor-pointer transition-all duration-200 ${selectedBuilders.includes(builder) ? 'ring-2 ring-blue-500' : ''
                 }`}
               
             >
@@ -221,7 +227,7 @@ const BuilderList = () => {
 
               {/* Builder Details */}
               <div 
-              onClick={() => handleBuilderSelect(builder.id)}
+              onClick={() => handleBuilderSelect(builder)}
               className="flex-grow flex flex-col justify-between">
                 <div className="flex flex-col sm:flex-row justify-between gap-2">
                   <div>
@@ -260,7 +266,7 @@ const BuilderList = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleGetQuote(builder.id);
+                      handleGetQuote(builder);
                     }}
                     className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300"
                   >
@@ -268,13 +274,14 @@ const BuilderList = () => {
                   </button>
                 </div>
               </div>
+
               {/* Checkmark Indicator */}
-              <div className="flex items-start sm:items-center mt-4 sm:mt-0">
-                <div className={`w-6 h-6 border-2 rounded ${selectedBuilders.includes(builder.id)
+              <div onClick={() => {handleBuilderSelect(builder)}} className="flex items-start sm:items-center mt-4 sm:mt-0">
+                <div className={`w-6 h-6 border-2 rounded ${selectedBuilders.includes(builder)
                   ? 'border-blue-500 bg-blue-500'
                   : 'border-gray-300'
                   }`}>
-                  {selectedBuilders.includes(builder.id) && (
+                  {selectedBuilders.includes(builder) && (
                     <svg className="w-5 h-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                       <path
                         fillRule="evenodd"

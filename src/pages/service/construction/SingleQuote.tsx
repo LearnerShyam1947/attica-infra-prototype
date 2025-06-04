@@ -456,7 +456,6 @@ const SingleQuote = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quoteValues, setQuoteValues] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<{ type: 'error' | 'success'; value: string } | null>(null);
 
   const handleFieldChange = (name: string, value: string) => {
     setQuoteValues((prev) => ({
@@ -467,51 +466,56 @@ const SingleQuote = () => {
 
   const handleSubmit = async (values: any) => {
     setLoading(true);
-    // const finalSections = sections.map((section) => {
-    //   const sectionData = section.fields.map((field) => ({
-    //     label: field.label,
-    //     name: field.name,
-    //     value:
-    //       field.type === 'radio'
-    //         ? quoteValues[field.name] || 'No'
-    //         : quoteValues[field.name] || field.defaultValue,
-    //   }));
-    //   return { sectionTitle: section.title, sectionData };
-    // });
+    const finalSections = sections.map((section) => {
+      const sectionData = section.fields.map((field) => ({
+        label: field.label,
+        name: field.name,
+        value:
+          field.type === 'radio'
+            ? quoteValues[field.name] || 'No'
+            : quoteValues[field.name] || field.defaultValue,
+      }));
+      return { sectionTitle: section.title, sectionData };
+    });
 
-    // const data = {
-    //   contactDetails: values,
-    //   quoteDetails: finalSections,
-    // };
+    const data = {
+      contactDetails: values,
+      quoteDetails: finalSections,
+    };
 
-    // console.log(data);
+    console.log(data);
 
-    // fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
-    //   method: 'POST',
-    //   headers: new Headers({
-    //     'Content-Type': 'application/json',
-    //   }),
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setMessage(data.error
-    //       ? { type: 'error', value: data.error + ' ' + data.errorMsg }
-    //       : { type: 'success', value: data.message });
-    //     setLoading(false);
-    //     setIsModalOpen(false);
-    //   })
-    //   .catch((e) => {
-    //     console.error(e);
-    //     setMessage({ type: 'error', value: 'Submission failed. Try again.' });
-    //     setLoading(false);
-    //     setIsModalOpen(false);
-    //   });
+    fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-quote`, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        setIsModalOpen(false);
+        if (data.error) {
+          showAlert("Error", data.error, "error");
+          return;
+        }
+        else {
+          showAlert("success", data.message, "success");
+          return;
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+        showAlert('error', 'Submission failed. Try again.', "error");
+        setLoading(false);
+        setIsModalOpen(false);
+      });
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    showAlert("Success", "Your Requested subitted successfully", "success");
-    setIsModalOpen(false);
-    setLoading(false);
+    // await new Promise(resolve => setTimeout(resolve, 2000));
+    // showAlert("Success", "Your Requested subitted successfully", "success");
+    // setIsModalOpen(false);
+    // setLoading(false);
   };
 
   return (
@@ -604,7 +608,7 @@ const SingleQuote = () => {
                                       value="Yes"
                                       checked={quoteValues[field.name] === 'Yes'}
                                       onChange={() => handleFieldChange(field.name, 'Yes')}
-                                      className="form-radio accent-blue h-5 w-5 text-blue-600 focus:ring-blue-500"
+                                      className="form-radio accent-blue h-5 w-5 text-blue-600 focus:ring-blue-500 accent-blue-700"
                                     />
                                     <span className="text-gray-800">Yes</span>
                                   </label>
@@ -638,11 +642,6 @@ const SingleQuote = () => {
                 Get Detailed Estimation
               </button>
             </div>
-            {message && (
-              <div className={`mt-4 p-4 text-center rounded-lg ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                {message.value}
-              </div>
-            )}
           </div>
         </div>
         {isModalOpen && (

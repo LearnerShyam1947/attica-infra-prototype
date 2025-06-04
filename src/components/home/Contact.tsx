@@ -73,10 +73,12 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-blue-600" />
                   <span>atticainfra@gmail.com</span>
                 </div>
-                <div className="flex items-center space-x-4">
+                
+                {/* <div className="flex items-center space-x-4">
                   <MapPin className="w-6 h-6 text-blue-600" />
                   <span>G05, Silver stone, 5th cross, chinnapanalli, Bangalore, 560037</span>
-                </div>
+                </div> */}
+
                 {/* <div className="flex items-center space-x-4">
                   <Clock className="w-6 h-6 text-blue-600" />
                   <span>Mon-Sat: 10:00 AM - 7:00 PM</span>

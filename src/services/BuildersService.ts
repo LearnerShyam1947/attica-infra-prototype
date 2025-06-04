@@ -1,6 +1,6 @@
 import { showAlert } from "../utils/Alerts";
 
-export const addbuilder = async (data: any) => {
+export const addBuilder = async (data: any) => {
     try {
         const resp = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/Builders/`, {
             method: "POST",
@@ -48,6 +48,28 @@ export const fetchBuilders = async () => {
         return { success: true, builders: result.builders };
     } catch (error: any) {
         showAlert("Error", "Failed to add the builder details: " + error.message, "error");
+        return { success: false, error: error.message };
+    }
+};
+
+export const deleteBuilder = async (id: any) => {
+    try {
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/builders/${id}`, {
+            method: "DELETE"
+        });
+
+        const result = await resp.json();
+
+        if (!resp.ok) {
+            const errorMessage = result.error || "Unknown error occurred.";
+            showAlert("error", "Failed to delete builder details: " + errorMessage, "error");
+            return { success: false, error: errorMessage };
+        }
+
+        showAlert("Success", result.message, "success");
+        return { success: true };
+    } catch (error: any) {
+        showAlert("Error", "Failed to delete the builder details: " + error.message, "error");
         return { success: false, error: error.message };
     }
 };

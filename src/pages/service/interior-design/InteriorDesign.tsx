@@ -13,13 +13,39 @@ const InteriorDesign: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (values: any) => {
-    console.log(values);
-
+  const handleSubmit = async (contactDetails: any) => {
+    console.log(contactDetails);
     setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setLoading(false);
-    showAlert("Success", "Your details submitted successfully. Your experts will contact you.")
+
+    // await new Promise(resolve => setTimeout(resolve, 2000));
+    // setLoading(false);
+    // showAlert("Success", "Your details submitted successfully. Your experts will contact you.")
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-contact-details`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactDetails),
+      });
+
+      const response = await res.json();
+      console.log(response);
+
+      if (response.error) {
+        showAlert("Error", response.error, "error")
+        return;
+      }
+      showAlert("success", 'Your Design Consultation request submitted successfully!', "success");
+    } catch (e: any) {
+      console.error(e);
+      showAlert("Error", e.message || String(e), "error");
+    }
+    
+    finally {
+      setLoading(false);
+    }
   }
   const endToEnd = [
     { id: '1', imageUrl: './interior-design/end-to-end/1.jpg' },
@@ -155,7 +181,7 @@ const InteriorDesign: React.FC = () => {
 
             <ul className="space-y-3 mb-4 text-justify">
               <li className="grid grid-cols-[auto_1fr] gap-2 items-start">
-                <CheckCircle size={20}  className="text-green-600" />
+                <CheckCircle size={20} className="text-green-600" />
                 <span>Save costs through optimized material and space planning</span>
               </li>
 
@@ -165,7 +191,7 @@ const InteriorDesign: React.FC = () => {
               </li>
 
               <li className="grid grid-cols-[auto_1fr] gap-2 items-start">
-                <CheckCircle size={20}  className="text-green-600" />
+                <CheckCircle size={20} className="text-green-600" />
                 <span>Prevent rework by aligning design with structural elements from day one</span>
               </li>
             </ul>
@@ -227,6 +253,7 @@ const InteriorDesign: React.FC = () => {
           onSubmit={handleSubmit}
           title='Enter your contact details'
           buttonText='submit details'
+          initialContext={{ 'from': 'Interior design Request' }}
         />
         <HowItWorksUI
           steps={steps}

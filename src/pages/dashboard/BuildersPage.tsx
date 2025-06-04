@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BuilderList from './../../components/dashbord/builders/BuilderList';
+import BuilderList from '../../components/dashboard/builders/BuilderList';
 import Button from '../../components/ui/Button';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import { Plus } from 'lucide-react';

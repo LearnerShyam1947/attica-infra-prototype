@@ -1,6 +1,6 @@
 import React from 'react';
 import { Builder } from '../../types';
-import BuilderForm from './../../components/dashbord/builders/BuilderForm';
+import BuilderForm from '../../components/dashboard/builders/BuilderForm';
 import { Card, CardBody } from '../../components/ui/Card';
 
 interface BuilderFormPageProps {

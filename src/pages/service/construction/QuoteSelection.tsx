@@ -1,11 +1,17 @@
 import { ArrowRightCircle, UserPlus, Users } from 'lucide-react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const QuoteSelection = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+
   return (
-    <>
+    <div className='scroll-container'>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-16">
 
@@ -126,7 +132,7 @@ const QuoteSelection = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

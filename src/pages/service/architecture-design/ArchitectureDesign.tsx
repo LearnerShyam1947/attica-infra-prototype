@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import LetsConnect from '../../../components/ui/LetsConnect';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 import { showAlert } from '../../../utils/Alerts';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, FileText, Handshake, Users } from 'lucide-react';
+import HowItWorksUI from '../../../components/ui/HowItWorks';
 
 type ServiceOption = {
   name: string;
@@ -29,6 +30,30 @@ const services: ServiceOption[] = [
   { name: 'APPROVAL DRAWING' },
   { name: 'CONSTRUCTION QUOTATION' },
   { name: 'INTERIOR QUOTATION' },
+];
+
+const steps = [
+  {
+    icon: <FileText className="w-5 h-5" />,
+    number: 1,
+    title: 'Request a Quote',
+    description: 'Submit your construction requirements through our platform.',
+    image: './how-it-works/home/1.webp',
+  },
+  {
+    icon: <Users className="w-5 h-5" />,
+    number: 2,
+    title: 'Consult with Experts',
+    description: 'Talk to our professionals about your project details.',
+    image: './how-it-works/home/2.jpg',
+  },
+  {
+    icon: <Handshake className="w-5 h-5" />,
+    number: 3,
+    title: 'Get Your Sample Design and Quotation',
+    description: 'Talk to our professionals about your project details.',
+    image: './how-it-works/home/2.jpg',
+  },
 ];
 
 type FormDataEntry = {
@@ -65,47 +90,47 @@ const ArchitectureDesign: React.FC = () => {
     console.log('Contact Info:', values);
     console.log('Selected Services:', formData);
 
-    // const data = {
-    //   contactDetails: values,
-    //   mainData: formData,
-    // };
+    const data = {
+      contactDetails: values,
+      mainData: formData,
+    };
 
-    // try {
-    //   const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-architecture-design`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit-architecture-design`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    //   const response = await res.json();
-    //   console.log(response);
+      const response = await res.json();
+      console.log(response);
 
-    //   if (response.error) {
-    //     showAlert("Error", response.error, "error")
-    //     return;
-    //   }
+      if (response.error) {
+        showAlert("Error", response.error, "error")
+        return;
+      }
 
-    //   showAlert("success", 'design request submitted!', "success");
-    // } catch (e) {
-    //   console.error(e);
-    // }
-    // finally {
-    //   setLoading(false);
-    //   setFormData(
-    //     services.map(service => ({
-    //       name: service.name,
-    //       description: service.description || '',
-    //       option: 'No',
-    //     }))
-    //   );
+      showAlert("success", 'Your design request submitted successfully!', "success");
+    } catch (e) {
+      console.error(e);
+    }
+    finally {
+      setLoading(false);
+      setFormData(
+        services.map(service => ({
+          name: service.name,
+          description: service.description || '',
+          option: 'No',
+        }))
+      );
 
-    // }
+    }
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    showAlert("success", 'design request submitted!', "success");
-    setLoading(false);
+    // await new Promise(resolve => setTimeout(resolve, 2000));
+    // showAlert("success", 'design request submitted!', "success");
+    // setLoading(false);
   };
 
   return (
@@ -120,7 +145,7 @@ const ArchitectureDesign: React.FC = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4 text-left">
               Our Architectural Design Services: Creativity Meets Practicality
             </h2>
-            
+
             <ul>
               <li className="flex items-start pb-5">
                 <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
@@ -176,6 +201,7 @@ const ArchitectureDesign: React.FC = () => {
                           <label className="inline-flex items-center cursor-pointer">
                             <input
                               type="checkbox"
+                              style={{ cursor: "pointer" }}
                               className="form-checkbox h-5 w-5 text-blue-600 accent-blue-600"
                               checked={service.option === 'Yes'}
                               onChange={(e) =>
@@ -202,14 +228,10 @@ const ArchitectureDesign: React.FC = () => {
           </form>
         </div>
 
-        <div className="font-bold text-center text-3xl pb-3">How We Work</div>
-        <li className="flex items-start">
-              <CheckCircle className="min-w-[17px] min-h-[17px] w-5 h-5 text-green-600 mt-1 mr-2" />
-              <p className="text-xl text-justify pb-10">We'll receive your email and get back to you with a detailed quotation and samples.</p>
-            </li>
-       
+
 
       </div>
+      <HowItWorksUI steps={steps} />
 
 
 

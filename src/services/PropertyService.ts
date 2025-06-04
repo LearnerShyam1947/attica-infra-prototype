@@ -34,8 +34,6 @@ export const fetchProperties = async () => {
     try {
         const resp = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/properties/`);
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
         const result = await resp.json();
 
         if (!resp.ok) {
@@ -47,7 +45,29 @@ export const fetchProperties = async () => {
         showAlert("Success", result.message, "success");
         return { success: true, properties: result.properties };
     } catch (error: any) {
-        showAlert("Error", "Failed to add the property details: " + error.message, "error");
+        showAlert("Error", "Failed to fetch the property details: " + error.message, "error");
+        return { success: false, error: error.message };
+    }
+};
+
+export const deleteProperty = async (id: any) => {
+    try {
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/v1/properties/${id}`, {
+            method: "DELETE"
+        });
+
+        const result = await resp.json();
+
+        if (!resp.ok) {
+            const errorMessage = result.error || "Unknown error occurred.";
+            showAlert("error", "Failed to delete property details: " + errorMessage, "error");
+            return { success: false, error: errorMessage };
+        }
+
+        showAlert("Success", result.message, "success");
+        return { success: true };
+    } catch (error: any) {
+        showAlert("Error", "Failed to delete the property details: " + error.message, "error");
         return { success: false, error: error.message };
     }
 };

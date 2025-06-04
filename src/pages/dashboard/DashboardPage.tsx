@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Property } from '../../types/Proerty';
-import DashboardOverview from '../../components/dashbord/Dashboard';
-import PropertyList from '../../components/dashbord/properties/PropertyList';
+import DashboardOverview from '../../components/dashboard/Dashboard';
+import PropertyList from '../../components/dashboard/properties/PropertyList';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card';
 import { getDashboardStats } from '../../data/mockData';
 import { fetchProperties } from '../../services/PropertyService';

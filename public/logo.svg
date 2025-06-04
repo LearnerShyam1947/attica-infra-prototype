@@ -1,0 +1,283 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="795.000000pt" height="220.000000pt" viewBox="0 0 795.000000 220.000000" preserveAspectRatio="xMidYMid meet">
+
+<defs>
+  <!-- Gradient for modern look -->
+  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1"></stop>
+    <stop offset="50%" style="stop-color:#1d4ed8;stop-opacity:1"></stop>
+    <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1"></stop>
+  </linearGradient>
+  
+  <!-- Enhanced glow filter -->
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="4" result="coloredBlur"></feGaussianBlur>
+    <feMerge> 
+      <feMergeNode in="coloredBlur"></feMergeNode>
+      <feMergeNode in="SourceGraphic"></feMergeNode>
+    </feMerge>
+  </filter>
+  
+  <!-- Intense glow for final effect -->
+  <filter id="finalGlow" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="8" result="coloredBlur1"></feGaussianBlur>
+    <feGaussianBlur stdDeviation="15" result="coloredBlur2"></feGaussianBlur>
+    <feGaussianBlur stdDeviation="25" result="coloredBlur3"></feGaussianBlur>
+    <feMerge> 
+      <feMergeNode in="coloredBlur3"></feMergeNode>
+      <feMergeNode in="coloredBlur2"></feMergeNode>
+      <feMergeNode in="coloredBlur1"></feMergeNode>
+      <feMergeNode in="SourceGraphic"></feMergeNode>
+    </feMerge>
+  </filter>
+</defs>
+
+<!-- Main logo group with rotation animation -->
+<g transform="translate(0.000000,220.000000) scale(0.100000,-0.100000)" fill="url(#logoGradient)" stroke="url(#logoGradient)" stroke-width="8" filter="url(#glow)">
+  <animateTransform
+    attributeName="transform"
+    type="rotate"
+    from="0 3975 1100"
+    to="360 3975 1100"
+    dur="4s"
+    repeatCount="indefinite"
+  />
+
+  <!-- First Y letter with drawing and scale effect -->
+  <path d="M861 2024 c-63 -32 -48 -12 -454 -592 l-297 -422 187 2 187 3 234
+330 c128 182 237 331 241 333 4 1 29 -30 56 -70 26 -40 88 -130 136 -200 49
+-70 89 -130 89 -133 0 -3 -98 -5 -217 -6 l-218 0 -88 -125 c-49 -69 -87 -127
+-85 -130 3 -2 266 -3 586 -2 l582 3 -126 185 c-293 429 -499 728 -527 764 -66
+83 -187 109 -286 60z" stroke-dasharray="1500" stroke-dashoffset="1500" fill-opacity="0">
+    <animate attributeName="stroke-dashoffset" values="1500;0" dur="1s" begin="0s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.2s" begin="1s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.4s" begin="1s" fill="freeze"></animate>
+  </path>
+
+  <!-- Second Y letter with drawing and scale effect -->
+  <path d="M6862 2024 c-28 -14 -64 -42 -80 -62 -59 -76 -662 -938 -662 -946 0
+-3 83 -6 184 -6 138 0 185 3 189 13 8 20 458 652 466 655 7 2 281 -390 281
+-402 0 -3 -98 -7 -217 -8 l-217 -3 -89 -124 c-48 -67 -86 -125 -84 -127 2 -2
+265 -3 585 -2 l582 3 -198 290 c-484 710 -481 707 -561 734 -57 19 -122 13
+-179 -15z" stroke-dasharray="1500" stroke-dashoffset="1500" fill-opacity="0">
+    <animate attributeName="stroke-dashoffset" values="1500;0" dur="1s" begin="0.2s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.2s" begin="1.2s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.4s" begin="1.2s" fill="freeze"></animate>
+  </path>
+
+  <!-- First T letter with drawing and scale effect -->
+  <path d="M1848 1902 l-97 -127 233 -3 233 -2 8 -380 7 -380 154 0 154 0 0 380
+0 380 184 0 184 0 88 117 c49 65 93 123 97 130 6 11 -102 13 -570 13 l-578 -1
+-97 -127z" stroke-dasharray="1200" stroke-dashoffset="1200" fill-opacity="0">
+    <animate attributeName="stroke-dashoffset" values="1200;0" dur="0.8s" begin="0.4s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.2s" begin="1.2s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.4s" begin="1.2s" fill="freeze"></animate>
+  </path>
+
+  <!-- Second T letter with drawing and scale effect -->
+  <path d="M3136 1903 l-98 -128 236 -3 236 -2 0 -380 0 -380 160 0 160 0 0 380
+0 380 183 0 182 0 98 130 98 130 -579 0 -579 0 -97 -127z" stroke-dasharray="1200" stroke-dashoffset="1200" fill-opacity="0">
+    <animate attributeName="stroke-dashoffset" values="1200;0" dur="0.8s" begin="0.6s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.2s" begin="1.4s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.4s" begin="1.4s" fill="freeze"></animate>
+  </path>
+
+  <!-- I letter with drawing and scale effect -->
+  <path d="M4420 1520 l0 -510 154 0 153 0 8 354 c4 195 4 425 0 510 l-7 156
+-154 0 -154 0 0 -510z" stroke-dasharray="800" stroke-dashoffset="800" fill-opacity="0">
+    <animate attributeName="stroke-dashoffset" values="800;0" dur="0.6s" begin="0.8s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.2s" begin="1.4s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.4s" begin="1.4s" fill="freeze"></animate>
+  </path>
+
+  <!-- C letter with drawing and scale effect -->
+  <path d="M5242 2011 c-258 -64 -414 -244 -414 -478 0 -261 204 -471 497 -513
+49 -7 186 -10 354 -8 l275 3 97 125 98 125 -397 5 c-454 6 -460 7 -542 89
+-135 135 -57 358 140 400 29 6 169 11 328 12 l277 0 93 123 c50 68 92 126 92
+129 0 4 -186 7 -412 6 -361 0 -422 -3 -486 -18z" stroke-dasharray="1300" stroke-dashoffset="1300" fill-opacity="0">
+    <animate attributeName="stroke-dashoffset" values="1300;0" dur="0.9s" begin="1s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.2s" begin="1.9s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.4s" begin="1.9s" fill="freeze"></animate>
+  </path>
+
+  <!-- Tagline letters with faster drawing and scale effect -->
+  <path d="M140 415 l0 -325 65 0 65 0 0 325 0 325 -65 0 -65 0 0 -325z" stroke-dasharray="400" stroke-dashoffset="400" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="400;0" dur="0.3s" begin="2s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="2.3s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="2.3s" fill="freeze"></animate>
+  </path>
+
+  <path d="M410 415 l0 -325 60 0 60 0 2 213 3 212 130 -212 130 -212 68 -1 67
+0 0 325 0 325 -60 0 -60 0 -2 -217 -3 -216 -130 214 -131 214 -67 3 -67 3 0
+-326z" stroke-dasharray="600" stroke-dashoffset="600" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="600;0" dur="0.3s" begin="2.1s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="2.4s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="2.4s" fill="freeze"></animate>
+  </path>
+
+  <path d="M1080 415 l0 -325 65 0 65 0 0 140 0 140 135 0 135 0 0 55 0 55 -135
+0 -135 0 0 80 0 80 160 0 160 0 0 50 0 50 -225 0 -225 0 0 -325z" stroke-dasharray="500" stroke-dashoffset="500" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="500;0" dur="0.3s" begin="2.2s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="2.5s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="2.5s" fill="freeze"></animate>
+  </path>
+
+  <path d="M1650 415 l0 -325 65 0 65 0 0 141 0 140 48 -6 c26 -4 56 -13 67 -20
+12 -7 57 -67 100 -134 l80 -121 78 0 79 0 -23 38 c-70 115 -133 204 -159 222
+-35 25 -32 35 8 43 39 8 92 53 108 94 36 85 1 192 -76 231 -41 21 -57 22 -242
+22 l-198 0 0 -325z m377 191 c20 -24 24 -36 19 -65 -9 -61 -32 -71 -157 -71
+l-109 0 0 86 0 86 111 -4 c108 -3 111 -4 136 -32z" stroke-dasharray="700" stroke-dashoffset="700" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="700;0" dur="0.3s" begin="2.3s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="2.6s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="2.6s" fill="freeze"></animate>
+  </path>
+
+  <path d="M2378 415 l-126 -325 68 0 69 0 19 53 c11 28 23 62 26 75 7 21 11 22
+141 22 l133 0 27 -75 28 -75 69 0 c63 0 69 2 64 18 -4 9 -61 155 -128 325
+l-121 307 -72 0 -71 0 -126 -325z m241 59 c23 -61 41 -114 41 -118 0 -3 -38
+-6 -85 -6 -47 0 -85 4 -85 9 0 5 15 51 34 102 44 121 48 130 51 127 2 -2 22
+-53 44 -114z" stroke-dasharray="600" stroke-dashoffset="600" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="600;0" dur="0.3s" begin="2.4s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="2.7s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="2.7s" fill="freeze"></animate>
+  </path>
+
+  <path d="M3407 750 c-67 -12 -124 -52 -148 -103 -23 -53 -24 -91 0 -142 26
+-58 71 -92 154 -116 169 -48 181 -54 196 -80 12 -22 12 -31 1 -58 -17 -41 -56
+-61 -120 -61 -70 0 -107 22 -132 77 l-20 46 -56 -7 c-31 -4 -58 -9 -60 -11 -3
+-2 1 -26 9 -52 18 -67 78 -129 142 -148 65 -19 169 -19 234 0 92 27 153 124
+138 219 -15 92 -71 138 -210 176 -154 41 -192 68 -160 116 22 33 60 47 118 41
+50 -4 83 -26 98 -64 8 -21 15 -23 75 -23 l66 0 -7 33 c-15 68 -53 115 -115
+140 -46 20 -143 27 -203 17z" stroke-dasharray="800" stroke-dashoffset="800" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="800;0" dur="0.3s" begin="2.5s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="2.8s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="2.8s" fill="freeze"></animate>
+  </path>
+
+  <path d="M3870 415 l0 -325 245 0 245 0 0 55 0 55 -180 0 -180 0 0 90 0 90
+165 0 165 0 0 55 0 55 -165 0 -165 0 0 75 0 75 175 0 175 0 0 50 0 50 -240 0
+-240 0 0 -325z" stroke-dasharray="500" stroke-dashoffset="500" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="500;0" dur="0.3s" begin="2.6s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="2.9s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="2.9s" fill="freeze"></animate>
+  </path>
+
+  <path d="M4490 416 l0 -326 65 0 65 0 0 141 0 140 48 -6 c26 -4 57 -13 68 -20
+12 -8 58 -68 103 -134 l82 -121 74 0 c41 0 75 2 75 5 0 19 -153 236 -180 255
+l-33 23 49 22 c53 23 100 71 110 111 11 44 -2 133 -22 161 -50 66 -55 68 -290
+71 l-214 3 0 -325z m346 214 c58 -23 73 -92 29 -135 -23 -24 -31 -25 -135 -25
+l-110 0 0 85 0 85 94 0 c52 0 107 -5 122 -10z" stroke-dasharray="700" stroke-dashoffset="700" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="700;0" dur="0.3s" begin="2.7s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="3s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="3s" fill="freeze"></animate>
+  </path>
+
+  <path d="M5102 727 c2 -8 53 -154 113 -325 l110 -312 71 0 71 0 41 117 c23 65
+75 211 115 326 l74 207 -68 0 -67 0 -79 -235 c-43 -129 -80 -235 -83 -235 -3
+0 -41 106 -85 235 l-80 235 -68 0 c-52 0 -68 -3 -65 -13z" stroke-dasharray="600" stroke-dashoffset="600" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="600;0" dur="0.3s" begin="2.8s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="3.1s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="3.1s" fill="freeze"></animate>
+  </path>
+
+  <path d="M5780 415 l0 -325 60 0 60 0 0 325 0 325 -60 0 -60 0 0 -325z" stroke-dasharray="400" stroke-dashoffset="400" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="400;0" dur="0.3s" begin="2.9s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="3.2s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="3.2s" fill="freeze"></animate>
+  </path>
+
+  <path d="M6257 750 c-94 -17 -162 -73 -209 -176 -19 -41 -23 -66 -23 -159 0
+-127 18 -181 83 -248 54 -56 105 -79 187 -85 132 -8 211 34 264 140 l32 63
+-63 21 -62 20 -23 -48 c-54 -118 -203 -119 -263 -2 -22 42 -25 62 -25 144 0
+83 3 101 25 140 52 93 167 115 237 45 18 -18 33 -40 33 -49 0 -19 12 -20 79
+-4 62 14 64 26 19 94 -55 83 -173 124 -291 104z" stroke-dasharray="800" stroke-dashoffset="800" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="800;0" dur="0.3s" begin="3s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="3.3s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="3.3s" fill="freeze"></animate>
+  </path>
+
+  <path d="M6710 415 l0 -325 250 0 250 0 0 55 0 55 -185 0 -185 0 0 90 0 90
+165 0 165 0 0 55 0 55 -165 0 -165 0 0 75 0 75 175 0 175 0 0 50 0 50 -240 0
+-240 0 0 -325z" stroke-dasharray="500" stroke-dashoffset="500" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="500;0" dur="0.3s" begin="3.1s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="3.4s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="3.4s" fill="freeze"></animate>
+  </path>
+
+  <path d="M7488 750 c-118 -21 -186 -116 -158 -222 17 -63 71 -110 156 -136 38
+-11 96 -29 129 -39 68 -20 93 -50 81 -97 -15 -58 -139 -89 -206 -50 -30 18
+-60 62 -60 89 0 16 -7 17 -62 11 -34 -3 -63 -8 -65 -10 -2 -2 1 -24 8 -50 17
+-67 77 -132 142 -151 65 -19 169 -19 234 0 122 36 178 184 112 292 -28 45 -87
+78 -195 106 -124 34 -154 50 -154 86 0 38 30 62 83 68 66 8 115 -12 134 -53
+16 -33 18 -34 80 -34 72 0 76 6 44 75 -34 74 -92 109 -196 118 -33 3 -81 2
+-107 -3z" stroke-dasharray="800" stroke-dashoffset="800" fill-opacity="0" stroke-width="4">
+    <animate attributeName="stroke-dashoffset" values="800;0" dur="0.3s" begin="3.2s" fill="freeze"></animate>
+    <animate attributeName="fill-opacity" values="0;1" dur="0.1s" begin="3.5s" fill="freeze"></animate>
+    <animate attributeName="transform" type="scale" values="0.8;1.2;1" dur="0.3s" begin="3.5s" fill="freeze"></animate>
+  </path>
+</g>
+
+<!-- Final glow effect with pulsing opacity -->
+<g transform="translate(0.000000,220.000000) scale(0.100000,-0.100000)" fill="url(#logoGradient)" stroke="none" filter="url(#finalGlow)" opacity="0">
+  <animate attributeName="opacity" values="0;0.5;0.2;0.5;0" dur="2s" begin="3.5s" repeatCount="indefinite"></animate>
+
+  <!-- Repeated paths for final glow effect -->
+  <path d="M861 2024 c-63 -32 -48 -12 -454 -592 l-297 -422 187 2 187 3 234
+330 c128 182 237 331 241 333 4 1 29 -30 56 -70 26 -40 88 -130 136 -200 49
+-70 89 -130 89 -133 0 -3 -98 -5 -217 -6 l-218 0 -88 -125 c-49 -69 -87 -127
+-85 -130 3 -2 266 -3 586 -2 l582 3 -126 185 c-293 429 -499 728 -527 764 -66
+83 -187 109 -286 60z"></path>
+
+  <path d="M6862 2024 c-28 -14 -64 -42 -80 -62 -59 -76 -662 -938 -662 -946 0
+-3 83 -6 184 -6 138 0 185 3 189 13 8 20 458 652 466 655 7 2 281 -390 281
+-402 0 -3 -98 -7 -217 -8 l-217 -3 -89 -124 c-48 -67 -86 -125 -84 -127 2 -2
+265 -3 585 -2 l582 3 -198 290 c-484 710 -481 707 -561 734 -57 19 -122 13
+-179 -15z"></path>
+
+  <path d="M1848 1902 l-97 -127 233 -3 233 -2 8 -380 7 -380 154 0 154 0 0 380
+0 380 184 0 184 0 88 117 c49 65 93 123 97 130 6 11 -102 13 -570 13 l-578 -1
+-97 -127z"></path>
+
+  <path d="M3136 1903 l-98 -128 236 -3 236 -2 0 -380 0 -380 160 0 160 0 0 380
+0 380 183 0 182 0 98 130 98 130 -579 0 -579 0 -97 -127z"></path>
+
+  <path d="M4420 1520 l0 -510 154 0 153 0 8 354 c4 195 4 425 0 510 l-7 156
+-154 0 -154 0 0 -510z"></path>
+
+  <path d="M5242 2011 c-258 -64 -414 -244 -414 -478 0 -261 204 -471 497 -513
+49 -7 186 -10 354 -8 l275 3 97 125 98 125 -397 5 c-454 6 -460 7 -542 89
+-135 135 -57 358 140 400 29 6 169 11 328 12 l277 0 93 123 c50 68 92 126 92
+129 0 4 -186 7 -412 6 -361 0 -422 -3 -486 -18z"></path>
+
+  <path d="M140 415 l0 -325 65 0 65 0 0 325 0 325 -65 0 -65 0 0 -325z"></path>
+  <path d="M410 415 l0 -325 60 0 60 0 2 213 3 212 130 -212 130 -212 68 -1 67
+0 0 325 0 325 -60 0 -60 0 -2 -217 -3 -216 -130 214 -131 214 -67 3 -67 3 0
+-326z"></path>
+  <path d="M1080 415 l0 -325 65 0 65 0 0 140 0 140 135 0 135 0 0 55 0 55 -135
+0 -135 0 0 80 0 80 160 0 160 0 0 50 0 50 -225 0 -225 0 0 -325z"></path>
+  <path d="M1650 415 l0 -325 65 0 65 0 0 141 0 140 48 -6 c26 -4 56 -13 67 -20
+12 -7 57 -67 100 -134 l80 -121 78 0 79 0 -23 38 c-70 115 -133 204 -159 222
+-35 25 -32 35 8 43 39 8 92 53 108 94 36 85 1 192 -76 231 -41 21 -57 22 -242
+22 l-198 0 0 -325z m377 191 c20 -24 24 -36 19 -65 -9 -61 -32 -71 -157 -71
+l-109 0 0 86 0 86 111 -4 c108 -3 111 -4 136 -32z"></path>
+  <path d="M2378 415 l-126 -325 68 0 69 0 19 53 c11 28 23 62 26 75 7 21 11 22
+141 22 l133 0 27 -75 28 -75 69 0 c63 0 69 2 64 18 -4 9 -61 155 -128 325
+l-121 307 -72 0 -71 0 -126 -325z m241 59 c23 -61 41 -114 41 -118 0 -3 -38
+-6 -85 -6 -47 0 -85 4 -85 9 0 5 15 51 34 102 44 121 48 130 51 127 2 -2 22
+-53 44 -114z"></path>
+  <path d="M3407 750 c-67 -12 -124 -52 -148 -103 -23 -53 -24 -91 0 -142 26
+-58 71 -92 154 -116 169 -48 181 -54 196 -80 12 -22 12 -31 1 -58 -17 -41 -56
+-61 -120 -61 -70 0 -107 22 -132 77 l-20 46 -56 -7 c-31 -4 -58 -9 -60 -11 -3
+-2 1 -26 9 -52 18 -67 78 -129 142 -148 65 -19 169 -19 234 0 92 27 153 124
+138 219 -15 92 -71 138 -210 176 -154 41 -192 68 -160 116 22 33 60 47 118 41
+50 -4 83 -26 98 -64 8 -21 15 -23 75 -23 l66 0 -7 33 c-15 68 -53 115 -115
+140 -46 20 -143 27 -203 17z"></path>
+  <path d="M3870 415 l0 -325 245 0 245 0 0 55 0 55 -180 0 -180 0 0 90 0 90
+165 0 165 0 0 55 0 55 -165 0 -165 0 0 75 0 75 175 0 175 0 0 50 0 50 -240 0
+-240 0 0 -325z"></path>
+  <path d="M4490 416 l0 -326 65 0 65 0 0 141 0 140 48 -6 c26 -4 57 -13 68 -20
+12 -8 58 -68 103 -134 l82 -121 74 0 c41 0 75 2 75 5 0 19 -153 236 -180 255
+l-33 23 49 22 c53 23 100 71 110 111 11 44 -2 133 -22 161 -50 66 -55 68 -290
+71 l-214 3 0 -325z m346 214 c58 -23 73 -92 29 -135 -23 -24 -31 -25 -135 -25
+l-110 0 0 85 0 85 94 0 c52 0 107 -5 122 -10z"></path>
+</g>
+</svg>

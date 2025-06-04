@@ -19,7 +19,7 @@ const AboutUs: React.FC = () => {
           <div className="flex-1">
             <h2 className="text-3xl font-bold text-blue-700 mb-4 sm:text-4xl">About Attica Infra</h2>
             <p className="text-lg text-gray-600 mb-6 text-justify">
-              <strong>Attica Infra Services</strong>, founded by <strong>Engineer Sekhar Reddy Muthakana</strong>, is one of India’s leading construction and real estate solution providers.
+              <strong>Attica Infra Services</strong>, founded by <strong>Engineer Surendra Reddy Muthakana</strong>, is one of India’s leading construction and real estate solution providers.
               With over a decade of industry expertise, we are committed to building high-quality homes and delivering ethical, transparent, and customer-focused services.
             </p>
             <p className="text-lg text-gray-600 mb-6 text-justify">
@@ -47,7 +47,7 @@ const AboutUs: React.FC = () => {
             <div style={{ width: "300px" }} className="flex flex-col items-center">
               <div className="overflow-hidden shadow-lg border-4 border-white rounded-lg w-full">
                 <img
-                  src="./CEO.jpeg"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKkAAACUCAMAAADf7/luAAAAP1BMVEWoqa3///+lpqqio6f8/Pzl5eaoqavx8fG9vsDBwsTs7O3i4uPo6Omio6Xa2tumqq3R0tSys7a5ub3JycubnaGaB+a7AAAEFklEQVR4nO2c63KrMAyEQQbscAsOef9nPQaHJm0agu2VyOnwzXT6d2tbK8sSzbKDg4ODg4ODg4ODv0w1sbeIv8b/sKAVUae6GfdL0d56XkBEyo5D0+qJuuxHS4o+Ti2RNUOd/0T3J/tRYkmZ/lnml9iPOQZOpy5e6Jwo9PgR60rZqFdk3sSOmdpT5Nn9KFO+1TlRn3aV6ja+X9v3bzR7HgF1eb/xd/SJ9koKaty8oDPF0O0jVQ1BOnP3Z/WZ+Ak4u2hqwoTOtPJSs2uMUCdVPK4oTmiel8JHlfpIoc6tRKWqMVpong+COYBsmD39wAge1VcXp21oKyWVAo30iV5IKdlEoXl+kZHape39hBYJKnVKFprnYychNX1JZYKKTkkOtTAKKI1No9+p+YWmB76HPfxDL6UvabjD/xpSj6xRMCuFbT579u9Qm+9SKu+idtuq+y20zCGFsH0Pr/lTUIG/TsF6UEEJyuPSFF+hQilVyU8GVqW40J/v04zFX3xJ+owrUhnXFKm05GyzoJXycShlABxRjEBdilMo1E8H1myKzFGsRR8ZYN4/sSq1uLuU5q35qIUpZa6jO5xNlbzVCV1gSkdepVUHCynu5/4O89jjAurKrLRCbT+rR3kwPlVYdqGghNrzd6Uw5l9IvPRDXvsa1mpvoQIotSJKk1qRnqkhya+0qpIfp/SkUqLRm3r3KwS89Ebi/ks2o1XKM2orJdQP7MabqlwnelYa7/9yQm/EDiMURnxqji5RUuWFTqsabqviW3+TmoWWf7WlfQboKfCZqtlhAG2hM9stQDOXeG9QduMAatHYvUdls40zvbaj8446M7M9qGpjl7uedFSRGsN8qh7Ix76sUupMhJ8a+dl+snFPFLXQUNeXThpiL9OF3ASyO2kqqZLWs1+dBZyAsugFvTEvK79S2uiga7QSaQAzjKD5p2Vh3RPucTnYYJdvnPGdVVzftOCd7AVNHy6UbM4K7URPcF2t4UInqRwpQOGFzu+o8LACRv0j+Ok+aBf6EWzv3N1JTJED29CPQAvBikC9nd8ooK8VwBb0M8imNIM/PdLAFjXysWw7mKN6dqUIs9A8B1WrzHs/gfm4Dzod+wrM/vMZ1B1Ea5ol3T/TJH+GBPzUYJ3kworV8x9J9X+RcPKkloBSS+oK68QlFROa2E5VEg61kPIdEuQzyO3EL2pV4b6H2YKOLlUFA98TH/7Yh4j3tJEXFbH0dMfESRXK+I+UcWOJV+FTOhH1v12ELcoTZVRKLpHeibmnIMfMtxMzmcj2vLNO+ONPVUmbqacNHqqo0v6RSDw2WKnZR2h49MNmzEOpQ0s/3Nx+KKEhJZ/zFwJHPpneyrcQ+J6eNLaZRh24/XskKE/YRB37i+kKYbPJO6VSz/C7T/0DHHE7Lrh0vzsAAAAASUVORK5CYII="
                   alt="Engineer Sekhar Reddy Muthakana"
                   className="w-full h-full object-cover"
                 />

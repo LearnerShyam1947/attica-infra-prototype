@@ -1,12 +1,13 @@
 export interface Builder {
+    _id: string;
     id: string;
     name: string;
-    images: string[];
+    imageUrls: string[];
     description: string;
     experience: string;
     phone: string;
     city: string;
     area: string;
     pincode: string;
-    imageUrl: string;
+    email: string;
 }

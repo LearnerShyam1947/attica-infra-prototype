@@ -33,7 +33,7 @@ const BrandCarousel: React.FC = () => {
 
   return (
     <>
-      <h2 className="mt-10 text-2xl md:text-3xl font-bold text-center mb-6">Our Trusted Partners</h2>
+      <h2 className="mt-10 text-2xl md:text-3xl font-bold text-center mb-6">Our Trusted Suppliers</h2>
       <div className="carousel-wrapper">
         <div className="carousel-track">
           {logos.map((brand, index) => (
