@@ -1,15 +1,19 @@
 import { Building2, Home, MapPin, MessageSquare, Phone, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { properties } from '../../../data/propertyData';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Property } from '../../../types/Proerty';
 
 const PropertyDetails = () => {
+  const [properties, setProperties] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+
+
   const { type } = useParams();
   const [searchCity, setSearchCity] = useState('');
   const [searchArea, setSearchArea] = useState('');
@@ -17,7 +21,7 @@ const PropertyDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
-  const filteredProperties = properties.filter(property => {
+  const filteredProperties = properties.filter((property: any) => {
     const matchesType = property.type === type;
     const matchesCity = !searchCity || property.location.city.toLowerCase().includes(searchCity.toLowerCase());
     const matchesArea = !searchArea || property.location.area.toLowerCase().includes(searchArea.toLowerCase());
@@ -35,11 +39,30 @@ const PropertyDetails = () => {
     setCurrentPage(1); // Reset to first page on filter/type change
   }, [searchCity, searchArea, searchPincode, type]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch('https://ais-backend-prototype.onrender.com/api/v1/properties/');
+        const data = await res.json();
+        console.log(data);
+        
+        setProperties(data.properties);
+      } catch (error) {
+        console.error('Error fetching properties:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const getTypeIcon = () => {
     switch (type) {
       case 'house': return <Home className="w-16 h-16 text-blue-600" />;
       case 'plot': return <MapPin className="w-16 h-16 text-blue-600" />;
-      case 'apartment': return <Building2 className="w-16 h-16 text-blue-600" />;
+      case 'flat': return <Building2 className="w-16 h-16 text-blue-600" />;
       default: return <Home className="w-16 h-16 text-blue-600" />;
     }
   };
@@ -96,17 +119,33 @@ const PropertyDetails = () => {
 
         {/* Property Listings */}
         <div className="space-y-6">
-          {currentProperties.map((property) => (
+          {loading ? (
+            <div className="space-y-6">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="bg-white rounded-lg shadow-md overflow-hidden animate-pulse">
+                  <div className="grid grid-cols-1 md:grid-cols-3 h-full">
+                    <div className="h-64 bg-gray-300 md:col-span-1"></div>
+                    <div className="md:col-span-2 p-6 space-y-4">
+                      <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+                      <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                      <div className="h-4 bg-gray-200 rounded w-full"></div>
+                      <div className="flex gap-2 mt-4">
+                        <div className="h-8 bg-gray-200 rounded w-24"></div>
+                        <div className="h-8 bg-gray-200 rounded w-24"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filteredProperties.length === 0 ? (
+            <div className="text-center py-20">
+              <h2 className="text-2xl font-semibold text-gray-700">No properties found</h2>
+              <p className="text-gray-500 mt-2">Try adjusting your filters or check back later.</p>
+            </div>
+          ) : currentProperties.map((property: Property) => (
             <div key={property.id} className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-3 h-full">
-                {/* <div className="md:col-span-1">
-                  <img
-                    src={property.images[0]}
-                    alt={property.title}
-                    className="w-full h-full object-cover"
-                  />
-                  
-                </div> */}
 
                 <div className="md:col-span-1 relative h-full">
                   <Swiper
@@ -120,7 +159,7 @@ const PropertyDetails = () => {
                     loop
                     className="h-full rounded-lg"
                   >
-                    {property.images.map((imgUrl, index) => (
+                    {property.imageUrls.map((imgUrl, index) => (
                       <SwiperSlide key={index}>
                         <img
                           src={imgUrl}
@@ -211,6 +250,7 @@ const PropertyDetails = () => {
               </div>
             </div>
           ))}
+
 
           {/* Pagination Controls */}
           {totalPages > 1 && (

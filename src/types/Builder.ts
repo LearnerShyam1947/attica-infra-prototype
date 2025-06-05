@@ -1,6 +1,5 @@
 export interface Builder {
     _id: string;
-    id: string;
     name: string;
     imageUrls: string[];
     description: string;

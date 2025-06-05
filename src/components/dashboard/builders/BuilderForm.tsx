@@ -119,10 +119,12 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
     <Formik
       initialValues={initialValues}
       validationSchema={BuilderSchema}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
         await addBuilder(values);
         setSubmitting(false);
         setUploadProgress([]);
+        showAlert("Success", "Builder successfully submitted!", "success");
+        resetForm()
       }}
     >
       {({ errors, touched, handleChange, handleBlur, values, isSubmitting, setFieldValue }) => (
@@ -221,7 +223,8 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
 
             {values.imageUrls.map((img: string, index: number) => {
               const progress = uploadProgress[index];
-
+              console.log(index, " ", progress);
+              
               const isUploading = progress >= 0 && progress < 100;
               const isSuccess = progress === 100;
               const isFailed = progress === -2; // explicitly set this for upload failures
@@ -249,7 +252,7 @@ const BuilderForm: React.FC<BuilderFormProps> = ({ builder }) => {
                   </label>
 
                   <div className="mt-2 text-sm">
-                    {isUploading || (progress === 100 && !img)  && (
+                    {(progress <= 100 && !img)  && (
                     
                         <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
                           <div

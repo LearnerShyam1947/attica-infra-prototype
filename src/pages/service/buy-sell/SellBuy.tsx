@@ -18,7 +18,7 @@ const SellBuy = () => {
       description: 'Explore available plots or list your land'
     },
     {
-      type: 'apartment',
+      type: 'flat',
       title: 'Apartment Flats',
       icon: <Building2 className="w-16 h-16 text-blue-600" />,
       description: 'Discover apartments or sell your flat'
