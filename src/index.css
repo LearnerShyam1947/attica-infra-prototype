@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: auto !important;
+}
+
 /* Smaller and repositioned Swiper navigation arrows */
 .custom-swiper-prev,
 .custom-swiper-next {
