@@ -631,14 +631,14 @@ const ConstructionMaterialsForm: React.FC = () => {
                                 }
 
                                 const formData = new FormData();
-                                formData.append("image", file);
+                                formData.append("file", file);
                                 formData.append("folderName", "material-file-upload");
 
                                 setUploadingIndex(globalIndex);
                                 setUploadProgress(prev => ({ ...prev, [globalIndex]: 0 }));
 
                                 const xhr = new XMLHttpRequest();
-                                xhr.open("POST", `http://localhost:3000/api/v1/upload/`);
+                                xhr.open("POST", `http://localhost:3000/api/v1/upload/r2`);
 
                                 xhr.upload.onprogress = (event) => {
                                   if (event.lengthComputable) {

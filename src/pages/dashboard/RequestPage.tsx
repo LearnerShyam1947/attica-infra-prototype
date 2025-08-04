@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
 export interface Contact {
-    _id: string;
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-    service: string;
-    reason: string;
-    timestamp: string; 
-    createdAt?: string; 
-    updatedAt?: string;
-  }
-  
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  service: string;
+  reason: string;
+  date: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 
 const RequestPage: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -66,7 +66,18 @@ const RequestPage: React.FC = () => {
                 <td className="p-3">{contact.service}</td>
                 {/* <td className="p-3">{contact.reason}</td> */}
                 <td className="p-3 text-gray-500">
-                  {new Date(contact.timestamp).toLocaleString()}
+                  {/* {new Date(contact.date).toLocaleString()} */}
+                  {
+                    new Date(contact.date).toLocaleString('en-GB', {
+                      day: '2-digit',
+                      month: 'numeric',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      second: '2-digit',
+                      hour12: true
+                    })
+                  }
                 </td>
               </tr>
             ))}
